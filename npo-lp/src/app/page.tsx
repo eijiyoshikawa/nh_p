@@ -10,6 +10,7 @@ import CallToAction from "@/components/CallToAction";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import BgIllustrations from "@/components/BgIllustrations";
+import MemberCarousel from "@/components/MemberCarousel";
 
 export default function Home() {
   return (
@@ -76,6 +77,7 @@ export default function Home() {
           </div>
         </section>
 
+        <MemberCarousel />
         <CallToAction />
       </main>
       <Footer />

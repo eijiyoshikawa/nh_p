@@ -276,6 +276,9 @@ export const funding = {
   ],
 };
 
+// LINE公式アカウントのURL（後で実際のURLに差し替え）
+export const lineUrl = "https://line.me/R/ti/p/@000dummy";
+
 export const cta = {
   sectionTitle: "一緒にひらかたを育てませんか",
   description:
@@ -292,6 +295,18 @@ export const cta = {
   message:
     "まずはお気軽にご連絡ください。オンラインでの説明会も定期開催しています。",
 };
+
+// メンバー一覧（後で実際のデータに差し替え）
+export const members = [
+  { name: "吉川 英治", romaji: "Eiji Yoshikawa", title: "理事長" },
+  { name: "山田 太郎", romaji: "Taro Yamada", title: "副理事長" },
+  { name: "佐藤 花子", romaji: "Hanako Sato", title: "理事・事務局長" },
+  { name: "田中 一郎", romaji: "Ichiro Tanaka", title: "理事・企画担当" },
+  { name: "鈴木 美咲", romaji: "Misaki Suzuki", title: "理事・広報担当" },
+  { name: "高橋 健太", romaji: "Kenta Takahashi", title: "理事・営業担当" },
+  { name: "伊藤 あゆみ", romaji: "Ayumi Ito", title: "監事" },
+  { name: "渡辺 雄太", romaji: "Yuta Watanabe", title: "事務局スタッフ" },
+];
 
 export const nav = {
   items: [
