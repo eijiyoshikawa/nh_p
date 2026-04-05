@@ -8,9 +8,13 @@ export default function Benefits() {
       <div className="mx-auto max-w-4xl">
         <SectionHeading title={benefits.sectionTitle} />
 
-        <blockquote className="mb-10 border-l-4 border-accent-orange pl-4 text-sm font-medium italic leading-relaxed text-text-primary sm:text-base md:text-lg">
+        <blockquote className="mb-6 border-l-4 border-accent-orange pl-4 text-sm font-medium italic leading-relaxed text-text-primary sm:text-base md:text-lg">
           {benefits.quote}
         </blockquote>
+
+        <p className="mx-auto mb-10 max-w-2xl text-center text-sm leading-relaxed text-text-secondary sm:text-base">
+          {benefits.description}
+        </p>
 
         <div className="grid gap-4 sm:grid-cols-2">
           {benefits.items.map((item) => (

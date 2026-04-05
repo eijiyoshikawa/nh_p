@@ -10,11 +10,18 @@ export default function BusinessPlans() {
       <div className="mx-auto max-w-4xl">
         <SectionHeading title={businessPlans.sectionTitle} />
 
+        <p className="mx-auto mb-12 max-w-2xl text-center text-sm leading-relaxed text-text-secondary sm:text-base">
+          {businessPlans.intro}
+        </p>
+
         {/* Kikurage */}
         <div className="mb-12">
-          <h3 className="mb-6 text-lg font-bold text-accent-green sm:text-xl">
+          <h3 className="mb-3 text-lg font-bold text-accent-green sm:text-xl">
             🍄 {kikurage.title}
           </h3>
+          <p className="mb-6 text-sm leading-relaxed text-text-secondary">
+            {kikurage.description}
+          </p>
 
           <div className="mb-6 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
             {kikurage.revenue.map((item) => (
@@ -76,6 +83,21 @@ export default function BusinessPlans() {
                 {feature}
               </span>
             ))}
+          </div>
+
+          {/* Functions */}
+          <div className="mb-6">
+            <p className="mb-3 text-xs font-bold text-text-secondary uppercase">
+              主な機能
+            </p>
+            <ul className="grid gap-2 text-sm text-text-primary sm:grid-cols-2">
+              {warehouse.functions.map((func) => (
+                <li key={func} className="flex items-start gap-2 leading-relaxed">
+                  <span className="mt-0.5 flex-shrink-0 text-accent-orange">▸</span>
+                  {func}
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div className="grid gap-3 sm:grid-cols-3">

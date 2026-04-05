@@ -8,6 +8,10 @@ export default function Problem() {
       <div className="mx-auto max-w-4xl">
         <SectionHeading title={problem.sectionTitle} />
 
+        <p className="mx-auto mb-10 max-w-2xl text-center text-sm leading-relaxed text-text-secondary sm:text-base">
+          {problem.intro}
+        </p>
+
         <div className="mb-10 flex flex-wrap justify-center gap-8 sm:gap-10">
           {problem.stats.map((stat) => (
             <div key={stat.label} className="text-center">
@@ -22,7 +26,7 @@ export default function Problem() {
           ))}
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2">
           {problem.issues.map((issue) => (
             <Card key={issue.title}>
               <div className="mb-3 text-3xl">{issue.icon}</div>

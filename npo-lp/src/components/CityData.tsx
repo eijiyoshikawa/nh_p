@@ -10,6 +10,9 @@ export default function CityData() {
           title={cityData.sectionTitle}
           subtitle={cityData.subtitle}
         />
+        <p className="mx-auto mb-10 max-w-2xl text-center text-sm leading-relaxed text-text-secondary sm:text-base">
+          {cityData.description}
+        </p>
         <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3">
           {cityData.items.map((item) => (
             <StatCard
@@ -20,6 +23,9 @@ export default function CityData() {
             />
           ))}
         </div>
+        <p className="mt-8 rounded-2xl bg-orange-50 p-4 text-center text-sm font-medium leading-relaxed text-accent-orange-dark sm:p-5 sm:text-base">
+          {cityData.insight}
+        </p>
       </div>
     </section>
   );
