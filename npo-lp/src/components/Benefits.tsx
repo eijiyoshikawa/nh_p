@@ -4,22 +4,22 @@ import Card from "@/components/ui/Card";
 
 export default function Benefits() {
   return (
-    <section id="benefits" className="bg-white px-6 py-16 md:py-24">
+    <section id="benefits" className="bg-white px-4 py-16 sm:px-6 md:py-24">
       <div className="mx-auto max-w-4xl">
         <SectionHeading title={benefits.sectionTitle} />
 
-        <blockquote className="mb-10 border-l-4 border-accent-orange pl-4 text-base font-medium italic text-text-primary md:text-lg">
+        <blockquote className="mb-10 border-l-4 border-accent-orange pl-4 text-sm font-medium italic leading-relaxed text-text-primary sm:text-base md:text-lg">
           {benefits.quote}
         </blockquote>
 
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2">
           {benefits.items.map((item) => (
             <Card key={item.title}>
               <div className="mb-3 text-3xl">{item.icon}</div>
               <h3 className="mb-2 text-base font-bold text-text-primary">
                 {item.title}
               </h3>
-              <p className="text-sm text-text-secondary">{item.description}</p>
+              <p className="text-sm leading-relaxed text-text-secondary">{item.description}</p>
             </Card>
           ))}
         </div>
