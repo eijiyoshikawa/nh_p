@@ -46,7 +46,7 @@ export default function Hero() {
       <p className="mb-4 text-sm font-medium tracking-widest text-orange-300 uppercase">
         {hero.subtitle}
       </p>
-      <h1 className="max-w-3xl text-3xl font-extrabold leading-snug tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
+      <h1 className="max-w-3xl whitespace-pre-line text-3xl font-extrabold leading-snug tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
         {hero.tagline}
       </h1>
       <p className="mt-6 max-w-md text-base leading-relaxed text-white/80 sm:text-lg">
