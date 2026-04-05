@@ -25,6 +25,12 @@ export default function Header() {
             </a>
           ))}
           <a
+            href="/grants"
+            className="whitespace-nowrap transition-colors hover:text-accent-orange"
+          >
+            助成金リスト
+          </a>
+          <a
             href="/funding-strategy"
             className="whitespace-nowrap rounded-full bg-accent-orange px-3 py-1 text-white transition-colors hover:bg-accent-orange-dark"
           >
@@ -63,11 +69,18 @@ export default function Header() {
               </a>
             ))}
             <a
+              href="/grants"
+              className="text-sm font-medium text-accent-orange transition-colors hover:text-accent-orange-dark"
+              onClick={() => setOpen(false)}
+            >
+              助成金リスト
+            </a>
+            <a
               href="/funding-strategy"
               className="text-sm font-medium text-accent-orange transition-colors hover:text-accent-orange-dark"
               onClick={() => setOpen(false)}
             >
-              📊 資金戦略
+              資金戦略
             </a>
           </div>
         </nav>
