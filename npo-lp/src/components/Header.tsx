@@ -24,6 +24,12 @@ export default function Header() {
               {item.label}
             </a>
           ))}
+          <a
+            href="/funding-strategy"
+            className="whitespace-nowrap rounded-full bg-accent-orange px-3 py-1 text-white transition-colors hover:bg-accent-orange-dark"
+          >
+            資金戦略
+          </a>
         </nav>
 
         {/* Mobile hamburger */}
@@ -56,6 +62,13 @@ export default function Header() {
                 {item.label}
               </a>
             ))}
+            <a
+              href="/funding-strategy"
+              className="text-sm font-medium text-accent-orange transition-colors hover:text-accent-orange-dark"
+              onClick={() => setOpen(false)}
+            >
+              📊 資金戦略
+            </a>
           </div>
         </nav>
       )}
