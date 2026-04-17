@@ -18,7 +18,7 @@ import { ArticleCard } from "@/components/cards/ArticleCard";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { Faq } from "@/components/article/Faq";
 import { Sources } from "@/components/article/Sources";
-import { TagChips } from "@/components/article/TagChips";
+import { TagChips, AuthorByline } from "@/components/article/TagChips";
 import { RelatedArticles } from "@/components/article/RelatedArticles";
 import { Cta } from "@/components/cta/Cta";
 import { site } from "@/lib/site";
@@ -148,7 +148,7 @@ export default async function Page({
           {article.updatedAt && (
             <time dateTime={article.updatedAt}>更新: {article.updatedAt}</time>
           )}
-          <span>著者: {article.author}</span>
+          <AuthorByline article={article} />
         </div>
         {article.description && (
           <p className="mt-4 rounded-lg bg-orange-50 p-4 text-sm text-stone-700">

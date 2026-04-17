@@ -3,6 +3,7 @@ import path from "node:path";
 import matter from "gray-matter";
 import type { Article, ArticleFrontmatter } from "./types";
 import { isCategorySlug } from "./categories";
+import { getAuthor } from "./authors";
 
 const ARTICLES_DIR = path.join(process.cwd(), "content", "articles");
 
@@ -99,6 +100,17 @@ export async function getArticlesByTag(tag: string): Promise<Article[]> {
   return all.filter(
     (a) =>
       a.themeTags?.includes(tag as never) || a.ageTags?.includes(tag as never)
+  );
+}
+
+export async function getArticlesByAuthor(
+  slugOrName: string
+): Promise<Article[]> {
+  const all = await getAllArticles();
+  const target = getAuthor(slugOrName);
+  if (!target) return [];
+  return all.filter(
+    (a) => a.author === target.name || (target.aliases ?? []).includes(a.author)
   );
 }
 

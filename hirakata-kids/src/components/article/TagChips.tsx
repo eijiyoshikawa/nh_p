@@ -2,6 +2,22 @@ import Link from "next/link";
 import type { Article } from "@/lib/types";
 import { getArea } from "@/lib/areas";
 import { getTag } from "@/lib/tags";
+import { getAuthor } from "@/lib/authors";
+
+export function AuthorByline({ article }: { article: Article }) {
+  const a = getAuthor(article.author);
+  if (a) {
+    return (
+      <Link
+        href={`/author/${a.slug}/`}
+        className="hover:text-[#F97316] hover:underline"
+      >
+        著者: {a.name}
+      </Link>
+    );
+  }
+  return <span>著者: {article.author}</span>;
+}
 
 export function TagChips({ article }: { article: Article }) {
   const areas = (article.areaTags ?? [])

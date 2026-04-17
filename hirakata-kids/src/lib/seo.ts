@@ -2,10 +2,20 @@ import type { Article } from "./types";
 import { site } from "./site";
 import { getCategory } from "./categories";
 import { getArticleUrl } from "./content";
+import { getAuthor } from "./authors";
 
 type JsonLd = Record<string, unknown>;
 
 export function articleJsonLd(article: Article, url: string): JsonLd {
+  const authorRecord = getAuthor(article.author);
+  const author: JsonLd = authorRecord
+    ? {
+        "@type": "Person",
+        name: authorRecord.name,
+        url: `${site.url}/author/${authorRecord.slug}/`,
+        jobTitle: authorRecord.role,
+      }
+    : { "@type": "Person", name: article.author };
   return {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -13,7 +23,7 @@ export function articleJsonLd(article: Article, url: string): JsonLd {
     description: article.description,
     datePublished: article.publishedAt,
     dateModified: article.updatedAt ?? article.publishedAt,
-    author: { "@type": "Person", name: article.author },
+    author,
     publisher: {
       "@type": "Organization",
       name: site.operator.name,

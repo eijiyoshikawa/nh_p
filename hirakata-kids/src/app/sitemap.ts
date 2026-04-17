@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { categories } from "@/lib/categories";
 import { areas } from "@/lib/areas";
 import { allTags } from "@/lib/tags";
+import { authors } from "@/lib/authors";
 import { getAllArticles, getArticleUrl } from "@/lib/content";
 import { site } from "@/lib/site";
 
@@ -14,7 +15,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/about/`, changeFrequency: "monthly", priority: 0.5 },
     { url: `${base}/area/`, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/tag/`, changeFrequency: "monthly", priority: 0.5 },
+    { url: `${base}/author/`, changeFrequency: "monthly", priority: 0.4 },
   ];
+
+  const authorUrls: MetadataRoute.Sitemap = authors.map((a) => ({
+    url: `${base}/author/${a.slug}/`,
+    changeFrequency: "monthly",
+    priority: 0.4,
+  }));
 
   const categoryUrls: MetadataRoute.Sitemap = categories.map((c) => ({
     url: `${base}/${c.slug}/`,
@@ -55,6 +63,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...subcategoryUrls,
     ...areaUrls,
     ...tagUrls,
+    ...authorUrls,
     ...articleUrls,
   ];
 }

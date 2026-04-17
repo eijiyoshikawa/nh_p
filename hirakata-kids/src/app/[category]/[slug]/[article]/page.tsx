@@ -12,7 +12,7 @@ import { getCategory, isCategorySlug } from "@/lib/categories";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { Faq } from "@/components/article/Faq";
 import { Sources } from "@/components/article/Sources";
-import { TagChips } from "@/components/article/TagChips";
+import { TagChips, AuthorByline } from "@/components/article/TagChips";
 import { RelatedArticles } from "@/components/article/RelatedArticles";
 import { Cta } from "@/components/cta/Cta";
 import { site } from "@/lib/site";
@@ -109,7 +109,7 @@ export default async function ArticleWithSubPage({
               更新: {articleData.updatedAt}
             </time>
           )}
-          <span>著者: {articleData.author}</span>
+          <AuthorByline article={articleData} />
         </div>
         {articleData.description && (
           <p className="mt-4 rounded-lg bg-orange-50 p-4 text-sm text-stone-700">

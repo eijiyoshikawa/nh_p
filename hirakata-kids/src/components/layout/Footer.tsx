@@ -43,6 +43,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/author/" className="hover:text-[#F97316]">
+                  著者一覧
+                </Link>
+              </li>
+              <li>
                 <Link href="/privacy/" className="hover:text-[#F97316]">
                   プライバシーポリシー
                 </Link>
