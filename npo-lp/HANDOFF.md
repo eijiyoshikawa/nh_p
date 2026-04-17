@@ -29,7 +29,7 @@ Next.js 16 + Tailwind CSS v4。Vercelにデプロイ済み。
 | 3 | CityData.tsx | 枚方市6統計 + インサイト文 |
 | 4 | Solution.tsx | 課題→解決策マッピング4つ + 目標 |
 | 5 | Benefits.tsx | CSR/雇用/発見/地域/空き家/食育の6カード |
-| 6 | BusinessPlans.tsx | きくらげ収益試算 + セントラル倉庫（機能一覧付き） |
+| 6 | BusinessPlans.tsx | BSF循環機構の収益試算 + セントラル倉庫（機能一覧付き） |
 | 7 | Funding.tsx | 補助金16種 + ふるさとCF + 3ステップ戦略 |
 | — | リンクセクション | /grants, /funding-strategy, /glossary へのカード |
 | 8 | MemberCarousel.tsx | メンバーカード 3秒自動横スクロール |
@@ -82,7 +82,7 @@ npo-lp/
 - **フォント**: システムフォント（Hiragino Kaku Gothic ProN / Noto Sans JP等）
 - **レスポンシブ**: モバイルファースト、ハンバーガーメニュー、sm/md/lgブレークポイント
 - **OGP**: LINE共有用のog:title/description/locale設定済み
-- **背景**: SVGイラスト（家・木・ハート・お皿・人々・きのこ）の浮遊アニメーション
+- **背景**: SVGイラスト（家・木・ハート・お皿・人々・循環ループ）の浮遊アニメーション
 
 ## LINE連携
 

@@ -36,10 +36,11 @@ export default function BgIllustrations() {
         <rect x="73" y="33" width="14" height="26" rx="5" />
       </svg>
 
-      {/* Right-middle: mushroom (kikurage) */}
-      <svg className="animate-float absolute right-[5%] top-[75%] h-20 w-20 text-green-100 opacity-30 sm:h-28 sm:w-28" viewBox="0 0 80 80" fill="currentColor">
-        <ellipse cx="40" cy="35" rx="28" ry="20" />
-        <rect x="35" y="50" width="10" height="22" rx="4" />
+      {/* Right-middle: recycle loop (BSF circulation) */}
+      <svg className="animate-float absolute right-[5%] top-[75%] h-20 w-20 text-green-100 opacity-30 sm:h-28 sm:w-28" viewBox="0 0 80 80" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M20 30 L28 22 M20 30 L28 38 M20 30 Q30 12 50 18" />
+        <path d="M62 36 L60 46 M62 36 L54 40 M62 36 Q68 54 48 62" />
+        <path d="M32 62 L22 58 M32 62 L30 52 M32 62 Q14 56 18 34" />
       </svg>
 
       {/* Dots pattern - scattered */}

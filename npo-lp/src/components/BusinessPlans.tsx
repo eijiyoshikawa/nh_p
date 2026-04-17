@@ -3,7 +3,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Card from "@/components/ui/Card";
 
 export default function BusinessPlans() {
-  const { kikurage, warehouse } = businessPlans;
+  const { bsf, warehouse } = businessPlans;
 
   return (
     <section id="business" className="px-4 py-16 sm:px-6 md:py-24">
@@ -14,17 +14,17 @@ export default function BusinessPlans() {
           {businessPlans.intro}
         </p>
 
-        {/* Kikurage */}
+        {/* BSF */}
         <div className="mb-12">
           <h3 className="mb-3 text-lg font-bold text-accent-green sm:text-xl">
-            🍄 {kikurage.title}
+            ♻️ {bsf.title}
           </h3>
           <p className="mb-6 text-sm leading-relaxed text-text-secondary">
-            {kikurage.description}
+            {bsf.description}
           </p>
 
           <div className="mb-6 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
-            {kikurage.revenue.map((item) => (
+            {bsf.revenue.map((item) => (
               <Card
                 key={item.label}
                 className={
@@ -51,7 +51,7 @@ export default function BusinessPlans() {
               選定理由
             </p>
             <ul className="grid gap-2 text-sm text-text-primary md:grid-cols-2">
-              {kikurage.reasons.map((reason) => (
+              {bsf.reasons.map((reason) => (
                 <li key={reason} className="flex items-start gap-2 leading-relaxed">
                   <span className="mt-0.5 flex-shrink-0 text-accent-green">✓</span>
                   {reason}
@@ -61,7 +61,7 @@ export default function BusinessPlans() {
           </Card>
 
           <p className="mt-4 text-center text-sm text-text-secondary">
-            初期費用: <span className="font-bold text-text-primary">{kikurage.initialCost}</span>
+            初期費用: <span className="font-bold text-text-primary">{bsf.initialCost}</span>
           </p>
         </div>
 

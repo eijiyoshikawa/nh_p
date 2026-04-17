@@ -22,7 +22,7 @@ npo_hirakata/
 │   │   │   ├── CityData.tsx          # 枚方市データ
 │   │   │   ├── Solution.tsx          # 解決策
 │   │   │   ├── Benefits.tsx          # メリット・可能性
-│   │   │   ├── BusinessPlans.tsx     # 事業紹介（きくらげ・倉庫）
+│   │   │   ├── BusinessPlans.tsx     # 事業紹介（BSF循環機構・倉庫）
 │   │   │   ├── Funding.tsx           # 資金調達戦略
 │   │   │   ├── CallToAction.tsx      # CTA（LINE公式リンク）
 │   │   │   ├── MemberCarousel.tsx    # メンバー紹介（自動横スクロール）
