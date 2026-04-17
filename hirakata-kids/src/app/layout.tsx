@@ -1,0 +1,41 @@
+import type { Metadata } from "next";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { site } from "@/lib/site";
+import { organizationJsonLd } from "@/lib/seo";
+import "./globals.css";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
+  title: {
+    default: `${site.name} — 枚方市の子育て情報メディア`,
+    template: `%s | ${site.name}`,
+  },
+  description: site.description,
+  openGraph: {
+    title: `${site.name} — 枚方市の子育て情報メディア`,
+    description: site.description,
+    locale: site.locale,
+    type: "website",
+    siteName: site.name,
+  },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
+  const orgLd = organizationJsonLd();
+  return (
+    <html lang="ja" className="antialiased">
+      <body className="min-h-screen">
+        <Header />
+        <main>{children}</main>
+        <Footer />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }}
+        />
+      </body>
+    </html>
+  );
+}
