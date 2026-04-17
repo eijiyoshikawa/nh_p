@@ -1,25 +1,23 @@
 "use client";
 
 /**
- * ページ全体の後ろに敷くスタイリッシュなアンビエント背景。
+ * ページ全体の後ろに敷くアンビエント背景。
  *
  * 構成：
- *   1. 静かなラインのグリッド（ゆっくり流れる）
- *   2. ぼかした緑系オーブ3つ（位置・サイズ・速度が異なる）
- *   3. 粒子が下から上へ緩やかに上昇
- *
- * すべて pointer-events:none で、白基調＋緑グラデの色調を邪魔しないよう
- * 低透過度に抑えている。
+ *   1. ゆっくり流れるグリッド（視認性アップ）
+ *   2. 緑系オーブ4つ（位置・サイズ・速度が異なる、輪郭をはっきり）
+ *   3. 粒子が下から上へ上昇（数・輝度ともアップ）
+ *   4. 緩やかに色が動くオーロラ風グラデーション
  */
 export default function AmbientBackground() {
-  // Deterministic particle distribution (SSR 一致用にランダム禁止)
-  const particles = Array.from({ length: 14 }, (_, i) => {
+  // Deterministic distribution (SSR 一致用にランダム禁止)
+  const particles = Array.from({ length: 26 }, (_, i) => {
     const left = (i * 7.3) % 100;
-    const driftX = ((i * 37) % 120) - 60; // -60 〜 60px
-    const dur = 22 + ((i * 4) % 18); // 22〜40s
-    const delay = (i * 1.7) % 16; // 0〜16s
-    const size = 3 + ((i * 2) % 5); // 3〜7px
-    const opacity = 0.18 + ((i * 13) % 7) / 50; // 0.18〜0.32
+    const driftX = ((i * 37) % 160) - 80; // -80 〜 80px
+    const dur = 18 + ((i * 3) % 18); // 18〜36s
+    const delay = (i * 1.3) % 14; // 0〜14s
+    const size = 4 + ((i * 2) % 7); // 4〜10px
+    const opacity = 0.45 + ((i * 13) % 7) / 20; // 0.45〜0.75
     return { left, driftX, dur, delay, size, opacity, key: i };
   });
 
@@ -28,26 +26,29 @@ export default function AmbientBackground() {
       className="pointer-events-none fixed inset-0 -z-40 overflow-hidden"
       aria-hidden="true"
     >
-      {/* Subtle grid, fading out to edges */}
-      <div className="animate-grid-drift absolute inset-0 opacity-60" />
+      {/* Aurora-like shifting gradient base */}
+      <div className="animate-aurora absolute inset-0 opacity-70" />
 
-      {/* Soft green gradient orbs */}
-      <div className="animate-orb-1 absolute left-[-10%] top-[10%] h-[38rem] w-[38rem] rounded-full bg-emerald-300/25 blur-[110px]" />
-      <div className="animate-orb-2 absolute right-[-12%] top-[45%] h-[42rem] w-[42rem] rounded-full bg-teal-200/30 blur-[120px]" />
-      <div className="animate-orb-3 absolute bottom-[-10%] left-[25%] h-[34rem] w-[34rem] rounded-full bg-lime-200/25 blur-[110px]" />
+      {/* Visible moving grid */}
+      <div className="animate-grid-drift absolute inset-0 opacity-100" />
+
+      {/* Crisper green gradient orbs */}
+      <div className="animate-orb-1 absolute left-[-10%] top-[8%] h-[40rem] w-[40rem] rounded-full bg-emerald-400/55 blur-[90px]" />
+      <div className="animate-orb-2 absolute right-[-12%] top-[38%] h-[46rem] w-[46rem] rounded-full bg-teal-300/55 blur-[100px]" />
+      <div className="animate-orb-3 absolute bottom-[-12%] left-[22%] h-[38rem] w-[38rem] rounded-full bg-lime-300/55 blur-[90px]" />
+      <div className="animate-orb-1 absolute right-[20%] top-[72%] h-[28rem] w-[28rem] rounded-full bg-emerald-300/45 blur-[80px]" />
 
       {/* Floating particles rising upward */}
       <div className="absolute inset-0">
         {particles.map((p) => (
           <span
             key={p.key}
-            className="animate-particle absolute bottom-0 block rounded-full bg-emerald-400"
+            className="animate-particle absolute bottom-0 block rounded-full bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.9)]"
             style={{
               left: `${p.left}%`,
               width: `${p.size}px`,
               height: `${p.size}px`,
               opacity: p.opacity,
-              // CSS custom properties consumed by .animate-particle
               ["--drift-x" as string]: `${p.driftX}px`,
               ["--dur" as string]: `${p.dur}s`,
               ["--delay" as string]: `${p.delay}s`,

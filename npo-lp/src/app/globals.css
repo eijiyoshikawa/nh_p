@@ -95,18 +95,34 @@ section {
 }
 .animate-grid-drift {
   background-image:
-    linear-gradient(to right, rgba(16,185,129,0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(16,185,129,0.08) 1px, transparent 1px);
+    linear-gradient(to right, rgba(16,185,129,0.18) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16,185,129,0.18) 1px, transparent 1px);
   background-size: 60px 60px;
-  animation: grid-drift 60s linear infinite;
-  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 75%);
-  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 75%);
+  animation: grid-drift 45s linear infinite;
+  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 78%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 78%);
+}
+
+/* Aurora-like shifting color wash (very soft — sits under the orbs) */
+@keyframes aurora {
+  0%   { background-position: 0% 0%, 100% 100%, 50% 50%; }
+  50%  { background-position: 100% 50%, 0% 50%, 30% 70%; }
+  100% { background-position: 0% 0%, 100% 100%, 50% 50%; }
+}
+.animate-aurora {
+  background:
+    radial-gradient(60% 60% at 20% 20%, rgba(110,231,183,0.55) 0%, transparent 60%),
+    radial-gradient(55% 55% at 80% 30%, rgba(167,243,208,0.45) 0%, transparent 65%),
+    radial-gradient(70% 70% at 50% 90%, rgba(16,185,129,0.35) 0%, transparent 65%);
+  background-size: 200% 200%, 200% 200%, 200% 200%;
+  animation: aurora 26s ease-in-out infinite;
+  filter: blur(20px);
 }
 
 @keyframes particle-rise {
   0%   { transform: translateY(12vh) translateX(0); opacity: 0; }
-  15%  { opacity: 0.6; }
-  85%  { opacity: 0.4; }
+  15%  { opacity: var(--max-opacity, 0.75); }
+  85%  { opacity: calc(var(--max-opacity, 0.75) * 0.7); }
   100% { transform: translateY(-112vh) translateX(var(--drift-x, 0px)); opacity: 0; }
 }
 .animate-particle {
@@ -190,6 +206,7 @@ section {
   .animate-orb-2,
   .animate-orb-3,
   .animate-grid-drift,
+  .animate-aurora,
   .animate-particle {
     animation: none !important;
   }

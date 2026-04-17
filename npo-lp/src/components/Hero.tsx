@@ -3,10 +3,20 @@
 import { useEffect, useRef, useState } from "react";
 import { hero } from "@/lib/content";
 
-// TODO: 子どもたちが遊ぶ動画に差し替え。
-//   - 推奨: public/ に hero-children.mp4 (H.264, 1080p, 10〜20秒ループ) を配置。
-//   - 暫定: Pexels の無料ストック動画（商用可・クレジット不要）。
-const LOCAL_VIDEO = "/hero-children.mp4";
+/**
+ * Hero 背景動画（Pixabay: marbles / glass sphere / multicoloured, ID 95186）
+ *   https://pixabay.com/videos/marbles-glass-sphere-multicoloured-95186/
+ *
+ * Pixabay ライセンス（Content License）上、動画ファイルは直リンクではなく
+ * 自分のサーバーにホストする必要があるため、下記手順でセットアップする：
+ *
+ *   1. Pixabay ページから MP4 をダウンロード（推奨: 1080p / 720p）
+ *   2. `npo-lp/public/hero-bg.mp4` に配置
+ *   3. 再デプロイ（ビルド側のコード変更は不要）
+ *
+ * 差し替え前は Pexels のフリー動画をフォールバックとして再生する。
+ */
+const LOCAL_VIDEO = "/hero-bg.mp4";
 const FALLBACK_VIDEO =
   "https://videos.pexels.com/video-files/4881267/4881267-hd_1920_1080_30fps.mp4";
 
@@ -24,8 +34,8 @@ export default function Hero() {
 
   return (
     <section className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-5 pt-20 text-center sm:px-6 md:pt-24">
-      {/* Base gradient fallback */}
-      <div className="absolute inset-0 -z-40 bg-gradient-to-b from-emerald-900 via-emerald-800 to-emerald-700" />
+      {/* Base: deep emerald fallback (shown while video loads or if it fails) */}
+      <div className="absolute inset-0 -z-40 bg-gradient-to-b from-emerald-900 via-emerald-800 to-emerald-950" />
 
       {/* Video background with subtle Ken Burns motion */}
       <video
@@ -43,16 +53,36 @@ export default function Hero() {
         <source src={FALLBACK_VIDEO} type="video/mp4" />
       </video>
 
-      {/* Readability veil */}
-      <div className="absolute inset-0 -z-20 bg-gradient-to-b from-black/55 via-emerald-900/40 to-emerald-950/75" />
-
-      {/* Green glow accents */}
+      {/*
+        サイト背景に使っている緑グラデーションを動画の上に重ねる。
+        ・上から emerald-400 → emerald-600 → emerald-900 の流れで、
+          マーブルの彩りを緑にまとめつつテキストの可読性を確保する。
+        ・ブレンドモード multiply で下の動画を色づけ、さらに不透明レイヤーで暗く締める。
+      */}
       <div
-        className="absolute -left-32 top-1/4 -z-10 h-[32rem] w-[32rem] rounded-full bg-emerald-400/20 blur-3xl"
+        className="absolute inset-0 -z-20 mix-blend-multiply"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(52,211,153,0.85) 0%, rgba(16,185,129,0.9) 45%, rgba(6,78,59,0.95) 100%)",
+        }}
         aria-hidden="true"
       />
       <div
-        className="absolute -right-32 bottom-1/4 -z-10 h-[28rem] w-[28rem] rounded-full bg-lime-300/15 blur-3xl"
+        className="absolute inset-0 -z-20"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(6,95,70,0.35) 0%, rgba(6,78,59,0.25) 50%, rgba(3,46,32,0.55) 100%)",
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Green glow accents */}
+      <div
+        className="absolute -left-32 top-1/4 -z-10 h-[32rem] w-[32rem] rounded-full bg-emerald-400/25 blur-3xl"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute -right-32 bottom-1/4 -z-10 h-[28rem] w-[28rem] rounded-full bg-lime-300/20 blur-3xl"
         aria-hidden="true"
       />
 
@@ -78,7 +108,6 @@ export default function Hero() {
             {line}
             {i < hero.descriptionLines.length - 1 && (
               <>
-                {/* PC では改行、SP では自然折り返し */}
                 <br className="hidden md:inline" />
                 <span className="md:hidden"> </span>
               </>
