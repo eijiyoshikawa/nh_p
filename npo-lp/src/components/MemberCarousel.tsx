@@ -59,10 +59,12 @@ export default function MemberCarousel() {
       cards.forEach((card) => {
         const rect = card.getBoundingClientRect();
         const cardCenter = rect.left + rect.width / 2;
-        const deltaRatio = Math.max(-1.5, Math.min(1.5, (cardCenter - centerX) / (viewport.width / 2)));
-        // Rotate around Y so near-center cards face the viewer, side cards tilt away
-        const rotateY = -deltaRatio * 28; // degrees
-        const translateZ = Math.max(-120, -Math.abs(deltaRatio) * 120); // push side cards backwards
+        const deltaRatio = Math.max(
+          -1.5,
+          Math.min(1.5, (cardCenter - centerX) / (viewport.width / 2)),
+        );
+        const rotateY = -deltaRatio * 28;
+        const translateZ = Math.max(-120, -Math.abs(deltaRatio) * 120);
         const scale = 1 - Math.min(0.18, Math.abs(deltaRatio) * 0.18);
         const opacity = 1 - Math.min(0.45, Math.abs(deltaRatio) * 0.45);
 
@@ -95,7 +97,7 @@ export default function MemberCarousel() {
   const displayMembers = [...members, ...members];
 
   return (
-    <section className="relative overflow-hidden px-4 py-20 sm:px-6 md:py-28">
+    <section className="relative overflow-hidden px-4 py-16 sm:px-6 md:py-24 lg:py-28">
       {/* Soft green glow */}
       <div
         className="pointer-events-none absolute left-1/2 top-10 -z-10 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-emerald-200/40 blur-3xl"
@@ -103,15 +105,15 @@ export default function MemberCarousel() {
       />
 
       <div className="mx-auto max-w-6xl">
-        <div className="mb-12 text-center">
-          <p className="text-xs font-medium tracking-[0.25em] text-accent-green-dark uppercase">
+        <div className="mb-10 text-center md:mb-12">
+          <p className="text-[10px] font-medium tracking-[0.25em] text-accent-green-dark uppercase sm:text-xs">
             Members
           </p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-text-primary md:text-4xl">
+          <h2 className="mt-3 text-2xl font-bold tracking-tight text-text-primary sm:text-3xl md:text-4xl">
             メンバー紹介
           </h2>
           <div className="mx-auto mt-4 h-1 w-14 rounded-full bg-gradient-to-r from-emerald-400 to-emerald-600" />
-          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-text-secondary">
+          <p className="mx-auto mt-4 max-w-xl text-xs leading-relaxed text-text-secondary sm:text-sm">
             ひらかたの未来を、それぞれの得意で支える仲間たち。
           </p>
         </div>
@@ -119,30 +121,36 @@ export default function MemberCarousel() {
         <div className="carousel-3d-viewport">
           <div
             ref={scrollRef}
-            className="carousel-3d-track scrollbar-hide flex gap-6 overflow-x-auto scroll-smooth px-[15%] pb-12 pt-4"
+            className="carousel-3d-track scrollbar-hide flex gap-5 overflow-x-auto scroll-smooth px-[10%] pb-12 pt-4 sm:gap-6 sm:px-[15%]"
             style={{ scrollSnapType: "x mandatory" }}
           >
             {displayMembers.map((member, i) => (
               <div
                 key={`${member.romaji}-${i}`}
-                className="carousel-3d-item flex w-72 flex-shrink-0 flex-col items-center rounded-3xl border border-emerald-100 bg-white p-6 shadow-[0_20px_60px_-24px_rgba(16,185,129,0.35)] sm:w-80"
+                className="carousel-3d-item flex w-60 flex-shrink-0 flex-col items-center rounded-3xl border border-emerald-100 bg-white p-5 shadow-[0_20px_60px_-24px_rgba(16,185,129,0.35)] sm:w-72 sm:p-6 md:w-80"
                 style={{ scrollSnapAlign: "center" }}
               >
                 {/* Photo area (larger) */}
-                <div className="relative h-48 w-48 overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-100 via-emerald-50 to-white ring-1 ring-emerald-100 sm:h-56 sm:w-56">
+                <div className="relative aspect-square w-full max-w-[14rem] overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-100 via-emerald-50 to-white ring-1 ring-emerald-100 sm:max-w-[16rem]">
                   {/* TODO: member.photoUrl を content.ts に追加して実写差し替え */}
                   <div className="flex h-full w-full items-center justify-center">
-                    <span className="bg-gradient-to-br from-emerald-500 to-emerald-700 bg-clip-text text-6xl font-extrabold text-transparent sm:text-7xl">
+                    <span className="bg-gradient-to-br from-emerald-500 to-emerald-700 bg-clip-text text-5xl font-extrabold text-transparent sm:text-6xl md:text-7xl">
                       {member.name.charAt(0)}
                     </span>
                   </div>
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-transparent" />
+
+                  {member.provisional && (
+                    <span className="absolute right-2 top-2 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-medium text-accent-green-dark ring-1 ring-emerald-200">
+                      LINE名（仮）
+                    </span>
+                  )}
                 </div>
 
-                <p className="mt-5 text-[11px] font-medium tracking-[0.2em] text-accent-green-dark uppercase">
+                <p className="mt-4 text-[10px] font-medium tracking-[0.2em] text-accent-green-dark uppercase sm:mt-5 sm:text-[11px]">
                   {member.title}
                 </p>
-                <p className="mt-1 text-lg font-bold text-text-primary sm:text-xl">
+                <p className="mt-1 text-base font-bold text-text-primary sm:text-lg md:text-xl">
                   {member.name}
                 </p>
                 <p className="mt-0.5 text-xs tracking-wide text-text-secondary">

@@ -16,7 +16,7 @@ export default function Benefits() {
           {benefits.description}
         </p>
 
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2 lg:gap-5 lg:grid-cols-3">
           {benefits.items.map((item) => (
             <Card key={item.title}>
               <div className="mb-3 text-3xl">{item.icon}</div>

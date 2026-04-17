@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "行政系資金調達戦略 — ひらかた子ども食堂支援NPO",
+  title: "行政系資金調達戦略 — NPO法人ミライラボネクシア",
   description: "枚方市で活用可能な助成金・補助金の一覧と、2029年末までに1,000万円を達成するためのロードマップ。",
 };
 

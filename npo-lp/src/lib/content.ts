@@ -1,8 +1,17 @@
+export const brand = {
+  name: "NPO法人ミライラボネクシア",
+  nameShort: "ミライラボネクシア",
+  nameEn: "Mirai Lab Nexia",
+  project: "ひらかた子ども食堂支援事業",
+};
+
 export const hero = {
   tagline: "支援を受ける場所から、\n価値を生み出す拠点へ。",
-  subtitle: "Hirakata Revolution — ひらかた子ども食堂支援NPO",
-  description:
-    "子ども食堂をプラットフォームに、地域と経済を繋ぎ直す。枚方から始まる循環の仕組みを、全国へ。",
+  subtitle: "Hirakata Revolution — NPO法人ミライラボネクシア",
+  descriptionLines: [
+    "子ども食堂をプラットフォームに、地域と経済を繋ぎ直す。",
+    "枚方から始まる循環の仕組みを、全国へ。",
+  ],
   cta: "一緒にひらかたを育てませんか",
 };
 
@@ -343,16 +352,26 @@ export const cta = {
     "まずはお気軽にご連絡ください。オンラインでの説明会も定期開催しています。",
 };
 
-// メンバー一覧（後で実際のデータに差し替え）
-export const members = [
-  { name: "吉川 英治", romaji: "Eiji Yoshikawa", title: "理事長" },
-  { name: "山田 太郎", romaji: "Taro Yamada", title: "副理事長" },
-  { name: "佐藤 花子", romaji: "Hanako Sato", title: "理事・事務局長" },
-  { name: "田中 一郎", romaji: "Ichiro Tanaka", title: "理事・企画担当" },
-  { name: "鈴木 美咲", romaji: "Misaki Suzuki", title: "理事・広報担当" },
-  { name: "高橋 健太", romaji: "Kenta Takahashi", title: "理事・営業担当" },
-  { name: "伊藤 あゆみ", romaji: "Ayumi Ito", title: "監事" },
-  { name: "渡辺 雄太", romaji: "Yuta Watanabe", title: "事務局スタッフ" },
+// メンバー一覧（LINE名を仮掲載中のものは provisional: true）
+export type Member = {
+  name: string;
+  romaji: string;
+  title: string;
+  provisional?: boolean;
+};
+
+export const members: Member[] = [
+  { name: "竹谷 孝之", romaji: "Taketani Takayuki", title: "理事長" },
+  { name: "吉川 英治", romaji: "Eiji Yoshikawa", title: "メンバー" },
+  { name: "宅島 陽光", romaji: "Takushima Haruhi", title: "メンバー", provisional: true },
+  { name: "貴田 浩平", romaji: "Kida Kohei", title: "メンバー", provisional: true },
+  { name: "長谷川 大晃", romaji: "Hasegawa Hiroaki", title: "メンバー", provisional: true },
+  { name: "長谷川 尚美", romaji: "Hasegawa Naomi", title: "メンバー", provisional: true },
+  { name: "田中", romaji: "Tanaka", title: "メンバー", provisional: true },
+  { name: "慎吾", romaji: "Shingo", title: "メンバー", provisional: true },
+  { name: "miki honami", romaji: "Miki Honami", title: "メンバー", provisional: true },
+  { name: "HIROMI", romaji: "Hiromi", title: "メンバー", provisional: true },
+  { name: "megumi k", romaji: "Megumi K", title: "メンバー", provisional: true },
 ];
 
 export const nav = {

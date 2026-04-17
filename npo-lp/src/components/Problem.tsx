@@ -4,7 +4,7 @@ import Card from "@/components/ui/Card";
 
 export default function Problem() {
   return (
-    <section id="problem" className="px-4 py-16 sm:px-6 md:py-24">
+    <section id="problem" className="px-4 py-14 sm:px-6 md:py-20 lg:py-24">
       <div className="mx-auto max-w-4xl">
         <SectionHeading title={problem.sectionTitle} />
 
@@ -26,7 +26,7 @@ export default function Problem() {
           ))}
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2 lg:gap-5">
           {problem.issues.map((issue) => (
             <Card key={issue.title}>
               <div className="mb-3 text-3xl">{issue.icon}</div>
@@ -46,7 +46,7 @@ export default function Problem() {
             {problem.necessity.map((item) => (
               <span
                 key={item}
-                className="rounded-full bg-white px-3 py-1.5 text-xs font-medium text-text-primary shadow-sm sm:px-4 sm:py-2 sm:text-sm"
+                className="press-scale rounded-full bg-white px-3 py-1.5 text-xs font-medium text-text-primary shadow-sm transition-transform hover:-translate-y-0.5 hover:shadow-md sm:px-4 sm:py-2 sm:text-sm"
               >
                 {item}
               </span>

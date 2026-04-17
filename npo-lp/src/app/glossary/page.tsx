@@ -8,7 +8,7 @@ import {
 } from "@/lib/glossary";
 
 export const metadata: Metadata = {
-  title: "用語集 — ひらかた子ども食堂支援NPO",
+  title: "用語集 — NPO法人ミライラボネクシア",
   description:
     "NPO・助成金・子ども食堂・事業に関する専門用語をわかりやすく解説。初めての方にも安心のガイド。",
 };

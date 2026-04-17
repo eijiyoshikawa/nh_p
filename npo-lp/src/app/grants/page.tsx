@@ -3,7 +3,7 @@ import Link from "next/link";
 import { grants, categoryLabels, type Grant } from "@/lib/grants";
 
 export const metadata: Metadata = {
-  title: "助成金・補助金リスト — ひらかた子ども食堂支援NPO",
+  title: "助成金・補助金リスト — NPO法人ミライラボネクシア",
   description:
     "大阪府枚方市のNPO法人が申請可能な助成金・補助金の一覧。枚方市・大阪府・国・民間財団の制度を網羅。",
 };

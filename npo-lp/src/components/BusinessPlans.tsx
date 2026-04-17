@@ -25,11 +25,11 @@ export default function BusinessPlans() {
             </p>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {pillars.items.map((item) => (
               <div
                 key={item.title}
-                className={`relative rounded-2xl bg-white p-5 shadow-sm ring-1 ${
+                className={`hover-lift relative rounded-2xl bg-white p-5 shadow-sm ring-1 ${
                   item.accent === "primary"
                     ? "ring-emerald-200"
                     : "ring-emerald-100"
@@ -143,7 +143,7 @@ export default function BusinessPlans() {
             {warehouse.features.map((feature) => (
               <span
                 key={feature}
-                className="rounded-full bg-emerald-50 px-3 py-1.5 text-xs font-medium text-accent-green-dark sm:px-4 sm:py-2 sm:text-sm"
+                className="press-scale rounded-full bg-emerald-50 px-3 py-1.5 text-xs font-medium text-accent-green-dark transition-transform hover:-translate-y-0.5 hover:shadow-md sm:px-4 sm:py-2 sm:text-sm"
               >
                 {feature}
               </span>
