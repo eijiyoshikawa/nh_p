@@ -11,9 +11,9 @@ export default function Solution() {
           subtitle={solution.description}
         />
 
-        <div className="mb-8 rounded-2xl bg-accent-orange p-5 text-center sm:p-6">
-          <p className="text-sm font-medium text-orange-100">目標</p>
-          <p className="mt-1 text-lg font-extrabold leading-snug text-white sm:text-xl md:text-2xl">
+        <div className="mb-8 rounded-2xl bg-gradient-to-br from-emerald-500 via-emerald-600 to-emerald-700 p-5 text-center shadow-[0_12px_30px_-12px_rgba(5,150,105,0.5)] sm:p-6">
+          <p className="text-sm font-medium text-emerald-100">目標</p>
+          <p className="mt-1 whitespace-pre-line text-lg font-extrabold leading-snug text-white sm:text-xl md:text-2xl">
             {solution.goal}
           </p>
         </div>

@@ -51,21 +51,21 @@ export default function GrantsPage() {
   const highCount = grants.filter((g) => g.priority === "high").length;
 
   return (
-    <div className="min-h-screen bg-[#FFFBF5]">
+    <div className="min-h-screen bg-gradient-to-b from-white to-emerald-50">
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-orange-100 bg-white/80 backdrop-blur-md">
+      <header className="sticky top-0 z-50 border-b border-emerald-100 bg-white/85 backdrop-blur-md">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-          <Link href="/" className="text-sm font-bold text-[#F97316]">
+          <Link href="/" className="text-sm font-bold text-[#16A34A]">
             ← LPに戻る
           </Link>
           <div className="flex gap-3 text-xs">
             <Link
               href="/funding-strategy"
-              className="font-medium text-stone-500 transition-colors hover:text-[#F97316]"
+              className="font-medium text-stone-500 transition-colors hover:text-[#16A34A]"
             >
               資金戦略
             </Link>
-            <span className="font-medium text-[#F97316]">助成金リスト</span>
+            <span className="font-medium text-[#16A34A]">助成金リスト</span>
           </div>
         </div>
       </header>
@@ -73,13 +73,13 @@ export default function GrantsPage() {
       <main className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
         {/* Title */}
         <div className="mb-8 text-center">
-          <p className="mb-2 text-sm font-medium tracking-widest text-[#F97316] uppercase">
+          <p className="mb-2 text-sm font-medium tracking-widest text-[#16A34A] uppercase">
             大阪府枚方市限定
           </p>
           <h1 className="text-2xl font-extrabold leading-snug text-stone-900 sm:text-3xl">
             申請可能な助成金・補助金リスト
           </h1>
-          <div className="mx-auto mt-4 h-1 w-12 rounded-full bg-[#F97316]" />
+          <div className="mx-auto mt-4 h-1 w-12 rounded-full bg-[#16A34A]" />
           <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-stone-500">
             枚方市で子ども食堂支援NPOが活用できる{totalCount}
             件の制度を、カテゴリ別・優先度別に整理しています。
@@ -148,7 +148,7 @@ export default function GrantsPage() {
           <div className="mt-4 flex justify-center gap-4">
             <Link
               href="/funding-strategy"
-              className="text-sm font-medium text-[#F97316] hover:underline"
+              className="text-sm font-medium text-[#16A34A] hover:underline"
             >
               資金調達戦略を見る →
             </Link>
@@ -190,7 +190,7 @@ function GrantCard({ grant }: { grant: Grant }) {
           <span className="flex-shrink-0 font-medium text-stone-400">
             交付額
           </span>
-          <span className="font-bold text-[#F97316]">{grant.amount}</span>
+          <span className="font-bold text-[#16A34A]">{grant.amount}</span>
         </div>
         <div className="flex gap-2">
           <span className="flex-shrink-0 font-medium text-stone-400">
@@ -223,7 +223,7 @@ function GrantCard({ grant }: { grant: Grant }) {
           href={grant.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-3 inline-block text-xs font-medium text-[#F97316] hover:underline"
+          className="mt-3 inline-block text-xs font-medium text-[#16A34A] hover:underline"
         >
           公式サイト →
         </a>

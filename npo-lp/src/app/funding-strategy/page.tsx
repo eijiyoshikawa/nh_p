@@ -8,11 +8,11 @@ export const metadata: Metadata = {
 
 export default function FundingStrategyPage() {
   return (
-    <div className="min-h-screen bg-[#FFFBF5]">
+    <div className="min-h-screen bg-gradient-to-b from-white to-emerald-50">
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-orange-100 bg-white/80 backdrop-blur-md">
+      <header className="sticky top-0 z-50 border-b border-emerald-100 bg-white/85 backdrop-blur-md">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-          <Link href="/" className="text-sm font-bold text-[#F97316]">
+          <Link href="/" className="text-sm font-bold text-[#16A34A]">
             ← LPに戻る
           </Link>
           <span className="text-xs font-medium text-stone-500">内部資料</span>
@@ -22,13 +22,13 @@ export default function FundingStrategyPage() {
       <main className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
         {/* Title */}
         <div className="mb-12 text-center">
-          <p className="mb-2 text-sm font-medium tracking-widest text-[#F97316] uppercase">
+          <p className="mb-2 text-sm font-medium tracking-widest text-[#16A34A] uppercase">
             ②行政戦略
           </p>
           <h1 className="text-2xl font-extrabold leading-snug text-stone-900 sm:text-3xl md:text-4xl">
             行政系資金調達 骨組み
           </h1>
-          <div className="mx-auto mt-4 h-1 w-12 rounded-full bg-[#F97316]" />
+          <div className="mx-auto mt-4 h-1 w-12 rounded-full bg-[#16A34A]" />
         </div>
 
         {/* Overview Cards */}
@@ -212,7 +212,7 @@ export default function FundingStrategyPage() {
                   <td className="py-2">2028</td><td>10件</td><td>3〜4件</td><td>300〜500万</td><td className="text-right">〜1,000万</td>
                 </tr>
                 <tr>
-                  <td className="py-2">2029</td><td>8件</td><td>2〜3件</td><td>200〜300万</td><td className="text-right font-bold text-[#F97316]">〜1,300万</td>
+                  <td className="py-2">2029</td><td>8件</td><td>2〜3件</td><td>200〜300万</td><td className="text-right font-bold text-[#16A34A]">〜1,300万</td>
                 </tr>
               </tbody>
             </table>
@@ -250,7 +250,7 @@ export default function FundingStrategyPage() {
         </div>
 
         {/* Conclusion */}
-        <div className="mb-16 rounded-2xl bg-[#F97316] p-6 text-center text-white sm:p-8">
+        <div className="mb-16 rounded-2xl bg-[#16A34A] p-6 text-center text-white sm:p-8">
           <p className="text-sm text-orange-200">結論</p>
           <p className="mt-2 text-lg font-bold leading-snug sm:text-xl">
             WAM助成（最大700万円）+ 空き家活用補助（最大250万円）の2本柱で950万円。
@@ -322,7 +322,7 @@ export default function FundingStrategyPage() {
               <p className="text-sm font-bold text-stone-900">{item.dept}</p>
               <p className="mt-1 text-xs text-stone-500">{item.purpose}</p>
               {item.tel !== "—" && (
-                <p className="mt-2 text-sm font-medium text-[#F97316]">
+                <p className="mt-2 text-sm font-medium text-[#16A34A]">
                   TEL: {item.tel}
                 </p>
               )}
@@ -440,7 +440,7 @@ function PhaseCard({
   return (
     <div className="rounded-2xl bg-white p-5 shadow-sm sm:p-6">
       <div className="mb-4 flex items-center gap-3">
-        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[#F97316] text-lg font-bold text-white">
+        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[#16A34A] text-lg font-bold text-white">
           {phase}
         </div>
         <div>
@@ -448,13 +448,13 @@ function PhaseCard({
           <p className="text-xs text-stone-500">{period}</p>
         </div>
       </div>
-      <p className="mb-4 rounded-lg bg-orange-50 px-3 py-2 text-sm font-medium text-[#EA580C]">
+      <p className="mb-4 rounded-lg bg-orange-50 px-3 py-2 text-sm font-medium text-[#15803D]">
         目標: {target}
       </p>
       <div className="mb-4 space-y-1.5">
         {items.map((item) => (
           <p key={item} className="text-sm leading-relaxed text-stone-700">
-            <span className="mr-2 text-[#F97316]">▸</span>
+            <span className="mr-2 text-[#16A34A]">▸</span>
             {item}
           </p>
         ))}

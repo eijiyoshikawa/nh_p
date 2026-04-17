@@ -3,11 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 import { hero } from "@/lib/content";
 
-// Pexels free stock video: Japanese street scene (Video ID: 4711774)
-// License: Free for personal and commercial use, no attribution required
-// Replace with /hero-bg.mp4 if you have a local video file
-const VIDEO_URL =
-  "https://videos.pexels.com/video-files/4711774/4711774-hd_1920_1080_25fps.mp4";
+// TODO: 子どもたちが遊ぶ動画に差し替え。
+//   - 推奨: public/ に hero-children.mp4 (H.264, 1080p, 10〜20秒ループ) を配置。
+//   - 暫定: Pexels の無料ストック動画（商用可・クレジット不要）。
+const LOCAL_VIDEO = "/hero-children.mp4";
+const FALLBACK_VIDEO =
+  "https://videos.pexels.com/video-files/4881267/4881267-hd_1920_1080_30fps.mp4";
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -22,43 +23,79 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-16 text-center">
-      {/* Gradient fallback (shown while video loads or if video fails) */}
-      <div className="absolute inset-0 -z-30 bg-gradient-to-br from-orange-900 via-stone-800 to-stone-900" />
+    <section className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-6 pt-16 text-center">
+      {/* Base: soft green → white gradient (fallback and brand tone) */}
+      <div className="absolute inset-0 -z-40 bg-gradient-to-b from-emerald-900 via-emerald-800 to-emerald-700" />
 
-      {/* Video background */}
+      {/* Video background with subtle Ken Burns motion */}
       <video
         ref={videoRef}
         autoPlay
         muted
         loop
         playsInline
-        className={`absolute inset-0 -z-20 h-full w-full object-cover transition-opacity duration-1000 ${
+        preload="auto"
+        className={`animate-kenburns absolute inset-0 -z-30 h-full w-full object-cover transition-opacity duration-1000 ${
           videoLoaded ? "opacity-100" : "opacity-0"
         }`}
       >
-        <source src={VIDEO_URL} type="video/mp4" />
+        <source src={LOCAL_VIDEO} type="video/mp4" />
+        <source src={FALLBACK_VIDEO} type="video/mp4" />
       </video>
 
-      {/* Dark overlay for readability */}
-      <div className="absolute inset-0 -z-10 bg-black/50" />
+      {/* Readability veil: dark→green gradient that lifts text without killing warmth */}
+      <div className="absolute inset-0 -z-20 bg-gradient-to-b from-black/55 via-emerald-900/40 to-emerald-950/70" />
 
-      <p className="mb-4 text-sm font-medium tracking-widest text-orange-300 uppercase">
+      {/* Green glow accents for impact */}
+      <div
+        className="absolute -left-32 top-1/4 -z-10 h-[32rem] w-[32rem] rounded-full bg-emerald-400/20 blur-3xl"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute -right-32 bottom-1/4 -z-10 h-[28rem] w-[28rem] rounded-full bg-lime-300/15 blur-3xl"
+        aria-hidden="true"
+      />
+
+      {/* Content */}
+      <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-[11px] font-medium tracking-[0.2em] text-emerald-100 uppercase backdrop-blur-md sm:text-xs">
+        <span className="h-1.5 w-1.5 rounded-full bg-emerald-300" aria-hidden="true" />
         {hero.subtitle}
-      </p>
-      <h1 className="max-w-3xl whitespace-pre-line text-3xl font-extrabold leading-snug tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
+      </span>
+
+      <h1 className="max-w-4xl whitespace-pre-line text-3xl font-extrabold leading-[1.2] tracking-tight text-white drop-shadow-[0_2px_24px_rgba(5,46,22,0.55)] sm:text-5xl md:text-6xl lg:text-7xl">
         {hero.tagline}
       </h1>
-      <p className="mt-6 max-w-md text-base leading-relaxed text-white/80 sm:text-lg">
+
+      <p className="mt-7 max-w-xl text-base leading-relaxed text-white/90 drop-shadow-[0_1px_12px_rgba(0,0,0,0.35)] sm:text-lg">
         {hero.description}
       </p>
-      <a
-        href="#cta"
-        className="mt-10 inline-flex items-center gap-2 rounded-full bg-accent-orange px-8 py-4 text-base font-bold text-white shadow-lg transition-all hover:scale-105 hover:bg-accent-orange-dark"
+
+      <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
+        <a
+          href="#cta"
+          className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-600 px-8 py-4 text-base font-bold text-white shadow-[0_10px_30px_-10px_rgba(16,185,129,0.7)] ring-1 ring-white/30 transition-all hover:scale-[1.03] hover:shadow-[0_14px_40px_-10px_rgba(16,185,129,0.85)]"
+        >
+          {hero.cta}
+          <span className="transition-transform group-hover:translate-x-1" aria-hidden="true">
+            &rarr;
+          </span>
+        </a>
+        <a
+          href="#business"
+          className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-6 py-3 text-sm font-medium text-white backdrop-blur-md transition-colors hover:bg-white/20"
+        >
+          事業を見る
+        </a>
+      </div>
+
+      {/* Scroll hint */}
+      <div
+        className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 text-xs tracking-widest text-white/70"
+        aria-hidden="true"
       >
-        {hero.cta}
-        <span aria-hidden="true">&rarr;</span>
-      </a>
+        <span className="block text-center">SCROLL</span>
+        <span className="mx-auto mt-2 block h-10 w-px animate-pulse bg-white/60" />
+      </div>
     </section>
   );
 }

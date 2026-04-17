@@ -29,23 +29,23 @@ export default function GlossaryPage() {
   }));
 
   return (
-    <div className="min-h-screen bg-[#FFFBF5]">
+    <div className="min-h-screen bg-gradient-to-b from-white to-emerald-50">
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-orange-100 bg-white/80 backdrop-blur-md">
+      <header className="sticky top-0 z-50 border-b border-emerald-100 bg-white/85 backdrop-blur-md">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-          <Link href="/" className="text-sm font-bold text-[#F97316]">
+          <Link href="/" className="text-sm font-bold text-[#16A34A]">
             ← LPに戻る
           </Link>
           <div className="flex gap-3 text-xs">
             <Link
               href="/grants"
-              className="font-medium text-stone-500 transition-colors hover:text-[#F97316]"
+              className="font-medium text-stone-500 transition-colors hover:text-[#16A34A]"
             >
               助成金リスト
             </Link>
             <Link
               href="/funding-strategy"
-              className="font-medium text-stone-500 transition-colors hover:text-[#F97316]"
+              className="font-medium text-stone-500 transition-colors hover:text-[#16A34A]"
             >
               資金戦略
             </Link>
@@ -132,10 +132,10 @@ export default function GlossaryPage() {
             わからない用語があれば、お気軽にお問い合わせください。
           </p>
           <div className="mt-4 flex flex-wrap justify-center gap-4">
-            <Link href="/grants" className="text-sm font-medium text-[#F97316] hover:underline">
+            <Link href="/grants" className="text-sm font-medium text-[#16A34A] hover:underline">
               助成金リストを見る →
             </Link>
-            <Link href="/funding-strategy" className="text-sm font-medium text-[#F97316] hover:underline">
+            <Link href="/funding-strategy" className="text-sm font-medium text-[#16A34A] hover:underline">
               資金戦略を見る →
             </Link>
             <Link href="/" className="text-sm font-medium text-stone-500 hover:underline">

@@ -4,13 +4,13 @@ export default function CallToAction() {
   return (
     <section
       id="cta"
-      className="bg-gradient-to-b from-orange-50 to-orange-100 px-4 py-16 sm:px-6 md:py-24"
+      className="bg-gradient-to-b from-emerald-50 via-white to-emerald-100 px-4 py-16 sm:px-6 md:py-24"
     >
       <div className="mx-auto max-w-3xl text-center">
         <h2 className="text-xl font-extrabold leading-snug text-text-primary sm:text-2xl md:text-3xl">
           {cta.sectionTitle}
         </h2>
-        <div className="mx-auto mt-4 h-1 w-12 rounded-full bg-accent-orange" />
+        <div className="mx-auto mt-4 h-1 w-14 rounded-full bg-gradient-to-r from-emerald-400 to-emerald-600" />
         <p className="mt-6 text-sm leading-relaxed text-text-secondary sm:text-base">
           {cta.description}
         </p>
@@ -19,7 +19,7 @@ export default function CallToAction() {
           {cta.roles.map((role) => (
             <span
               key={role}
-              className="rounded-full bg-white px-3 py-1.5 text-xs font-medium text-accent-orange shadow-sm sm:px-4 sm:py-2 sm:text-sm"
+              className="rounded-full bg-white px-3 py-1.5 text-xs font-medium text-accent-green-dark shadow-sm sm:px-4 sm:py-2 sm:text-sm"
             >
               {role}
             </span>

@@ -7,9 +7,12 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-orange-100 bg-white/80 backdrop-blur-md">
+    <header className="fixed top-0 z-50 w-full border-b border-emerald-100/70 bg-white/85 backdrop-blur-md">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-        <a href="#" className="text-sm font-bold text-accent-orange">
+        <a
+          href="#"
+          className="bg-gradient-to-r from-emerald-600 to-emerald-500 bg-clip-text text-sm font-bold text-transparent"
+        >
           ひらかたNPO
         </a>
 
@@ -19,20 +22,20 @@ export default function Header() {
             <a
               key={item.href}
               href={item.href}
-              className="whitespace-nowrap transition-colors hover:text-accent-orange"
+              className="whitespace-nowrap transition-colors hover:text-accent-green"
             >
               {item.label}
             </a>
           ))}
           <a
             href="/grants"
-            className="whitespace-nowrap transition-colors hover:text-accent-orange"
+            className="whitespace-nowrap transition-colors hover:text-accent-green"
           >
             助成金リスト
           </a>
           <a
             href="/funding-strategy"
-            className="whitespace-nowrap rounded-full bg-accent-orange px-3 py-1 text-white transition-colors hover:bg-accent-orange-dark"
+            className="whitespace-nowrap rounded-full bg-gradient-to-r from-emerald-500 to-emerald-600 px-3 py-1 text-white transition-colors hover:from-emerald-600 hover:to-emerald-700"
           >
             資金戦略
           </a>
@@ -56,13 +59,13 @@ export default function Header() {
 
       {/* Mobile menu */}
       {open && (
-        <nav className="border-t border-orange-100 bg-white px-4 pb-4 pt-2 md:hidden">
+        <nav className="border-t border-emerald-100/70 bg-white px-4 pb-4 pt-2 md:hidden">
           <div className="flex flex-col gap-3">
             {nav.items.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium text-text-secondary transition-colors hover:text-accent-orange"
+                className="text-sm font-medium text-text-secondary transition-colors hover:text-accent-green"
                 onClick={() => setOpen(false)}
               >
                 {item.label}
@@ -70,14 +73,14 @@ export default function Header() {
             ))}
             <a
               href="/grants"
-              className="text-sm font-medium text-accent-orange transition-colors hover:text-accent-orange-dark"
+              className="text-sm font-medium text-accent-green transition-colors hover:text-accent-green-dark"
               onClick={() => setOpen(false)}
             >
               助成金リスト
             </a>
             <a
               href="/funding-strategy"
-              className="text-sm font-medium text-accent-orange transition-colors hover:text-accent-orange-dark"
+              className="text-sm font-medium text-accent-green transition-colors hover:text-accent-green-dark"
               onClick={() => setOpen(false)}
             >
               資金戦略

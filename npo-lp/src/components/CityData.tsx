@@ -4,7 +4,7 @@ import StatCard from "@/components/ui/StatCard";
 
 export default function CityData() {
   return (
-    <section id="citydata" className="bg-white px-4 py-16 sm:px-6 md:py-24">
+    <section id="citydata" className="bg-white/70 px-4 py-16 sm:px-6 md:py-24">
       <div className="mx-auto max-w-4xl">
         <SectionHeading
           title={cityData.sectionTitle}
@@ -23,7 +23,7 @@ export default function CityData() {
             />
           ))}
         </div>
-        <p className="mt-8 rounded-2xl bg-orange-50 p-4 text-center text-sm font-medium leading-relaxed text-accent-orange-dark sm:p-5 sm:text-base">
+        <p className="mt-8 rounded-2xl bg-gradient-to-r from-emerald-50 via-white to-emerald-50 p-4 text-center text-sm font-medium leading-relaxed text-accent-green-dark ring-1 ring-emerald-100 sm:p-5 sm:text-base">
           {cityData.insight}
         </p>
       </div>

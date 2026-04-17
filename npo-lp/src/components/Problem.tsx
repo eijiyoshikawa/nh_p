@@ -15,7 +15,7 @@ export default function Problem() {
         <div className="mb-10 flex flex-wrap justify-center gap-8 sm:gap-10">
           {problem.stats.map((stat) => (
             <div key={stat.label} className="text-center">
-              <span className="text-3xl font-bold text-accent-orange sm:text-4xl">
+              <span className="bg-gradient-to-br from-emerald-500 to-emerald-700 bg-clip-text text-3xl font-bold text-transparent sm:text-4xl">
                 {stat.value}
               </span>
               <span className="ml-1 text-base text-text-secondary sm:text-lg">
@@ -38,8 +38,8 @@ export default function Problem() {
           ))}
         </div>
 
-        <div className="mt-10 rounded-2xl bg-orange-50 p-5 sm:p-6">
-          <p className="mb-3 text-center text-sm font-bold text-accent-orange-dark">
+        <div className="mt-10 rounded-2xl bg-gradient-to-br from-emerald-50 to-white p-5 ring-1 ring-emerald-100 sm:p-6">
+          <p className="mb-3 text-center text-sm font-bold text-accent-green-dark">
             子ども食堂は食事の場だけではありません
           </p>
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
