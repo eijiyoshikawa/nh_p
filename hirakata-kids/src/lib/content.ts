@@ -107,3 +107,46 @@ export function getArticleUrl(article: Pick<Article, "category" | "subcategory" 
     ? `/${article.category}/${article.subcategory}/${article.slug}/`
     : `/${article.category}/${article.slug}/`;
 }
+
+function shared<T>(a: T[] | undefined, b: T[] | undefined): number {
+  if (!a || !b) return 0;
+  const set = new Set<T>(b);
+  let count = 0;
+  for (const x of a) if (set.has(x)) count++;
+  return count;
+}
+
+// Score a candidate against the current article.
+// Subcategory match dominates; category + tag overlap adds weight.
+function relatedScore(current: Article, candidate: Article): number {
+  if (candidate.slug === current.slug) return -1;
+  let score = 0;
+  if (candidate.category === current.category) {
+    score += 2;
+    if (
+      candidate.subcategory &&
+      candidate.subcategory === current.subcategory
+    ) {
+      score += 5;
+    }
+  }
+  score += shared(current.areaTags, candidate.areaTags) * 2;
+  score += shared(current.themeTags, candidate.themeTags);
+  score += shared(current.ageTags, candidate.ageTags);
+  return score;
+}
+
+export async function getRelatedArticles(
+  current: Article,
+  limit = 4
+): Promise<Article[]> {
+  const all = await getAllArticles();
+  return all
+    .map((a) => ({ a, s: relatedScore(current, a) }))
+    .filter(({ s }) => s > 0)
+    .sort(
+      (x, y) => y.s - x.s || y.a.publishedAt.localeCompare(x.a.publishedAt)
+    )
+    .slice(0, limit)
+    .map(({ a }) => a);
+}

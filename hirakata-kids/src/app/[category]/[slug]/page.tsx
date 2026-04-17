@@ -7,6 +7,7 @@ import {
   getAllArticles,
   getArticleBySlug,
   getArticlesBySubcategory,
+  getRelatedArticles,
 } from "@/lib/content";
 import {
   categories,
@@ -17,6 +18,8 @@ import { ArticleCard } from "@/components/cards/ArticleCard";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { Faq } from "@/components/article/Faq";
 import { Sources } from "@/components/article/Sources";
+import { TagChips } from "@/components/article/TagChips";
+import { RelatedArticles } from "@/components/article/RelatedArticles";
 import { Cta } from "@/components/cta/Cta";
 import { site } from "@/lib/site";
 import {
@@ -125,6 +128,7 @@ export default async function Page({
   if (!article || article.category !== category || article.subcategory) notFound();
 
   const url = `${site.url}/${article.category}/${article.slug}/`;
+  const related = await getRelatedArticles(article);
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-10">
@@ -151,6 +155,7 @@ export default async function Page({
             {article.description}
           </p>
         )}
+        <TagChips article={article} />
       </header>
 
       <div className="prose-article mt-8">
@@ -169,6 +174,8 @@ export default async function Page({
       {article.sources && article.sources.length > 0 && (
         <Sources items={article.sources} />
       )}
+
+      <RelatedArticles articles={related} />
 
       <Cta />
 

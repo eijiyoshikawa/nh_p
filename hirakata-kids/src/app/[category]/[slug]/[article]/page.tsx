@@ -3,11 +3,17 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
-import { getAllArticles, getArticleBySlug } from "@/lib/content";
+import {
+  getAllArticles,
+  getArticleBySlug,
+  getRelatedArticles,
+} from "@/lib/content";
 import { getCategory, isCategorySlug } from "@/lib/categories";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { Faq } from "@/components/article/Faq";
 import { Sources } from "@/components/article/Sources";
+import { TagChips } from "@/components/article/TagChips";
+import { RelatedArticles } from "@/components/article/RelatedArticles";
 import { Cta } from "@/components/cta/Cta";
 import { site } from "@/lib/site";
 import {
@@ -78,6 +84,7 @@ export default async function ArticleWithSubPage({
     notFound();
 
   const url = `${site.url}/${category}/${slug}/${article}/`;
+  const related = await getRelatedArticles(articleData);
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-10">
@@ -109,6 +116,7 @@ export default async function ArticleWithSubPage({
             {articleData.description}
           </p>
         )}
+        <TagChips article={articleData} />
       </header>
 
       <div className="prose-article mt-8">
@@ -129,6 +137,8 @@ export default async function ArticleWithSubPage({
       {articleData.sources && articleData.sources.length > 0 && (
         <Sources items={articleData.sources} />
       )}
+
+      <RelatedArticles articles={related} />
 
       <Cta />
 
