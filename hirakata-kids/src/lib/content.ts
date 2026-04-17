@@ -78,3 +78,32 @@ export async function getArticlesByCategory(category: string): Promise<Article[]
   const all = await getAllArticles();
   return all.filter((a) => a.category === category);
 }
+
+export async function getArticlesBySubcategory(
+  category: string,
+  subcategory: string
+): Promise<Article[]> {
+  const all = await getAllArticles();
+  return all.filter(
+    (a) => a.category === category && a.subcategory === subcategory
+  );
+}
+
+export async function getArticlesByArea(area: string): Promise<Article[]> {
+  const all = await getAllArticles();
+  return all.filter((a) => a.areaTags?.includes(area as never));
+}
+
+export async function getArticlesByTag(tag: string): Promise<Article[]> {
+  const all = await getAllArticles();
+  return all.filter(
+    (a) =>
+      a.themeTags?.includes(tag as never) || a.ageTags?.includes(tag as never)
+  );
+}
+
+export function getArticleUrl(article: Pick<Article, "category" | "subcategory" | "slug">): string {
+  return article.subcategory
+    ? `/${article.category}/${article.subcategory}/${article.slug}/`
+    : `/${article.category}/${article.slug}/`;
+}

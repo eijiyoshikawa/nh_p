@@ -1,12 +1,13 @@
 import Link from "next/link";
 import type { Article } from "@/lib/types";
 import { getCategory } from "@/lib/categories";
+import { getArticleUrl } from "@/lib/content";
 
 export function ArticleCard({ article }: { article: Article }) {
   const cat = getCategory(article.category);
   return (
     <Link
-      href={`/${article.category}/${article.slug}/`}
+      href={getArticleUrl(article)}
       className="group block rounded-lg border border-orange-100 bg-white p-5 transition hover:-translate-y-0.5 hover:border-orange-300 hover:shadow-md"
     >
       <div className="flex items-center gap-2 text-xs">

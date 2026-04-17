@@ -6,8 +6,14 @@ import rehypeSlug from "rehype-slug";
 import {
   getAllArticles,
   getArticleBySlug,
+  getArticlesBySubcategory,
 } from "@/lib/content";
-import { getCategory, isCategorySlug } from "@/lib/categories";
+import {
+  categories,
+  getCategory,
+  isCategorySlug,
+} from "@/lib/categories";
+import { ArticleCard } from "@/components/cards/ArticleCard";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { Faq } from "@/components/article/Faq";
 import { Sources } from "@/components/article/Sources";
@@ -22,17 +28,37 @@ import {
 
 type Params = { category: string; slug: string };
 
+// Pre-render ALL valid (category, slug) pairs: both subcategory pages and articles-without-sub.
 export async function generateStaticParams(): Promise<Params[]> {
+  const subcategoryParams: Params[] = categories.flatMap((c) =>
+    c.subcategories.map((s) => ({ category: c.slug, slug: s.slug }))
+  );
   const all = await getAllArticles();
-  return all.map((a) => ({ category: a.category, slug: a.slug }));
+  const articleParams: Params[] = all
+    .filter((a) => !a.subcategory)
+    .map((a) => ({ category: a.category, slug: a.slug }));
+  return [...subcategoryParams, ...articleParams];
 }
 
 export async function generateMetadata(
   { params }: { params: Promise<Params> }
 ): Promise<Metadata> {
   const { category, slug } = await params;
+  if (!isCategorySlug(category)) return {};
+  const cat = getCategory(category);
+  if (!cat) return {};
+
+  const sub = cat.subcategories.find((s) => s.slug === slug);
+  if (sub) {
+    return {
+      title: `${sub.label}の記事一覧 | ${cat.label}`,
+      description: `枚方市の${sub.label}に関する記事一覧。`,
+      alternates: { canonical: `${site.url}/${cat.slug}/${sub.slug}/` },
+    };
+  }
+
   const article = await getArticleBySlug(slug);
-  if (!article || article.category !== category) return {};
+  if (!article || article.category !== category || article.subcategory) return {};
   const url = `${site.url}/${category}/${slug}/`;
   return {
     title: article.title,
@@ -49,17 +75,55 @@ export async function generateMetadata(
   };
 }
 
-export default async function ArticlePage({
+export default async function Page({
   params,
 }: {
   params: Promise<Params>;
 }) {
   const { category, slug } = await params;
   if (!isCategorySlug(category)) notFound();
-  const article = await getArticleBySlug(slug);
-  if (!article || article.category !== category) notFound();
+  const cat = getCategory(category);
+  if (!cat) notFound();
 
-  const cat = getCategory(article.category);
+  const sub = cat.subcategories.find((s) => s.slug === slug);
+  if (sub) {
+    const articles = await getArticlesBySubcategory(category, slug);
+    return (
+      <div className="mx-auto max-w-6xl px-4 py-10">
+        <Breadcrumb
+          items={[
+            { label: "ホーム", href: "/" },
+            { label: cat.label, href: `/${cat.slug}/` },
+            { label: sub.label },
+          ]}
+        />
+        <h1 className="mt-3 text-2xl font-bold text-stone-900 md:text-3xl">
+          {sub.label}
+        </h1>
+        <p className="mt-2 text-sm text-stone-600">
+          {cat.label} &gt; {sub.label} の記事一覧。
+        </p>
+        <section className="mt-8">
+          {articles.length === 0 ? (
+            <p className="text-sm text-stone-600">
+              このサブカテゴリの記事は準備中です。
+            </p>
+          ) : (
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {articles.map((a) => (
+                <ArticleCard key={a.slug} article={a} />
+              ))}
+            </div>
+          )}
+        </section>
+      </div>
+    );
+  }
+
+  // Not a subcategory — treat as article (must NOT have subcategory in frontmatter)
+  const article = await getArticleBySlug(slug);
+  if (!article || article.category !== category || article.subcategory) notFound();
+
   const url = `${site.url}/${article.category}/${article.slug}/`;
 
   return (
@@ -67,7 +131,7 @@ export default async function ArticlePage({
       <Breadcrumb
         items={[
           { label: "ホーム", href: "/" },
-          ...(cat ? [{ label: cat.label, href: `/${cat.slug}/` }] : []),
+          { label: cat.label, href: `/${cat.slug}/` },
           { label: article.title },
         ]}
       />

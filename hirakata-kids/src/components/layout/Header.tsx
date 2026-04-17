@@ -25,6 +25,12 @@ export function Header() {
               {c.label}
             </Link>
           ))}
+          <Link
+            href="/area/"
+            className="text-stone-500 transition hover:text-[#F97316]"
+          >
+            エリア
+          </Link>
         </nav>
       </div>
     </header>

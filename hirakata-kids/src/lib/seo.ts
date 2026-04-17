@@ -1,6 +1,7 @@
 import type { Article } from "./types";
 import { site } from "./site";
 import { getCategory } from "./categories";
+import { getArticleUrl } from "./content";
 
 type JsonLd = Record<string, unknown>;
 
@@ -70,14 +71,20 @@ export function buildArticleBreadcrumb(article: Article): {
   url: string;
 }[] {
   const cat = getCategory(article.category);
+  const sub = cat?.subcategories.find((s) => s.slug === article.subcategory);
   return [
     { name: "ホーム", url: `${site.url}/` },
     ...(cat
       ? [{ name: cat.label, url: `${site.url}/${cat.slug}/` }]
       : []),
-    {
-      name: article.title,
-      url: `${site.url}/${article.category}/${article.slug}/`,
-    },
+    ...(sub
+      ? [
+          {
+            name: sub.label,
+            url: `${site.url}/${cat!.slug}/${sub.slug}/`,
+          },
+        ]
+      : []),
+    { name: article.title, url: `${site.url}${getArticleUrl(article)}` },
   ];
 }
