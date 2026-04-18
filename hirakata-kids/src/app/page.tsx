@@ -7,6 +7,30 @@ import { site } from "@/lib/site";
 import { getTag } from "@/lib/tags";
 import type { Article } from "@/lib/types";
 
+function pickSeasonalPill(month: number): { label: string; href: string } {
+  // Month-driven hero-pill rotation pointing readers at the most
+  // relevant feature/category for the time of year.
+  if (month === 12 || month === 1 || month === 2) {
+    return { label: "冬休み・入学準備シーズン", href: "/feature/nyugaku-junbi-2026/" };
+  }
+  if (month === 3 || month === 4) {
+    return { label: "新学期・お花見シーズン", href: "/outings/parks/" };
+  }
+  if (month === 5) {
+    return { label: "GW・家族でおでかけ", href: "/outings/events/" };
+  }
+  if (month === 6 || month === 7) {
+    return { label: "梅雨・夏休み準備", href: "/outings/rainy-day/" };
+  }
+  if (month === 8) {
+    return { label: "夏休み真っ最中", href: "/feature/natsuyasumi-2026/" };
+  }
+  if (month === 9 || month === 10) {
+    return { label: "防災月間・運動会", href: "/feature/bousai-kihon/" };
+  }
+  return { label: "クリスマス・冬支度", href: "/community/events/" };
+}
+
 export default async function HomePage() {
   const articles = await getAllArticles();
   const latest = articles.slice(0, 6);
@@ -29,6 +53,9 @@ export default async function HomePage() {
     .map(([slug, count]) => ({ slug, count, tag: getTag(slug) }))
     .filter((x): x is { slug: string; count: number; tag: NonNullable<ReturnType<typeof getTag>> } => !!x.tag);
 
+  const month = new Date().getMonth() + 1;
+  const seasonalPill = pickSeasonalPill(month);
+
   return (
     <div>
       <section className="relative overflow-hidden bg-gradient-to-b from-orange-50 via-[#FFFBF5] to-white">
@@ -39,6 +66,13 @@ export default async function HomePage() {
             <p className="text-xs font-semibold tracking-widest text-orange-600">
               HIRAKIDS / ひらかた子育てナビ
             </p>
+            <Link
+              href={seasonalPill.href}
+              className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-orange-200 bg-white/80 px-3 py-1 text-xs font-semibold text-orange-700 backdrop-blur transition hover:bg-orange-50"
+            >
+              <span aria-hidden>🟠</span>
+              {seasonalPill.label}
+            </Link>
             <h1 className="mt-3 text-3xl font-bold leading-tight text-stone-900 md:text-5xl">
               枚方市の子育てを、
               <br className="md:hidden" />
