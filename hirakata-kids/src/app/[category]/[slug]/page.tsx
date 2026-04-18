@@ -31,6 +31,7 @@ import {
   breadcrumbJsonLd,
   buildArticleBreadcrumb,
   faqJsonLd,
+  spotsJsonLd,
 } from "@/lib/seo";
 
 type Params = { category: string; slug: string };
@@ -217,6 +218,14 @@ export default async function Page({
             }}
           />
         )}
+        {article.spots && article.spots.length > 0 &&
+          spotsJsonLd(article.spots).map((ld, i) => (
+            <script
+              key={`spot-${i}`}
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}
+            />
+          ))}
       </article>
 
       <aside className="hidden xl:block">

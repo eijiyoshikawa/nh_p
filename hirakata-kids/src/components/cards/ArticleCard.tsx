@@ -8,7 +8,7 @@ export function ArticleCard({ article }: { article: Article }) {
   return (
     <Link
       href={getArticleUrl(article)}
-      className="group block rounded-lg border border-orange-100 bg-white p-5 transition hover:-translate-y-0.5 hover:border-orange-300 hover:shadow-md"
+      className="group relative flex h-full flex-col rounded-lg border border-orange-100 bg-white p-5 transition hover:-translate-y-0.5 hover:border-orange-300 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300"
     >
       <div className="flex items-center gap-2 text-xs">
         {cat && (
@@ -16,16 +16,24 @@ export function ArticleCard({ article }: { article: Article }) {
             {cat.label}
           </span>
         )}
-        <time className="text-stone-500">{article.publishedAt}</time>
+        <time className="text-stone-500" dateTime={article.publishedAt}>
+          {article.publishedAt}
+        </time>
       </div>
-      <h3 className="mt-3 text-base font-bold text-stone-900 transition group-hover:text-[#F97316]">
+      <h3 className="mt-3 text-base font-bold leading-snug text-stone-900 transition group-hover:text-[#F97316]">
         {article.title}
       </h3>
       {article.description && (
-        <p className="mt-2 line-clamp-3 text-sm text-stone-600">
+        <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-stone-600">
           {article.description}
         </p>
       )}
+      <span
+        aria-hidden
+        className="mt-auto pt-3 text-xs font-semibold text-[#F97316] opacity-0 transition group-hover:opacity-100"
+      >
+        続きを読む →
+      </span>
     </Link>
   );
 }

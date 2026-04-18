@@ -24,9 +24,12 @@ export const features: Feature[] = [
     description:
       "ハザードマップの読み方から備蓄・避難行動まで、子どものいる家庭向けに必要最低限を整理した特集。",
     intro:
-      "地震・風水害・土砂災害への備えを、子育て家庭目線でまとめた特集です。家族防災会議の進め方、子ども向け備蓄品、学校・園の引き渡しルールまでを一気通貫で押さえます。",
+      "地震・風水害・土砂災害への備えを、子育て家庭目線でまとめた特集です。家族防災会議の進め方、子ども向け備蓄品、学校・園の引き渡しルール、避難所の使い分け、通学中の初動対応までを一気通貫で押さえます。",
     articleSlugs: [
       "hirakata-bousai-kihon",
+      "hirakata-hazard-map-kids",
+      "hirakata-hinansho-list",
+      "hirakata-randsel-hinan",
     ],
   },
 ];

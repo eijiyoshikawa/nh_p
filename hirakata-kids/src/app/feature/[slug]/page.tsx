@@ -5,7 +5,8 @@ import { ArticleCard } from "@/components/cards/ArticleCard";
 import { features, getFeature } from "@/lib/features";
 import { getArticleBySlug } from "@/lib/content";
 import { site } from "@/lib/site";
-import { breadcrumbJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, featureItemListJsonLd } from "@/lib/seo";
+import { getArticleUrl } from "@/lib/content";
 import type { Article } from "@/lib/types";
 
 type Params = { slug: string };
@@ -98,6 +99,22 @@ export default async function FeaturePage({
           ),
         }}
       />
+      {articles.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              featureItemListJsonLd(
+                url,
+                articles.map((a) => ({
+                  title: a.title,
+                  url: `${site.url}${getArticleUrl(a)}`,
+                }))
+              )
+            ),
+          }}
+        />
+      )}
     </div>
   );
 }
