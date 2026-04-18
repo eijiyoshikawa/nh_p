@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+  <rect width="180" height="180" rx="38" fill="#F97316"/>
+  <path d="M40 60c15-8 30 0 50 0s35-8 50 0v62c-15-8-30 0-50 0s-35 8-50 0z" fill="#fff"/>
+  <circle cx="68" cy="92" r="7" fill="#F97316"/>
+  <circle cx="112" cy="92" r="7" fill="#F97316"/>
+  <path d="M74 116c6 6 26 6 32 0" stroke="#F97316" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <text x="90" y="155" text-anchor="middle" font-family="'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif" font-size="16" font-weight="700" fill="#F97316">HIRAKIDS</text>
+</svg>
