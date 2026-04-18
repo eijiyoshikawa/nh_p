@@ -111,21 +111,29 @@ npm run plan -- --from=2025-02-01 --dry-run
 
 ### ステップ 2：ドラフトを生成する
 
+`--provider=` で生成元を選べます。デフォルトは `template`。
+
 ```bash
 # API 不要：TODO つきのテンプレ本文で全件ドラフト生成
-npm run batch -- --template
+npm run batch -- --provider=template
 
-# Claude API を使って本文を生成（ANTHROPIC_API_KEY が必要）
-npm run batch
+# Gemini 2.5 Flash（無料枠、GEMINI_API_KEY が必要）
+npm run batch -- --provider=gemini
+
+# Claude opus-4-7（ANTHROPIC_API_KEY が必要。有料）
+npm run batch -- --provider=claude
 
 # 最初の20件だけ
-npm run batch -- --template --limit=20
+npm run batch -- --provider=gemini --limit=20
 
 # 日付で絞る
-npm run batch -- --template --from-date=2025-04-01 --to-date=2025-12-31
+npm run batch -- --provider=gemini --from-date=2025-04-01 --to-date=2025-12-31
 
 # 書き出さずに対象を確認
-npm run batch -- --template --dry-run
+npm run batch -- --provider=template --dry-run
+
+# レート制限を手動で調整（ms）
+npm run batch -- --provider=gemini --delay=8000
 ```
 
 動作ルール：
@@ -133,6 +141,23 @@ npm run batch -- --template --dry-run
 - すでに `content/articles/<slug>.mdx` が存在すれば自動スキップ（resume-safe）
 - 生成されるドラフトは `draft: true` なので、レビュー後に手動で外すまでサイト側には表示されません（`src/lib/content.ts` が draft を除外）
 - Claude モードは `scripts/lib/prompts.ts` と `scripts/lib/sources.ts` を共通利用し、`claude-opus-4-7` にプロンプトキャッシュで投げます
+- Gemini モードは同じシステムプロンプトを systemInstruction として渡し、`gemini-2.5-flash` に 1リクエスト 6.5秒間隔でシリアル投入します（10 RPM 制限内）
+
+### Gemini 無料枠について
+
+1. API キー取得：<https://aistudio.google.com/apikey>（Google アカウントでログイン → "Create API key"）
+2. 環境変数にセット：
+   ```bash
+   export GEMINI_API_KEY=AIza...
+   ```
+3. 無料枠の制限（`gemini-2.5-flash`、2026年初時点）：
+   - 10 RPM（requests per minute）
+   - 250K TPM（tokens per minute）
+   - **1,500 requests / day**
+4. 442 件すべてを無料枠で生成する場合、1日あたり 1,500 件まで可能なので **1日で完了**します。ただし10 RPM 制限から最短でも **約 50 分** はかかる計算です（`--delay=6500` デフォルト）。
+5. もし途中で `429` や `RESOURCE_EXHAUSTED` が出たら自動的にスキップされるので、日を跨いで `npm run batch -- --provider=gemini` を再実行すれば未生成分だけ補完されます（resume-safe）。
+
+モデル変更したい場合：`GEMINI_MODEL=gemini-2.5-flash-lite npm run batch -- --provider=gemini` のように env で上書き可能です。
 
 ### ステップ 3：レビューして公開
 

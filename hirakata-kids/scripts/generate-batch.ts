@@ -3,22 +3,28 @@
  *
  * Usage:
  *   # Template mode (no API calls — scaffolded drafts with TODO markers)
- *   npm run batch -- --template
+ *   npm run batch -- --provider=template
  *
  *   # Claude mode (requires ANTHROPIC_API_KEY)
- *   npm run batch
+ *   npm run batch -- --provider=claude
  *
- *   # Flags
- *   npm run batch -- --limit=20            # process first 20 unresolved entries
+ *   # Gemini mode (free tier, requires GEMINI_API_KEY)
+ *   npm run batch -- --provider=gemini
+ *
+ *   # Common flags
+ *   npm run batch -- --limit=20                    # first 20 unresolved entries
  *   npm run batch -- --from-date=2025-04-01
  *   npm run batch -- --to-date=2025-12-31
  *   npm run batch -- --plan=scripts/plan.json
- *   npm run batch -- --dry-run             # print what would be written, write nothing
+ *   npm run batch -- --dry-run                     # print what would be written
+ *   npm run batch -- --delay=6500                  # override inter-request delay (ms)
  *
  * Behaviour:
  *   - Entries whose target MDX already exists are skipped (resume-safe).
  *   - Template mode never talks to the network.
- *   - Claude mode respects a simple inter-request delay to be polite.
+ *   - Claude mode defaults to 500ms delay; Gemini defaults to 6500ms to
+ *     stay inside the 10 RPM free-tier cap for gemini-2.5-flash.
+ *   - `--template` is accepted as a legacy alias for `--provider=template`.
  */
 import { readFile, writeFile, mkdir, access } from "node:fs/promises";
 import path from "node:path";
@@ -26,15 +32,42 @@ import type { Plan, PlanEntry } from "./lib/topic-types";
 import { buildFrontmatter } from "./lib/frontmatter";
 import { buildTemplateBody } from "./lib/body-template";
 
+type Provider = "template" | "claude" | "gemini";
+
 type Args = {
   plan: string;
-  template: boolean;
+  provider: Provider;
   dryRun: boolean;
   limit: number;
   fromDate?: string;
   toDate?: string;
   delayMs: number;
 };
+
+function parseProvider(argv: string[]): Provider {
+  const get = (name: string): string | undefined => {
+    const found = argv.find((a) => a.startsWith(`--${name}=`));
+    return found ? found.slice(name.length + 3) : undefined;
+  };
+  const explicit = get("provider");
+  if (explicit === "template" || explicit === "claude" || explicit === "gemini") {
+    return explicit;
+  }
+  if (argv.includes("--template")) return "template";
+  // Default: template (zero cost, safest).
+  return "template";
+}
+
+function defaultDelayFor(provider: Provider): number {
+  switch (provider) {
+    case "gemini":
+      return 6500; // ~9 RPM, inside the 10 RPM free-tier cap
+    case "claude":
+      return 500;
+    case "template":
+      return 0;
+  }
+}
 
 function parseArgs(argv: string[]): Args {
   const get = (name: string): string | undefined => {
@@ -44,14 +77,16 @@ function parseArgs(argv: string[]): Args {
   const has = (name: string): boolean =>
     argv.some((a) => a === `--${name}` || a.startsWith(`--${name}=`));
 
+  const provider = parseProvider(argv);
+  const explicitDelay = get("delay");
   return {
     plan: get("plan") ?? path.join("scripts", "plan.json"),
-    template: has("template"),
+    provider,
     dryRun: has("dry-run"),
     limit: Number(get("limit") ?? 0) || 0,
     fromDate: get("from-date"),
     toDate: get("to-date"),
-    delayMs: Number(get("delay") ?? 500),
+    delayMs: explicitDelay ? Number(explicitDelay) : defaultDelayFor(provider),
   };
 }
 
@@ -95,6 +130,31 @@ async function sleep(ms: number): Promise<void> {
   return new Promise((r) => setTimeout(r, ms));
 }
 
+type BodyProducer = (entry: PlanEntry) => Promise<string> | string;
+
+async function resolveProducer(provider: Provider): Promise<BodyProducer> {
+  if (provider === "template") {
+    return (entry) => buildTemplateBody(entry);
+  }
+  if (provider === "claude") {
+    if (!process.env.ANTHROPIC_API_KEY) {
+      throw new Error(
+        "ANTHROPIC_API_KEY not set. Either `export ANTHROPIC_API_KEY=...` or run with --provider=template / --provider=gemini."
+      );
+    }
+    const mod = await import("./lib/claude-body");
+    return mod.generateBodyWithClaude;
+  }
+  // gemini
+  if (!process.env.GEMINI_API_KEY && !process.env.GOOGLE_API_KEY) {
+    throw new Error(
+      "GEMINI_API_KEY not set. Get a free key at https://aistudio.google.com/apikey"
+    );
+  }
+  const mod = await import("./lib/gemini-body");
+  return mod.generateBodyWithGemini;
+}
+
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const planPath = path.resolve(process.cwd(), args.plan);
@@ -110,7 +170,7 @@ async function main() {
   const plan = JSON.parse(await readFile(planPath, "utf8")) as Plan;
   const entries = filterEntries(plan.entries, args);
   console.log(
-    `[batch] plan=${planPath}, total=${plan.entries.length}, in-range=${entries.length}, mode=${args.template ? "template" : "claude"}, dryRun=${args.dryRun}`
+    `[batch] plan=${planPath}, total=${plan.entries.length}, in-range=${entries.length}, provider=${args.provider}, delay=${args.delayMs}ms, dryRun=${args.dryRun}`
   );
 
   // Resume — skip entries whose target file already exists.
@@ -125,25 +185,13 @@ async function main() {
   const take = args.limit > 0 ? pending.slice(0, args.limit) : pending;
   console.log(`[batch] will process: ${take.length}`);
 
-  if (!args.template && !process.env.ANTHROPIC_API_KEY) {
-    console.error(
-      "[batch] ANTHROPIC_API_KEY not set. Re-run with --template to generate scaffolded drafts without Claude."
-    );
-    process.exit(1);
-  }
-
-  // Lazy import so --template mode doesn't require the Anthropic SDK.
-  const claude = args.template
-    ? null
-    : await import("./lib/claude-body").then((m) => m.generateBodyWithClaude);
+  const produce = await resolveProducer(args.provider);
 
   let written = 0;
   let failed = 0;
   for (const [i, entry] of take.entries()) {
     try {
-      const body = args.template
-        ? buildTemplateBody(entry)
-        : await claude!(entry);
+      const body = await produce(entry);
       const outPath = await writeOne(entry, body, outRoot, args.dryRun);
       written += 1;
       console.log(
@@ -156,7 +204,7 @@ async function main() {
         err instanceof Error ? err.message : err
       );
     }
-    if (!args.template && i < take.length - 1) {
+    if (args.provider !== "template" && i < take.length - 1) {
       await sleep(args.delayMs);
     }
   }

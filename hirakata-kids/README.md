@@ -101,9 +101,10 @@ faq:
 2025-02-01 から今日までの期間に毎日 1 記事を「公開済み」に見せかけるためのドラフト量産パイプラインがあります（`scripts/README.md` 参照）。
 
 ```bash
-npm run plan                  # scripts/plan.json を生成
-npm run batch -- --template   # Claude を使わず TODO 付きドラフトを全件生成
-npm run batch                 # ANTHROPIC_API_KEY があれば Claude で本文生成
+npm run plan                           # scripts/plan.json を生成
+npm run batch -- --provider=template   # 無料：TODO付きの骨組みで全件ドラフト生成
+npm run batch -- --provider=gemini     # 無料枠：Gemini 2.5 Flash で本文生成（GEMINI_API_KEY）
+npm run batch -- --provider=claude     # 有料：Claude opus-4-7 で本文生成（ANTHROPIC_API_KEY）
 ```
 
 生成されたドラフトは `draft: true` のまま書き出され、人間レビューで外すまで本番サイトには表示されません。
