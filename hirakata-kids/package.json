@@ -12,7 +12,8 @@
     "generate": "tsx scripts/generate-article.ts",
     "plan": "tsx scripts/plan-topics.ts",
     "batch": "tsx scripts/generate-batch.ts",
-    "stats": "tsx scripts/stats.ts"
+    "stats": "tsx scripts/stats.ts",
+    "validate": "tsx scripts/validate-plan.ts"
   },
   "engines": {
     "node": ">=20"
