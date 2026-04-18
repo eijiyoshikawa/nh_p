@@ -102,3 +102,41 @@ body {
   border-radius: 3px;
   font-size: 0.875em;
 }
+
+/* Pop background animations for the newsletter hero.
+   Keep transforms GPU-friendly (translate/rotate/scale only) and
+   respect prefers-reduced-motion via .pop-anim class on the root. */
+@keyframes pop-float-a {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50%  { transform: translate3d(10px, -22px, 0) rotate(12deg); }
+  100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+}
+@keyframes pop-float-b {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50%  { transform: translate3d(-14px, -18px, 0) rotate(-10deg); }
+  100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+}
+@keyframes pop-float-c {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  50%  { transform: translate3d(6px, -26px, 0) rotate(20deg) scale(1.08); }
+  100% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+}
+@keyframes pop-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.55; }
+  50%      { transform: scale(1.15); opacity: 0.8; }
+}
+
+.pop-anim .pop-item {
+  will-change: transform;
+}
+.pop-anim .pop-item-a { animation: pop-float-a 7s ease-in-out infinite; }
+.pop-anim .pop-item-b { animation: pop-float-b 9s ease-in-out infinite; }
+.pop-anim .pop-item-c { animation: pop-float-c 11s ease-in-out infinite; }
+.pop-anim .pop-blob   { animation: pop-pulse 8s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pop-anim .pop-item,
+  .pop-anim .pop-blob {
+    animation: none !important;
+  }
+}
