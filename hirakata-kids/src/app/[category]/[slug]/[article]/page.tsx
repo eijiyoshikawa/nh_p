@@ -20,6 +20,7 @@ import { Toc } from "@/components/article/Toc";
 import { SpotList } from "@/components/article/SpotList";
 import { Share } from "@/components/article/Share";
 import { ScrollTop } from "@/components/article/ScrollTop";
+import { Callout } from "@/components/article/Callout";
 import { Cta } from "@/components/cta/Cta";
 import { extractToc, estimateReadingMinutes } from "@/lib/article-meta";
 import { site } from "@/lib/site";
@@ -138,6 +139,7 @@ export default async function ArticleWithSubPage({
         <div className="prose-article mt-8">
           <MDXRemote
             source={articleData.body}
+            components={{ Callout }}
             options={{
               mdxOptions: {
                 remarkPlugins: [remarkGfm],
