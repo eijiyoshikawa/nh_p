@@ -3,6 +3,8 @@ import { categories } from "@/lib/categories";
 import { getAllArticles, getArticleUrl } from "@/lib/content";
 import { ArticleCard } from "@/components/cards/ArticleCard";
 import { CategoryCard } from "@/components/cards/CategoryCard";
+import { NewsletterForm } from "@/components/newsletter/NewsletterForm";
+import { PopBackground } from "@/components/ui/PopBackground";
 import { site } from "@/lib/site";
 import { getTag } from "@/lib/tags";
 import type { Article } from "@/lib/types";
@@ -215,6 +217,23 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      <PopBackground className="mt-12 bg-gradient-to-br from-orange-50 via-[#FFF9F1] to-amber-50">
+        <section className="mx-auto max-w-4xl px-4 py-16 text-center md:text-left">
+          <p className="text-xs font-semibold tracking-widest text-orange-600">
+            HIRAKIDS NEWSLETTER
+          </p>
+          <h2 className="mt-3 text-2xl font-bold leading-tight text-stone-900 md:text-3xl">
+            週1回、枚方の子育てが届く。
+          </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-stone-700 md:mx-0 md:text-base">
+            新着記事・季節のおでかけ・医療と防災の注意点を、編集部がまとめて毎週お届け。登録は無料・いつでも配信停止できます。
+          </p>
+          <div className="mt-6 max-w-xl md:max-w-2xl">
+            <NewsletterForm source="home" variant="hero" />
+          </div>
+        </section>
+      </PopBackground>
     </div>
   );
 }
