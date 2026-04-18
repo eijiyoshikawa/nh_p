@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { allTags, getTag } from "@/lib/tags";
 import { getArticlesByTag } from "@/lib/content";
@@ -53,7 +54,26 @@ export default async function TagDetailPage({
       </p>
       <section className="mt-8">
         {articles.length === 0 ? (
-          <p className="text-sm text-stone-600">このタグの記事は準備中です。</p>
+          <div className="rounded-xl border border-orange-100 bg-white p-6">
+            <p className="text-sm text-stone-700">
+              「{tag.label}」タグの記事を準備中です。
+            </p>
+            <p className="mt-2 text-sm text-stone-600">
+              他のタグも覗いてみてください。
+            </p>
+            <ul className="mt-4 flex flex-wrap gap-2 text-xs">
+              {allTags.map((t) => (
+                <li key={t.slug}>
+                  <Link
+                    href={`/tag/${t.slug}/`}
+                    className="inline-block rounded-full border border-orange-200 bg-white px-3 py-1 text-orange-700 transition hover:bg-orange-50"
+                  >
+                    {t.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {articles.map((a) => (
