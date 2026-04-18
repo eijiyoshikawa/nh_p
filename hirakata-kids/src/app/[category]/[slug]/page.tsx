@@ -6,6 +6,7 @@ import rehypeSlug from "rehype-slug";
 import {
   getAllArticles,
   getArticleBySlug,
+  getArticleNeighbors,
   getArticlesBySubcategory,
   getRelatedArticles,
 } from "@/lib/content";
@@ -20,6 +21,7 @@ import { Faq } from "@/components/article/Faq";
 import { Sources } from "@/components/article/Sources";
 import { TagChips, AuthorByline } from "@/components/article/TagChips";
 import { RelatedArticles } from "@/components/article/RelatedArticles";
+import { PrevNext } from "@/components/article/PrevNext";
 import { Toc } from "@/components/article/Toc";
 import { SpotList } from "@/components/article/SpotList";
 import { Share } from "@/components/article/Share";
@@ -135,6 +137,7 @@ export default async function Page({
 
   const url = `${site.url}/${article.category}/${article.slug}/`;
   const related = await getRelatedArticles(article);
+  const neighbors = await getArticleNeighbors(article);
   const toc = extractToc(article.body);
   const readingMin = estimateReadingMinutes(article.body);
 
@@ -192,6 +195,8 @@ export default async function Page({
         )}
 
         <Share title={article.title} url={url} />
+
+        <PrevNext prev={neighbors.prev} next={neighbors.next} />
 
         <RelatedArticles articles={related} />
 

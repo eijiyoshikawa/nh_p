@@ -80,6 +80,20 @@ export async function getArticlesByCategory(category: string): Promise<Article[]
   return all.filter((a) => a.category === category);
 }
 
+export async function getArticleNeighbors(
+  article: Article
+): Promise<{ prev: Article | null; next: Article | null }> {
+  const all = await getArticlesByCategory(article.category);
+  // getAllArticles() sorts by publishedAt DESC, so the "previous" article
+  // chronologically is the one at index+1, and the "next" is index-1.
+  const idx = all.findIndex((a) => a.slug === article.slug);
+  if (idx === -1) return { prev: null, next: null };
+  return {
+    prev: all[idx + 1] ?? null,
+    next: idx > 0 ? all[idx - 1] : null,
+  };
+}
+
 export async function getArticlesBySubcategory(
   category: string,
   subcategory: string
