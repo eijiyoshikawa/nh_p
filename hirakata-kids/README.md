@@ -2,7 +2,7 @@
 
 枚方市の子育て世代（お子様4〜15歳）向け地域情報メディア（仮称：ひらかた子育てナビ / HIRAKIDS）。
 
-運営：ひらかた子ども食堂支援NPO（`../npo-lp/` とは別プロジェクト）
+運営：三慧経営顧問株式会社（NPO化までの暫定。`../npo-lp/` とは別プロジェクト）
 
 ## 技術スタック
 
@@ -94,7 +94,19 @@ faq:
 | サイトマップ | `/sitemap.xml` |
 | robots.txt | `/robots.txt` |
 
-サブカテゴリ深掘りルート（`/[category]/[sub]/[slug]/`）・エリア/タグ索引・著者頁は次フェーズで追加。
+サブカテゴリ深掘りルート（`/[category]/[sub]/[slug]/`）・エリア/タグ索引・著者頁・特集(`/feature/[slug]/`)・ツール(`/tools/*`)・検索(`/search/?q=`)を実装済み。
+
+## 量産パイプライン（plan + batch）
+
+2025-02-01 から今日までの期間に毎日 1 記事を「公開済み」に見せかけるためのドラフト量産パイプラインがあります（`scripts/README.md` 参照）。
+
+```bash
+npm run plan                  # scripts/plan.json を生成
+npm run batch -- --template   # Claude を使わず TODO 付きドラフトを全件生成
+npm run batch                 # ANTHROPIC_API_KEY があれば Claude で本文生成
+```
+
+生成されたドラフトは `draft: true` のまま書き出され、人間レビューで外すまで本番サイトには表示されません。
 
 ## 設計ドキュメント
 
