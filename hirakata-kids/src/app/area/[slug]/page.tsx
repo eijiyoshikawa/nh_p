@@ -7,6 +7,7 @@ import { getArticlesByArea } from "@/lib/content";
 import { ArticleCard } from "@/components/cards/ArticleCard";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { site } from "@/lib/site";
+import { breadcrumbJsonLd } from "@/lib/seo";
 
 type Params = { slug: string };
 
@@ -82,6 +83,19 @@ export default async function AreaDetailPage({
           </div>
         )}
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbJsonLd([
+              { name: "ホーム", url: `${site.url}/` },
+              { name: "エリア", url: `${site.url}/area/` },
+              { name: area.label, url: `${site.url}/area/${area.slug}/` },
+            ])
+          ),
+        }}
+      />
     </div>
   );
 }

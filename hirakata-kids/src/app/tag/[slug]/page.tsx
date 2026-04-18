@@ -6,6 +6,7 @@ import { getArticlesByTag } from "@/lib/content";
 import { ArticleCard } from "@/components/cards/ArticleCard";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { site } from "@/lib/site";
+import { breadcrumbJsonLd } from "@/lib/seo";
 
 type Params = { slug: string };
 
@@ -82,6 +83,19 @@ export default async function TagDetailPage({
           </div>
         )}
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbJsonLd([
+              { name: "ホーム", url: `${site.url}/` },
+              { name: "タグ", url: `${site.url}/tag/` },
+              { name: tag.label, url: `${site.url}/tag/${tag.slug}/` },
+            ])
+          ),
+        }}
+      />
     </div>
   );
 }

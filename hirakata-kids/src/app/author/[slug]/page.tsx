@@ -5,6 +5,7 @@ import { getArticlesByAuthor } from "@/lib/content";
 import { ArticleCard } from "@/components/cards/ArticleCard";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { site } from "@/lib/site";
+import { breadcrumbJsonLd } from "@/lib/seo";
 
 type Params = { slug: string };
 
@@ -87,6 +88,18 @@ export default async function AuthorDetailPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbJsonLd([
+              { name: "ホーム", url: `${site.url}/` },
+              { name: "著者", url: `${site.url}/author/` },
+              { name: a.name, url: `${site.url}/author/${a.slug}/` },
+            ])
+          ),
+        }}
       />
     </div>
   );
