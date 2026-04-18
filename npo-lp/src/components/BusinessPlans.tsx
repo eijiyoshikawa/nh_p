@@ -1,9 +1,25 @@
-import { businessPlans } from "@/lib/content";
+import { businessPlans, featureFlags } from "@/lib/content";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Card from "@/components/ui/Card";
 
 export default function BusinessPlans() {
   const { bsf, warehouse, pillars } = businessPlans;
+  const { publishBsf } = featureFlags;
+
+  // BSF を非公開にする間は、4ピラーの BSF カードをプレースホルダーに置き換える
+  const pillarItems = pillars.items.map((item) => {
+    if (item.id === "bsf" && !publishBsf && item.placeholder) {
+      return {
+        ...item,
+        icon: item.placeholder.icon,
+        title: item.placeholder.title,
+        subtitle: item.placeholder.subtitle,
+        description: item.placeholder.description,
+        accent: "mid" as const,
+      };
+    }
+    return item;
+  });
 
   return (
     <section id="business" className="px-4 py-16 sm:px-6 md:py-24">
@@ -26,7 +42,7 @@ export default function BusinessPlans() {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {pillars.items.map((item) => (
+            {pillarItems.map((item) => (
               <div
                 key={item.title}
                 className={`hover-lift relative rounded-2xl bg-white p-5 shadow-sm ring-1 ${
@@ -79,56 +95,58 @@ export default function BusinessPlans() {
           </p>
         </div>
 
-        {/* BSF (detailed) */}
-        <div className="mb-12">
-          <h3 className="mb-3 text-lg font-bold text-accent-green sm:text-xl">
-            ♻️ {bsf.title}
-          </h3>
-          <p className="mb-6 text-sm leading-relaxed text-text-secondary">
-            {bsf.description}
-          </p>
-
-          <div className="mb-6 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
-            {bsf.revenue.map((item) => (
-              <Card
-                key={item.label}
-                className={
-                  item.highlight
-                    ? "border-2 border-accent-green bg-emerald-50"
-                    : ""
-                }
-              >
-                <p className="text-xs text-text-secondary">{item.label}</p>
-                <p
-                  className={`text-xl font-bold sm:text-2xl ${
-                    item.highlight ? "text-accent-green" : "text-text-primary"
-                  }`}
-                >
-                  {item.value}
-                </p>
-                <p className="mt-1 text-xs leading-relaxed text-text-secondary">{item.note}</p>
-              </Card>
-            ))}
-          </div>
-
-          <Card>
-            <p className="mb-3 text-xs font-bold text-text-secondary uppercase">
-              選定理由
+        {/* BSF (detailed) — publishBsf=true のとき公開 */}
+        {publishBsf && (
+          <div className="mb-12">
+            <h3 className="mb-3 text-lg font-bold text-accent-green sm:text-xl">
+              ♻️ {bsf.title}
+            </h3>
+            <p className="mb-6 text-sm leading-relaxed text-text-secondary">
+              {bsf.description}
             </p>
-            <ul className="grid gap-2 text-sm text-text-primary md:grid-cols-2">
-              {bsf.reasons.map((reason) => (
-                <li key={reason} className="flex items-start gap-2 leading-relaxed">
-                  <span className="mt-0.5 flex-shrink-0 text-accent-green">✓</span>
-                  {reason}
-                </li>
-              ))}
-            </ul>
-          </Card>
 
-          <p className="mt-4 text-center text-sm text-text-secondary">
-            初期費用: <span className="font-bold text-text-primary">{bsf.initialCost}</span>
-          </p>
-        </div>
+            <div className="mb-6 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+              {bsf.revenue.map((item) => (
+                <Card
+                  key={item.label}
+                  className={
+                    item.highlight
+                      ? "border-2 border-accent-green bg-emerald-50"
+                      : ""
+                  }
+                >
+                  <p className="text-xs text-text-secondary">{item.label}</p>
+                  <p
+                    className={`text-xl font-bold sm:text-2xl ${
+                      item.highlight ? "text-accent-green" : "text-text-primary"
+                    }`}
+                  >
+                    {item.value}
+                  </p>
+                  <p className="mt-1 text-xs leading-relaxed text-text-secondary">{item.note}</p>
+                </Card>
+              ))}
+            </div>
+
+            <Card>
+              <p className="mb-3 text-xs font-bold text-text-secondary uppercase">
+                選定理由
+              </p>
+              <ul className="grid gap-2 text-sm text-text-primary md:grid-cols-2">
+                {bsf.reasons.map((reason) => (
+                  <li key={reason} className="flex items-start gap-2 leading-relaxed">
+                    <span className="mt-0.5 flex-shrink-0 text-accent-green">✓</span>
+                    {reason}
+                  </li>
+                ))}
+              </ul>
+            </Card>
+
+            <p className="mt-4 text-center text-sm text-text-secondary">
+              初期費用: <span className="font-bold text-text-primary">{bsf.initialCost}</span>
+            </p>
+          </div>
+        )}
 
         {/* Warehouse (detailed) */}
         <div>

@@ -6,6 +6,7 @@ import {
   categoryColors,
   type GlossaryItem,
 } from "@/lib/glossary";
+import { featureFlags } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "用語集 — NPO法人ミライラボネクシア",
@@ -20,12 +21,23 @@ const categoryOrder: GlossaryItem["category"][] = [
   "business",
 ];
 
+// publishBsf=false の間は隠す用語
+const BSF_RELATED_TERMS = new Set([
+  "BSF（ブラックソルジャーフライ）",
+  "フラス",
+  "バイオコンバージョン",
+]);
+
 export default function GlossaryPage() {
+  const visibleGlossary = featureFlags.publishBsf
+    ? glossary
+    : glossary.filter((g) => !BSF_RELATED_TERMS.has(g.term));
+
   const grouped = categoryOrder.map((cat) => ({
     category: cat,
     label: categoryLabels[cat],
     color: categoryColors[cat],
-    items: glossary.filter((g) => g.category === cat),
+    items: visibleGlossary.filter((g) => g.category === cat),
   }));
 
   return (

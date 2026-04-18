@@ -164,7 +164,7 @@ export const grants: Grant[] = [
     contact: "枚方商工会議所（事業支援計画書の発行が必須）",
     target: "小規模事業者及び一定要件を満たすNPO法人",
     description:
-      "BSF事業の販路開拓、ECサイト構築、チラシ・PR費用、倉庫の設備投資に活用可能。採択率約50〜60%と比較的高い。",
+      "自主事業の販路開拓、ECサイト構築、チラシ・PR費用、倉庫の設備投資に活用可能。採択率約50〜60%と比較的高い。",
     url: "https://www.jizokukahojokin.info/",
     priority: "mid",
     note: "収益事業を行っていることが条件",

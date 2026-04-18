@@ -136,7 +136,7 @@ export default function FundingStrategyPage() {
             target="300〜700万円獲得 + 倉庫物件確定"
             items={[
               "5月 倉庫候補物件を住宅まちづくり課と相談",
-              "8月 小規模事業者持続化補助金 申請（BSF事業 販路開拓）",
+              "8月 小規模事業者持続化補助金 申請（自主事業 販路開拓）",
               "10月 日本財団「子ども第三の居場所」申請 ★大型チャレンジ",
               "1月 WAM助成（通常助成 or モデル事業）申請 ★主力",
               "1月 大阪府福祉基金（民間団体提案型）申請 ★主力",
@@ -145,7 +145,7 @@ export default function FundingStrategyPage() {
             todos={[
               "倉庫物件の選定（空き家活用補助の対象物件）",
               "枚方市への業務委託提案書の作成開始",
-              "BSF飼育の試験運用開始（小規模パイロット）",
+              "自主事業の試験運用開始（小規模パイロット）",
             ]}
           />
           <PhaseCard
@@ -316,7 +316,7 @@ export default function FundingStrategyPage() {
             { dept: "住宅まちづくり課", tel: "072-841-1478", purpose: "空き家活用補助" },
             { dept: "枚方市社会福祉協議会", tel: "072-807-3017", purpose: "公募事業助成・WAM相談" },
             { dept: "枚方商工会議所", tel: "—", purpose: "持続化補助金" },
-            { dept: "農業振興課", tel: "072-841-1221", purpose: "BSF飼育・フラス（肥料）の農業連携" },
+            { dept: "農業振興課", tel: "072-841-1221", purpose: "自主事業の農業連携" },
           ].map((item) => (
             <div key={item.dept} className="rounded-2xl bg-white p-4 shadow-sm">
               <p className="text-sm font-bold text-stone-900">{item.dept}</p>
