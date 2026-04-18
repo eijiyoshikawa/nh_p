@@ -32,3 +32,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# batch-pipeline output (regenerable via `npm run plan`)
+/scripts/plan.json
