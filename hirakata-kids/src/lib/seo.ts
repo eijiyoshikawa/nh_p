@@ -66,6 +66,7 @@ export function articleJsonLd(article: Article, url: string): JsonLd {
     articleSection: sub?.label ?? cat?.label,
     keywords: articleKeywords(article).join(", ") || undefined,
     inLanguage: "ja",
+    isAccessibleForFree: true,
     wordCount: countWords(article.body),
     image: article.heroImage ? [article.heroImage.src] : undefined,
   };
