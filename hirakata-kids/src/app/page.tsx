@@ -11,7 +11,9 @@ export default async function HomePage() {
   const latest = articles.slice(0, 6);
   const featured = articles[0];
   const byCategory = new Map<string, Article[]>();
+  const countByCategory = new Map<string, number>();
   for (const a of articles) {
+    countByCategory.set(a.category, (countByCategory.get(a.category) ?? 0) + 1);
     const list = byCategory.get(a.category) ?? [];
     if (list.length < 3) list.push(a);
     byCategory.set(a.category, list);
@@ -95,7 +97,11 @@ export default async function HomePage() {
         </div>
         <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {categories.map((c) => (
-            <CategoryCard key={c.slug} category={c} />
+            <CategoryCard
+              key={c.slug}
+              category={c}
+              articleCount={countByCategory.get(c.slug) ?? 0}
+            />
           ))}
         </div>
       </section>

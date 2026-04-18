@@ -10,7 +10,13 @@ const emoji: Record<string, string> = {
   community: "🤝",
 };
 
-export function CategoryCard({ category }: { category: Category }) {
+export function CategoryCard({
+  category,
+  articleCount,
+}: {
+  category: Category;
+  articleCount?: number;
+}) {
   return (
     <Link
       href={`/${category.slug}/`}
@@ -26,6 +32,11 @@ export function CategoryCard({ category }: { category: Category }) {
         <h3 className="text-lg font-bold text-stone-900 transition group-hover:text-[#F97316]">
           {category.label}
         </h3>
+        {typeof articleCount === "number" && articleCount > 0 && (
+          <span className="ml-auto rounded-full bg-orange-50 px-2 py-0.5 text-xs font-semibold text-orange-700">
+            {articleCount}本
+          </span>
+        )}
       </div>
       <p className="mt-3 text-sm text-stone-600">{category.description}</p>
       <ul className="mt-4 flex flex-wrap gap-1.5 text-xs">
