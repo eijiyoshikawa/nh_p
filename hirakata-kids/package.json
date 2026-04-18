@@ -7,9 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "check": "npm run typecheck && npm run lint && npm run build",
     "generate": "tsx scripts/generate-article.ts",
     "plan": "tsx scripts/plan-topics.ts",
     "batch": "tsx scripts/generate-batch.ts"
+  },
+  "engines": {
+    "node": ">=20"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.88.0",
