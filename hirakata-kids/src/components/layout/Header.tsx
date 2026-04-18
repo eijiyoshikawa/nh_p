@@ -41,18 +41,30 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-5 text-sm md:flex">
-          {categories.map((c) => (
-            <Link
-              key={c.slug}
-              href={`/${c.slug}/`}
-              className="text-stone-700 transition hover:text-[#F97316]"
-            >
-              {c.label}
-            </Link>
-          ))}
+          {categories.map((c) => {
+            const active = pathname?.startsWith(`/${c.slug}`);
+            return (
+              <Link
+                key={c.slug}
+                href={`/${c.slug}/`}
+                className={
+                  active
+                    ? "font-semibold text-[#F97316]"
+                    : "text-stone-700 transition hover:text-[#F97316]"
+                }
+                aria-current={active ? "page" : undefined}
+              >
+                {c.label}
+              </Link>
+            );
+          })}
           <Link
             href="/area/"
-            className="text-stone-500 transition hover:text-[#F97316]"
+            className={
+              pathname?.startsWith("/area")
+                ? "font-semibold text-[#F97316]"
+                : "text-stone-500 transition hover:text-[#F97316]"
+            }
           >
             エリア
           </Link>
