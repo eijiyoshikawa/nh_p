@@ -4,6 +4,7 @@ import { foodSeeds } from "./food";
 import { healthSeeds } from "./health";
 import { livingSeeds } from "./living";
 import { communitySeeds } from "./community";
+import { seasonalSeeds } from "./seasonal";
 import type { TopicSeed } from "../topic-types";
 
 export const allSeeds: TopicSeed[] = [
@@ -13,4 +14,5 @@ export const allSeeds: TopicSeed[] = [
   ...healthSeeds,
   ...livingSeeds,
   ...communitySeeds,
+  ...seasonalSeeds,
 ];
