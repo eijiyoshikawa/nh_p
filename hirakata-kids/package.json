@@ -11,7 +11,8 @@
     "check": "npm run typecheck && npm run lint && npm run build",
     "generate": "tsx scripts/generate-article.ts",
     "plan": "tsx scripts/plan-topics.ts",
-    "batch": "tsx scripts/generate-batch.ts"
+    "batch": "tsx scripts/generate-batch.ts",
+    "stats": "tsx scripts/stats.ts"
   },
   "engines": {
     "node": ">=20"
