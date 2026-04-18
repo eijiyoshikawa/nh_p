@@ -75,6 +75,12 @@ export function Header() {
           >
             検索
           </Link>
+          <Link
+            href="/newsletter/"
+            className="rounded-full bg-[#F97316] px-3 py-1 text-xs font-semibold text-white transition hover:bg-[#ea6a0e]"
+          >
+            メルマガ登録
+          </Link>
         </nav>
 
         <button
@@ -151,6 +157,14 @@ export function Header() {
                   className="block rounded-md bg-orange-50 px-3 py-2 font-semibold text-[#F97316] hover:bg-orange-100"
                 >
                   記事を検索
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/newsletter/"
+                  className="block rounded-md bg-[#F97316] px-3 py-2 font-semibold text-white hover:bg-[#ea6a0e]"
+                >
+                  メルマガ登録（無料）
                 </Link>
               </li>
             </ul>

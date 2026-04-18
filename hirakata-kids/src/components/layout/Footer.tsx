@@ -58,6 +58,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/newsletter/" className="font-semibold text-[#F97316] hover:underline">
+                  メルマガ登録（無料）
+                </Link>
+              </li>
+              <li>
                 <Link href="/updates/" className="hover:text-[#F97316]">
                   新着・更新
                 </Link>
