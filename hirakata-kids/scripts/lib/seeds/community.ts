@@ -58,4 +58,49 @@ export const communitySeeds: TopicSeed[] = [
     themeTags: ["weekend"],
     angle: "list",
   },
+  {
+    id: "community-pta-handson",
+    kind: "universal",
+    category: "community",
+    subcategory: "pta",
+    baseTitle: "働きながらPTAに関わる 枚方市の保護者向けヒント",
+    baseDescription:
+      "共働き・ひとり親家庭が枚方市の小学校PTAに無理なく関わるための役員選び・分担・在宅対応のコツをまとめました。",
+    ageTags: ["age-lower-elem", "age-upper-elem"],
+    angle: "guide",
+  },
+  {
+    id: "community-neighbor-connect",
+    kind: "universal",
+    category: "community",
+    subcategory: "events",
+    baseTitle: "枚方市で子育てママ・パパがつながれる場所",
+    baseDescription:
+      "枚方市内で子育て中の保護者同士がつながれるオフ会・子育てサロン・地域コミュニティの入口をまとめました。",
+    sources: ["https://www.city.hirakata.osaka.jp/"],
+    angle: "list",
+  },
+  {
+    id: "community-kids-volunteer-start",
+    kind: "universal",
+    category: "community",
+    subcategory: "volunteer",
+    baseTitle: "子どもと始める地域ボランティア 枚方市の入門",
+    baseDescription:
+      "小学生から始められる枚方市内の地域ボランティア活動を、取り組みやすさ順に整理した親子向け入門ガイド。",
+    ageTags: ["age-lower-elem", "age-upper-elem", "age-jhs"],
+    themeTags: ["weekend"],
+    angle: "guide",
+  },
+  {
+    id: "community-senior-intergen",
+    kind: "universal",
+    category: "community",
+    subcategory: "volunteer",
+    baseTitle: "枚方市の多世代交流 子どもと高齢者をつなぐ取り組み",
+    baseDescription:
+      "枚方市内で子どもと高齢者が交流できる地域サロン・介護予防教室・世代間企画をまとめました。",
+    sources: ["https://www.city.hirakata.osaka.jp/"],
+    angle: "column",
+  },
 ];

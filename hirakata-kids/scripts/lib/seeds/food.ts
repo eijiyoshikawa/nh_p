@@ -116,4 +116,49 @@ export const foodSeeds: TopicSeed[] = [
     themeTags: ["weekend"],
     angle: "list",
   },
+  {
+    id: "food-bakery-family",
+    kind: "universal",
+    category: "food",
+    subcategory: "cafe",
+    baseTitle: "枚方市のパン屋さん 家族で楽しむベーカリーまとめ",
+    baseDescription:
+      "枚方市内で家族に愛されるパン屋・ベーカリー・サンドイッチ店を、子どもが喜ぶラインナップの観点でまとめました。",
+    ageTags: ["age-infant", "age-lower-elem"],
+    themeTags: ["weekend", "stroller-ok"],
+    angle: "list",
+  },
+  {
+    id: "food-sweets-omiyage",
+    kind: "universal",
+    category: "food",
+    subcategory: "cafe",
+    baseTitle: "枚方市の手土産スイーツ・ケーキ店",
+    baseDescription:
+      "枚方市内で手土産や誕生日に使える和洋菓子・ケーキ店を、予算と持ち帰りやすさでまとめました。",
+    themeTags: ["weekend"],
+    angle: "list",
+  },
+  {
+    id: "food-ramen-family",
+    kind: "universal",
+    category: "food",
+    subcategory: "lunch",
+    baseTitle: "枚方市の子連れで行けるラーメン店",
+    baseDescription:
+      "枚方市内で家族でランチに使えるラーメン店を、席の広さ・子ども用メニューの観点でまとめました。",
+    ageTags: ["age-lower-elem", "age-upper-elem"],
+    angle: "list",
+  },
+  {
+    id: "food-cooking-with-kids",
+    kind: "universal",
+    category: "food",
+    subcategory: "takeout",
+    baseTitle: "子どもと作る簡単レシピ 枚方市の食材で",
+    baseDescription:
+      "枚方市内のスーパーで手に入る食材で、子どもと一緒に作れる簡単レシピのアイデアと進め方をまとめました。",
+    ageTags: ["age-lower-elem", "age-upper-elem"],
+    angle: "guide",
+  },
 ];
