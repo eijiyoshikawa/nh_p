@@ -3,6 +3,7 @@ import Link from "next/link";
 import { authors } from "@/lib/authors";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { site } from "@/lib/site";
+import { breadcrumbJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "著者一覧",
@@ -38,6 +39,18 @@ export default function AuthorIndexPage() {
           </li>
         ))}
       </ul>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbJsonLd([
+              { name: "ホーム", url: `${site.url}/` },
+              { name: "著者", url: `${site.url}/author/` },
+            ])
+          ),
+        }}
+      />
     </div>
   );
 }

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ageTags, themeTags } from "@/lib/tags";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { site } from "@/lib/site";
+import { breadcrumbJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "タグ一覧",
@@ -51,6 +52,18 @@ export default function TagIndexPage() {
           ))}
         </ul>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbJsonLd([
+              { name: "ホーム", url: `${site.url}/` },
+              { name: "タグ", url: `${site.url}/tag/` },
+            ])
+          ),
+        }}
+      />
     </div>
   );
 }

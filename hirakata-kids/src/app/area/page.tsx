@@ -3,6 +3,7 @@ import Link from "next/link";
 import { areas } from "@/lib/areas";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { site } from "@/lib/site";
+import { breadcrumbJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "枚方市エリア別情報",
@@ -36,6 +37,18 @@ export default function AreaIndexPage() {
           </Link>
         ))}
       </div>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbJsonLd([
+              { name: "ホーム", url: `${site.url}/` },
+              { name: "エリア", url: `${site.url}/area/` },
+            ])
+          ),
+        }}
+      />
     </div>
   );
 }
