@@ -23,6 +23,7 @@ import { RelatedArticles } from "@/components/article/RelatedArticles";
 import { Toc } from "@/components/article/Toc";
 import { SpotList } from "@/components/article/SpotList";
 import { Share } from "@/components/article/Share";
+import { ScrollTop } from "@/components/article/ScrollTop";
 import { Cta } from "@/components/cta/Cta";
 import { extractToc, estimateReadingMinutes } from "@/lib/article-meta";
 import { site } from "@/lib/site";
@@ -195,6 +196,7 @@ export default async function Page({
         <RelatedArticles articles={related} />
 
         <Cta />
+        <ScrollTop />
 
         <script
           type="application/ld+json"
