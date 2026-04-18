@@ -28,9 +28,13 @@ function renderTemplate(
   template: string,
   vars: { area?: string; month?: number }
 ): string {
-  return template
+  const rendered = template
     .replace("{area}", vars.area ?? "")
     .replace("{month}", vars.month !== undefined ? String(vars.month) : "");
+  // Area labels like "枚方市駅周辺" already carry the city name; collapse
+  // the redundant "枚方市枚方市" produced when a template prefixes its own
+  // 枚方市 before inserting such an area label.
+  return rendered.replace(/枚方市枚方市/g, "枚方市");
 }
 
 function universalCandidate(seed: TopicSeed, suffix: string | null): Candidate {
