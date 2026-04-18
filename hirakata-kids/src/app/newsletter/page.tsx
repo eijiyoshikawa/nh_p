@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { PopBackground } from "@/components/ui/PopBackground";
 import { NewsletterForm } from "@/components/newsletter/NewsletterForm";
@@ -62,12 +63,12 @@ export default function NewsletterPage() {
               <NewsletterForm source="newsletter-page" variant="hero" />
               <p className="mt-3 text-xs text-stone-500">
                 入力いただいたメールアドレスは配信目的のみに使用します。詳細は
-                <a
+                <Link
                   href="/privacy/"
                   className="text-[#F97316] hover:underline"
                 >
                   プライバシーポリシー
-                </a>
+                </Link>
                 をご確認ください。
               </p>
             </div>
