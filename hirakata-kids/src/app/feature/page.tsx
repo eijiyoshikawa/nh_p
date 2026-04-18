@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { features } from "@/lib/features";
 import { site } from "@/lib/site";
+import { breadcrumbJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "特集シリーズ",
@@ -45,6 +46,18 @@ export default function FeatureIndexPage() {
           ))}
         </ul>
       )}
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbJsonLd([
+              { name: "ホーム", url: `${site.url}/` },
+              { name: "特集", url: `${site.url}/feature/` },
+            ])
+          ),
+        }}
+      />
     </div>
   );
 }
