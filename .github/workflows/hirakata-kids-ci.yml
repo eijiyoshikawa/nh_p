@@ -1,0 +1,41 @@
+name: hirakata-kids CI
+
+on:
+  pull_request:
+    paths:
+      - "hirakata-kids/**"
+      - ".github/workflows/hirakata-kids-ci.yml"
+  push:
+    branches: [main, media_start]
+    paths:
+      - "hirakata-kids/**"
+      - ".github/workflows/hirakata-kids-ci.yml"
+
+jobs:
+  check:
+    name: typecheck + lint + build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: hirakata-kids
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: hirakata-kids/.nvmrc
+          cache: npm
+          cache-dependency-path: hirakata-kids/package-lock.json
+
+      - run: npm ci
+
+      - run: npm run typecheck
+
+      - run: npm run lint
+
+      - run: npm run build
+
+      - name: Plan + validate (pipeline sanity)
+        run: |
+          npm run plan -- --from=2025-02-01 --to=2026-04-18
+          npm run validate
