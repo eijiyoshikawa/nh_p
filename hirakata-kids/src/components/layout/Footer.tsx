@@ -58,13 +58,32 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/updates/" className="hover:text-[#F97316]">
+                  新着・更新
+                </Link>
+              </li>
+              <li>
                 <Link href="/author/" className="hover:text-[#F97316]">
                   著者一覧
                 </Link>
               </li>
               <li>
+                <a
+                  href="/rss.xml"
+                  className="hover:text-[#F97316]"
+                  aria-label="RSS フィード"
+                >
+                  RSS
+                </a>
+              </li>
+              <li>
                 <Link href="/privacy/" className="hover:text-[#F97316]">
                   プライバシーポリシー
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms/" className="hover:text-[#F97316]">
+                  利用規約
                 </Link>
               </li>
               <li>
@@ -76,7 +95,8 @@ export function Footer() {
           </div>
         </div>
         <p className="mt-10 text-xs text-stone-500">
-          © {new Date().getFullYear()} {site.name}
+          © {new Date().getFullYear()} {site.operator.name}. {site.name} is
+          operated by {site.operator.name}.
         </p>
       </div>
     </footer>
