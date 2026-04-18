@@ -16,6 +16,7 @@ import { Sources } from "@/components/article/Sources";
 import { TagChips, AuthorByline } from "@/components/article/TagChips";
 import { RelatedArticles } from "@/components/article/RelatedArticles";
 import { PrevNext } from "@/components/article/PrevNext";
+import { CategorySiblings } from "@/components/article/CategorySiblings";
 import { Toc } from "@/components/article/Toc";
 import { SpotList } from "@/components/article/SpotList";
 import { Share } from "@/components/article/Share";
@@ -162,6 +163,11 @@ export default async function ArticleWithSubPage({
         <Share title={articleData.title} url={url} />
 
         <PrevNext prev={neighbors.prev} next={neighbors.next} />
+
+        <CategorySiblings
+          category={articleData.category}
+          currentSub={articleData.subcategory}
+        />
 
         <RelatedArticles articles={related} />
 

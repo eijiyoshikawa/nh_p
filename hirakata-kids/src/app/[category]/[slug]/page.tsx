@@ -22,6 +22,7 @@ import { Sources } from "@/components/article/Sources";
 import { TagChips, AuthorByline } from "@/components/article/TagChips";
 import { RelatedArticles } from "@/components/article/RelatedArticles";
 import { PrevNext } from "@/components/article/PrevNext";
+import { CategorySiblings } from "@/components/article/CategorySiblings";
 import { Toc } from "@/components/article/Toc";
 import { SpotList } from "@/components/article/SpotList";
 import { Share } from "@/components/article/Share";
@@ -199,6 +200,8 @@ export default async function Page({
         <Share title={article.title} url={url} />
 
         <PrevNext prev={neighbors.prev} next={neighbors.next} />
+
+        <CategorySiblings category={article.category} currentSub={article.subcategory} />
 
         <RelatedArticles articles={related} />
 
