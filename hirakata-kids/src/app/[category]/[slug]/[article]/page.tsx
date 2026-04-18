@@ -14,7 +14,10 @@ import { Faq } from "@/components/article/Faq";
 import { Sources } from "@/components/article/Sources";
 import { TagChips, AuthorByline } from "@/components/article/TagChips";
 import { RelatedArticles } from "@/components/article/RelatedArticles";
+import { Toc } from "@/components/article/Toc";
+import { SpotList } from "@/components/article/SpotList";
 import { Cta } from "@/components/cta/Cta";
+import { extractToc, estimateReadingMinutes } from "@/lib/article-meta";
 import { site } from "@/lib/site";
 import {
   articleJsonLd,
@@ -85,6 +88,8 @@ export default async function ArticleWithSubPage({
 
   const url = `${site.url}/${category}/${slug}/${article}/`;
   const related = await getRelatedArticles(articleData);
+  const toc = extractToc(articleData.body);
+  const readingMin = estimateReadingMinutes(articleData.body);
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-10">
@@ -109,6 +114,7 @@ export default async function ArticleWithSubPage({
               更新: {articleData.updatedAt}
             </time>
           )}
+          <span aria-label="読了目安">読了 {readingMin}分</span>
           <AuthorByline article={articleData} />
         </div>
         {articleData.description && (
@@ -117,6 +123,7 @@ export default async function ArticleWithSubPage({
           </p>
         )}
         <TagChips article={articleData} />
+        <Toc items={toc} />
       </header>
 
       <div className="prose-article mt-8">
@@ -131,6 +138,9 @@ export default async function ArticleWithSubPage({
         />
       </div>
 
+      {articleData.spots && articleData.spots.length > 0 && (
+        <SpotList items={articleData.spots} />
+      )}
       {articleData.faq && articleData.faq.length > 0 && (
         <Faq items={articleData.faq} />
       )}

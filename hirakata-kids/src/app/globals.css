@@ -26,18 +26,48 @@ body {
   line-height: 1.8;
 }
 .prose-article h2 {
-  margin-top: 2.5rem;
+  position: relative;
+  margin-top: 2.75rem;
   margin-bottom: 1rem;
+  padding-left: 0.9rem;
   padding-bottom: 0.4rem;
   border-bottom: 2px solid #FED7AA;
   font-size: 1.5rem;
   font-weight: 700;
+  scroll-margin-top: 5rem;
+}
+.prose-article h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.3rem;
+  bottom: 0.55rem;
+  width: 4px;
+  border-radius: 2px;
+  background: var(--color-accent-orange);
+}
+.prose-article table {
+  margin-top: 1rem;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.prose-article th,
+.prose-article td {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #FED7AA;
+  text-align: left;
+}
+.prose-article th {
+  background: #FFF7ED;
+  font-weight: 600;
 }
 .prose-article h3 {
   margin-top: 1.75rem;
   margin-bottom: 0.75rem;
   font-size: 1.15rem;
   font-weight: 700;
+  scroll-margin-top: 5rem;
 }
 .prose-article p {
   margin-top: 1rem;

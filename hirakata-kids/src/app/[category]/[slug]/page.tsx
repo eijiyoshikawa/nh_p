@@ -20,7 +20,10 @@ import { Faq } from "@/components/article/Faq";
 import { Sources } from "@/components/article/Sources";
 import { TagChips, AuthorByline } from "@/components/article/TagChips";
 import { RelatedArticles } from "@/components/article/RelatedArticles";
+import { Toc } from "@/components/article/Toc";
+import { SpotList } from "@/components/article/SpotList";
 import { Cta } from "@/components/cta/Cta";
+import { extractToc, estimateReadingMinutes } from "@/lib/article-meta";
 import { site } from "@/lib/site";
 import {
   articleJsonLd,
@@ -129,6 +132,8 @@ export default async function Page({
 
   const url = `${site.url}/${article.category}/${article.slug}/`;
   const related = await getRelatedArticles(article);
+  const toc = extractToc(article.body);
+  const readingMin = estimateReadingMinutes(article.body);
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-10">
@@ -148,6 +153,7 @@ export default async function Page({
           {article.updatedAt && (
             <time dateTime={article.updatedAt}>更新: {article.updatedAt}</time>
           )}
+          <span aria-label="読了目安">読了 {readingMin}分</span>
           <AuthorByline article={article} />
         </div>
         {article.description && (
@@ -156,6 +162,7 @@ export default async function Page({
           </p>
         )}
         <TagChips article={article} />
+        <Toc items={toc} />
       </header>
 
       <div className="prose-article mt-8">
@@ -170,6 +177,9 @@ export default async function Page({
         />
       </div>
 
+      {article.spots && article.spots.length > 0 && (
+        <SpotList items={article.spots} />
+      )}
       {article.faq && article.faq.length > 0 && <Faq items={article.faq} />}
       {article.sources && article.sources.length > 0 && (
         <Sources items={article.sources} />

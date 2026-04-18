@@ -48,6 +48,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/tools/" className="hover:text-[#F97316]">
+                  ツール
+                </Link>
+              </li>
+              <li>
                 <Link href="/search/" className="hover:text-[#F97316]">
                   記事を検索
                 </Link>
