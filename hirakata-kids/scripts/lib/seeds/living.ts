@@ -67,4 +67,49 @@ export const livingSeeds: TopicSeed[] = [
     ageTags: ["age-upper-elem", "age-jhs"],
     angle: "guide",
   },
+  {
+    id: "living-disaster-familytalk",
+    kind: "universal",
+    category: "living",
+    subcategory: "disaster",
+    baseTitle: "年1回の家族防災会議 枚方市の家庭で話したいこと",
+    baseDescription:
+      "年1回は家族で災害時の連絡方法・合流ポイント・備蓄状況を確認する防災会議の進め方をまとめました。",
+    sources: ["https://www.city.hirakata.osaka.jp/"],
+    angle: "guide",
+  },
+  {
+    id: "living-disaster-tomadoi",
+    kind: "universal",
+    category: "living",
+    subcategory: "disaster",
+    baseTitle: "在宅避難の進め方 枚方市の集合住宅・戸建て",
+    baseDescription:
+      "被災時に自宅が安全なら検討したい在宅避難の判断基準と、集合住宅・戸建てそれぞれの備え方をまとめました。",
+    sources: ["https://www.city.hirakata.osaka.jp/"],
+    angle: "guide",
+  },
+  {
+    id: "living-safety-bike",
+    kind: "universal",
+    category: "living",
+    subcategory: "safety",
+    baseTitle: "枚方市の子ども自転車ルール・ヘルメット着用",
+    baseDescription:
+      "枚方市在住の小中学生向けに、自転車のルール・ヘルメット着用・保険加入の基本をまとめました。",
+    ageTags: ["age-lower-elem", "age-upper-elem", "age-jhs"],
+    sources: ["https://www.police.pref.osaka.lg.jp/"],
+    angle: "guide",
+  },
+  {
+    id: "living-shopping-babygoods",
+    kind: "universal",
+    category: "living",
+    subcategory: "shopping",
+    baseTitle: "枚方市のベビー・子ども用品が買える店まとめ",
+    baseDescription:
+      "枚方市内でベビー用品・子ども服・知育玩具が揃う店舗と、リユース・フリマ活用のヒントをまとめました。",
+    ageTags: ["age-infant"],
+    angle: "list",
+  },
 ];

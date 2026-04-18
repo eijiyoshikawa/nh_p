@@ -123,4 +123,49 @@ export const parentingSeeds: TopicSeed[] = [
     sources: ["https://www.city.hirakata.osaka.jp/"],
     angle: "guide",
   },
+  {
+    id: "parenting-support-jidouteate",
+    kind: "universal",
+    category: "parenting",
+    subcategory: "support",
+    baseTitle: "枚方市の児童手当と申請手続き",
+    baseDescription:
+      "枚方市の児童手当の対象・支給額・申請書類・支給時期を、家庭状況ごとに整理した実務ガイド。",
+    sources: ["https://www.city.hirakata.osaka.jp/"],
+    angle: "guide",
+  },
+  {
+    id: "parenting-support-kosodate-plaza",
+    kind: "universal",
+    category: "parenting",
+    subcategory: "support",
+    baseTitle: "枚方市の子育て支援センター・親子広場まとめ",
+    baseDescription:
+      "枚方市内の子育て支援センター・つどいの広場・親子交流スペースを、開所日時と年齢対象でまとめました。",
+    ageTags: ["age-infant"],
+    sources: ["https://www.city.hirakata.osaka.jp/"],
+    angle: "list",
+  },
+  {
+    id: "parenting-lessons-start",
+    kind: "universal",
+    category: "parenting",
+    subcategory: "lessons",
+    baseTitle: "子どもの習い事 はじめ方と続け方",
+    baseDescription:
+      "習い事選びの基準・掛け持ちの限界・辞めどきの判断まで、枚方市の保護者向けに整理した習い事ハンドブック。",
+    ageTags: ["age-infant", "age-lower-elem", "age-upper-elem"],
+    angle: "guide",
+  },
+  {
+    id: "parenting-elementary-curriculum",
+    kind: "universal",
+    category: "parenting",
+    subcategory: "elementary",
+    baseTitle: "枚方市小学校の学年別 家庭学習サポート術",
+    baseDescription:
+      "枚方市の公立小学校の学年進度に合わせ、家庭でできる学習サポートと宿題の付き合い方をまとめました。",
+    ageTags: ["age-lower-elem", "age-upper-elem"],
+    angle: "guide",
+  },
 ];
