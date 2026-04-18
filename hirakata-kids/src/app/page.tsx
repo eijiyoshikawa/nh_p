@@ -4,6 +4,7 @@ import { getAllArticles, getArticleUrl } from "@/lib/content";
 import { ArticleCard } from "@/components/cards/ArticleCard";
 import { CategoryCard } from "@/components/cards/CategoryCard";
 import { site } from "@/lib/site";
+import { getTag } from "@/lib/tags";
 import type { Article } from "@/lib/types";
 
 export default async function HomePage() {
@@ -12,12 +13,21 @@ export default async function HomePage() {
   const featured = articles[0];
   const byCategory = new Map<string, Article[]>();
   const countByCategory = new Map<string, number>();
+  const tagCounts = new Map<string, number>();
   for (const a of articles) {
     countByCategory.set(a.category, (countByCategory.get(a.category) ?? 0) + 1);
     const list = byCategory.get(a.category) ?? [];
     if (list.length < 3) list.push(a);
     byCategory.set(a.category, list);
+    for (const t of [...(a.themeTags ?? []), ...(a.ageTags ?? [])]) {
+      tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1);
+    }
   }
+  const popularTags = Array.from(tagCounts.entries())
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10)
+    .map(([slug, count]) => ({ slug, count, tag: getTag(slug) }))
+    .filter((x): x is { slug: string; count: number; tag: NonNullable<ReturnType<typeof getTag>> } => !!x.tag);
 
   return (
     <div>
@@ -105,6 +115,25 @@ export default async function HomePage() {
           ))}
         </div>
       </section>
+
+      {popularTags.length > 0 && (
+        <section className="mx-auto max-w-6xl px-4 pb-4 pt-2">
+          <h2 className="text-sm font-semibold text-stone-700">よく読まれているタグ</h2>
+          <ul className="mt-3 flex flex-wrap gap-2 text-xs">
+            {popularTags.map((t) => (
+              <li key={t.slug}>
+                <Link
+                  href={`/tag/${t.slug}/`}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-orange-200 bg-white px-3 py-1 text-orange-700 transition hover:bg-orange-50"
+                >
+                  {t.tag.label}
+                  <span className="text-[10px] text-stone-500">({t.count})</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <section className="mx-auto max-w-6xl px-4 py-12">
         <h2 className="text-xl font-bold text-stone-900">新着記事</h2>
