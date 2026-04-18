@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { areas, getArea } from "@/lib/areas";
+import { categories } from "@/lib/categories";
 import { getArticlesByArea } from "@/lib/content";
 import { ArticleCard } from "@/components/cards/ArticleCard";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
@@ -52,9 +54,26 @@ export default async function AreaDetailPage({
 
       <section className="mt-8">
         {articles.length === 0 ? (
-          <p className="text-sm text-stone-600">
-            このエリアの記事は準備中です。
-          </p>
+          <div className="rounded-xl border border-orange-100 bg-white p-6">
+            <p className="text-sm text-stone-700">
+              {area.label}エリアの記事を準備中です。近日公開予定。
+            </p>
+            <p className="mt-2 text-sm text-stone-600">
+              まずはカテゴリから関連情報をチェックしてみてください。
+            </p>
+            <ul className="mt-4 flex flex-wrap gap-2 text-xs">
+              {categories.map((c) => (
+                <li key={c.slug}>
+                  <Link
+                    href={`/${c.slug}/`}
+                    className="inline-block rounded-full border border-orange-200 bg-white px-3 py-1 text-orange-700 transition hover:bg-orange-50"
+                  >
+                    {c.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {articles.map((a) => (
