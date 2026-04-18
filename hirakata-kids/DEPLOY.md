@@ -47,10 +47,27 @@ Vercel ダッシュボード → Settings → Environment Variables で追加：
 | 変数名 | 値 | 環境 | 用途 |
 |---|---|---|---|
 | `NEXT_PUBLIC_SITE_URL` | `https://hirakata-kids.jp` 等 | Production | sitemap/OGP絶対URL |
+| `NEWSLETTER_WEBHOOK_URL` | `https://hooks.zapier.com/...` 等 | Production | メルマガ登録の転送先（未設定時はログのみ） |
+| `NEWSLETTER_WEBHOOK_HEADER` | `Authorization: Bearer xxx` | Production | 認証が必要なサービス用の追加ヘッダー1本 |
 | `ANTHROPIC_API_KEY` | `sk-ant-...` | （オプション） | 記事生成用。Vercel上ではなくローカル生成用途のみ |
+| `GEMINI_API_KEY` | `AIza...` | （オプション） | 記事量産（無料枠）用。ローカル実行のみ |
 
 - `NEXT_PUBLIC_SITE_URL` は本番ドメイン確定後に必ず設定（未設定時は `src/lib/site.ts` の例示ドメインにフォールバック）
-- `ANTHROPIC_API_KEY` は Vercel には登録しない（記事生成はローカルで `npm run generate` を実行）
+- `ANTHROPIC_API_KEY` / `GEMINI_API_KEY` は Vercel には登録しない（記事生成はローカルで `npm run generate` / `npm run batch` を実行）
+
+#### メルマガ登録の転送先を決める
+
+`/api/newsletter/subscribe` は `NEWSLETTER_WEBHOOK_URL` が設定されていれば `{ email, source, subscribedAt }` の JSON を POST します。無料で使える組み合わせ例：
+
+| サービス | 無料枠 | URL形式 | ヘッダー |
+|---|---|---|---|
+| **Zapier Webhooks** | 5 Zap / 100件/月 | `https://hooks.zapier.com/hooks/catch/<id>/<hash>/` | 不要 |
+| **Google Forms（Apps Script経由）** | 無制限 | GAS でデプロイした Web アプリ URL | 不要 |
+| **ConvertKit** | 1,000購読者 | `https://api.convertkit.com/v3/forms/<id>/subscribe` | `Authorization: Bearer <API_KEY>` |
+| **Buttondown** | 100購読者 | `https://api.buttondown.email/v1/subscribers` | `Authorization: Token <API_KEY>` |
+| **Mailchimp** | 500購読者 | `https://<dc>.api.mailchimp.com/3.0/lists/<id>/members` | `Authorization: Bearer <API_KEY>` |
+
+※ サービスによって受信するフィールド名が異なる場合があるので、初回は実際に1件テスト送信して期待通りか確認してください。受信フィールドが異なる場合は `scripts/` 配下に変換スクリプトを挟むか、Zapier の Filter/Formatter で整形するのが最短です。
 
 ### 3. 独自ドメイン設定
 
