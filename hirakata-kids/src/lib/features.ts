@@ -8,6 +8,17 @@ export type Feature = {
 
 export const features: Feature[] = [
   {
+    slug: "natsuyasumi-2026",
+    title: "夏休み 2026",
+    description: "枚方市の子育て家庭の夏休みを、遊び・学習・預け先の3本柱で乗り切る特集。",
+    intro:
+      "40日間の夏休みを4週間テーマ制で計画し、無料公園での外遊び、図書館や屋内施設の活用、共働き家庭の預け先確保までを一気通貫で整理した特集です。",
+    articleSlugs: [
+      "hirakata-natsuyasumi-2026",
+      "hirakata-muryo-koen-10sen",
+    ],
+  },
+  {
     slug: "nyugaku-junbi-2026",
     title: "入学準備 2026",
     description: "小学校・中学校の入学準備に役立つ情報をまとめた特集です。",
