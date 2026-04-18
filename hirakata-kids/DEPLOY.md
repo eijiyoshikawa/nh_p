@@ -3,25 +3,42 @@
 ## 概要
 
 - フレームワーク: Next.js 16（App Router, Turbopack）
-- ビルド成果物: 静的ページ（SSG）97+ページ
+- ビルド成果物: 静的ページ（SSG）99+ページ
 - ホスティング: Vercel
 - リージョン: `hnd1`（東京 / 国内ユーザー向けに最適）
+
+## 既存 `npo-hirakata` プロジェクトとの関係
+
+本リポジトリ `eijiyoshikawa/npo_hirakata` には以下2つの独立したアプリが同居しています。
+
+| ディレクトリ | 目的 | Vercel プロジェクト |
+|---|---|---|
+| `npo-lp/` | NPO公式LP（既存） | `npo-hirakata` → `npo-hirakata.vercel.app` |
+| `hirakata-kids/` | 子育てメディア（本書対象） | `hirakata-kids`（新規作成）→ `hirakata-kids.vercel.app` |
+
+**既存 `npo-hirakata` プロジェクトには一切変更を加えません。** 新規に別のVercelプロジェクトを作成し、Root Directoryを `hirakata-kids` に設定することで並行稼働させます。
+
+`hirakata-kids/vercel.json` の `ignoreCommand` により、コミット内容が `hirakata-kids/` 配下に無い場合は本プロジェクトのビルドをスキップします。既存プロジェクトも同様に Vercel ダッシュボード → Settings → Git → Ignored Build Step で `git diff --quiet HEAD^ HEAD -- .` を設定しておくと、相互に不要なビルドを避けられます（任意）。
 
 ## 初回セットアップ
 
 ### 1. Vercelプロジェクト作成
 
-Vercelダッシュボードで「New Project」→ GitHub連携でリポジトリ `eijiyoshikawa/npo_hirakata` を選択。
+Vercelダッシュボードで「Add New…」→ 「Project」→ GitHub連携でリポジトリ `eijiyoshikawa/npo_hirakata` を選択。
+
+**重要**: 既存 `npo-hirakata` プロジェクトは削除せず、追加で新規プロジェクトを作成します。
 
 プロジェクト設定で以下を指定：
 
 | 項目 | 値 |
 |---|---|
-| **Root Directory** | `hirakata-kids` |
+| **Project Name** | `hirakata-kids`（任意） |
+| **Root Directory** | `hirakata-kids`（必須 — これで既存LPと隔離される） |
 | **Framework Preset** | Next.js（自動検出） |
 | **Build Command** | `npm run build`（デフォルト） |
 | **Install Command** | `npm install`（デフォルト） |
 | **Output Directory** | `.next`（デフォルト） |
+| **Production Branch** | `main` または `claude/hirakata-seo-media-YT3lT` を一時的に指定 |
 
 ### 2. 環境変数
 
