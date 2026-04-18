@@ -19,6 +19,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: site.name,
   },
+  alternates: {
+    types: {
+      "application/rss+xml": [{ url: "/rss.xml", title: site.name }],
+    },
+  },
 };
 
 export default function RootLayout({
