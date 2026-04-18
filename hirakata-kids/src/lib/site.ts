@@ -8,7 +8,7 @@ export const site = {
     "https://hirakata-kids.example.jp",
   locale: "ja_JP",
   operator: {
-    name: "ひらかた子ども食堂支援NPO",
-    url: "https://npo-hirakata.vercel.app",
+    name: "三慧経営顧問株式会社",
+    url: "https://skma.asia/",
   },
 } as const;

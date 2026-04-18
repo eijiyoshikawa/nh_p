@@ -24,7 +24,7 @@ export default function PrivacyPage() {
 
       <section className="mt-8 space-y-4 text-sm leading-7 text-stone-700">
         <p>
-          {site.operator.name}（以下「当法人」といいます）は、当法人が運営する
+          {site.operator.name}（以下「当社」といいます）は、当社が運営する
           <strong>{site.name}</strong>
           （以下「本サイト」といいます）における個人情報の取扱いについて、以下のとおりプライバシーポリシー（以下「本ポリシー」といいます）を定めます。
         </p>
@@ -35,7 +35,7 @@ export default function PrivacyPage() {
           1. 運営者
         </h2>
         <ul className="mt-3 space-y-1 text-sm leading-7 text-stone-700">
-          <li>団体名：{site.operator.name}</li>
+          <li>運営会社：{site.operator.name}</li>
           <li>
             公式サイト：
             <a
@@ -82,7 +82,7 @@ export default function PrivacyPage() {
           4. 第三者提供
         </h2>
         <p className="mt-3 text-sm leading-7 text-stone-700">
-          当法人は、法令で認められる場合を除き、ご本人の同意なく取得した個人情報を第三者に提供しません。
+          当社は、法令で認められる場合を除き、ご本人の同意なく取得した個人情報を第三者に提供しません。
         </p>
       </section>
 
@@ -100,7 +100,7 @@ export default function PrivacyPage() {
           6. 外部リンク
         </h2>
         <p className="mt-3 text-sm leading-7 text-stone-700">
-          本サイトからリンクされた外部サイトにおける個人情報の取扱いについて、当法人は責任を負いません。リンク先サイトのプライバシーポリシーをご確認ください。
+          本サイトからリンクされた外部サイトにおける個人情報の取扱いについて、当社は責任を負いません。リンク先サイトのプライバシーポリシーをご確認ください。
         </p>
       </section>
 
@@ -131,7 +131,7 @@ export default function PrivacyPage() {
           9. 本ポリシーの変更
         </h2>
         <p className="mt-3 text-sm leading-7 text-stone-700">
-          当法人は、必要に応じて本ポリシーを変更することがあります。変更後の本ポリシーは、本サイトに掲載された時点から効力を生じるものとします。
+          当社は、必要に応じて本ポリシーを変更することがあります。変更後の本ポリシーは、本サイトに掲載された時点から効力を生じるものとします。
         </p>
       </section>
 
