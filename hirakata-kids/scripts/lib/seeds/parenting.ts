@@ -1,0 +1,126 @@
+import type { TopicSeed } from "../topic-types";
+
+export const parentingSeeds: TopicSeed[] = [
+  {
+    id: "parenting-preschool-hoikuen-list",
+    kind: "per-area",
+    category: "parenting",
+    subcategory: "preschool",
+    baseTitle: "枚方市{area}の認可保育園まとめ",
+    baseDescription:
+      "枚方市{area}エリアの認可保育園の選び方・申込スケジュール・特徴を保護者目線でまとめました。",
+    ageTags: ["age-infant"],
+    themeTags: ["reservation"],
+    sources: ["https://www.city.hirakata.osaka.jp/"],
+    angle: "list",
+  },
+  {
+    id: "parenting-preschool-youchien-list",
+    kind: "per-area",
+    category: "parenting",
+    subcategory: "preschool",
+    baseTitle: "枚方市{area}の幼稚園・こども園ガイド",
+    baseDescription:
+      "枚方市{area}エリアの幼稚園・認定こども園を比較し、入園スケジュール・保育料・選び方を整理した保護者向けガイド。",
+    ageTags: ["age-infant"],
+    sources: ["https://www.city.hirakata.osaka.jp/"],
+    angle: "guide",
+  },
+  {
+    id: "parenting-elementary-bus-route",
+    kind: "per-area",
+    category: "parenting",
+    subcategory: "elementary",
+    baseTitle: "枚方市{area}の小学校 通学路と安全対策",
+    baseDescription:
+      "枚方市{area}エリアの小学校通学路、危険箇所チェック、こども110番の家や防犯ブザー運用まで、保護者が押さえたい安全対策をまとめました。",
+    ageTags: ["age-lower-elem", "age-upper-elem"],
+    themeTags: ["after-school"],
+    sources: ["https://www.city.hirakata.osaka.jp/"],
+    angle: "guide",
+  },
+  {
+    id: "parenting-juniorhigh-life",
+    kind: "per-area",
+    category: "parenting",
+    subcategory: "junior-high",
+    baseTitle: "枚方市{area}の中学校生活ガイド",
+    baseDescription:
+      "枚方市{area}エリアの中学校の通学・部活・学習面の特徴と、保護者が知っておきたい中学生活の変化をまとめました。",
+    ageTags: ["age-upper-elem", "age-jhs"],
+    sources: ["https://www.city.hirakata.osaka.jp/"],
+    angle: "guide",
+  },
+  {
+    id: "parenting-lessons-sports",
+    kind: "per-area",
+    category: "parenting",
+    subcategory: "lessons",
+    baseTitle: "枚方市{area}のスポーツ系習い事ガイド",
+    baseDescription:
+      "枚方市{area}エリアで通えるスイミング・体操・武道・サッカー・ダンスなどのスポーツ系習い事を月謝目安付きでまとめました。",
+    ageTags: ["age-infant", "age-lower-elem", "age-upper-elem"],
+    themeTags: ["after-school"],
+    angle: "list",
+  },
+  {
+    id: "parenting-lessons-academic",
+    kind: "per-area",
+    category: "parenting",
+    subcategory: "lessons",
+    baseTitle: "枚方市{area}の学習塾・個別指導ガイド",
+    baseDescription:
+      "枚方市{area}エリアの学習塾・個別指導・公文・そろばん教室を、指導形態別に月謝目安付きでまとめました。",
+    ageTags: ["age-lower-elem", "age-upper-elem", "age-jhs"],
+    themeTags: ["after-school"],
+    angle: "list",
+  },
+  {
+    id: "parenting-lessons-music-english",
+    kind: "per-area",
+    category: "parenting",
+    subcategory: "lessons",
+    baseTitle: "枚方市{area}の音楽・英語・プログラミング教室",
+    baseDescription:
+      "枚方市{area}エリアのピアノ・英会話・プログラミングなど、表現・言語・思考系の習い事を比較できるようまとめました。",
+    ageTags: ["age-infant", "age-lower-elem", "age-upper-elem"],
+    themeTags: ["after-school"],
+    angle: "list",
+  },
+  {
+    id: "parenting-exam-prep",
+    kind: "universal",
+    category: "parenting",
+    subcategory: "exam",
+    baseTitle: "枚方市の中学受験事情と塾選びのポイント",
+    baseDescription:
+      "枚方市周辺の中学受験を視野に入れた塾選びと、受験スケジュール・準備方法をまとめた保護者向けガイド。",
+    ageTags: ["age-upper-elem"],
+    themeTags: ["after-school"],
+    angle: "guide",
+  },
+  {
+    id: "parenting-exam-highschool",
+    kind: "universal",
+    category: "parenting",
+    subcategory: "exam",
+    baseTitle: "大阪府の公立高校入試 枚方市中学生のための基礎知識",
+    baseDescription:
+      "大阪府公立高校入試の仕組み・内申点の考え方・志望校の選び方を、枚方市内の中学校に通う家庭向けに整理しました。",
+    ageTags: ["age-jhs"],
+    sources: ["https://www.pref.osaka.lg.jp/"],
+    angle: "guide",
+  },
+  {
+    id: "parenting-support-programs",
+    kind: "universal",
+    category: "parenting",
+    subcategory: "support",
+    baseTitle: "枚方市の子育て支援制度まとめ",
+    baseDescription:
+      "児童手当・医療費助成・就学援助など、枚方市で利用できる子育て支援制度を申請時期とあわせて整理しました。",
+    ageTags: ["age-infant", "age-lower-elem", "age-upper-elem", "age-jhs"],
+    sources: ["https://www.city.hirakata.osaka.jp/"],
+    angle: "guide",
+  },
+];
