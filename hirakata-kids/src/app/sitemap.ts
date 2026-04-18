@@ -3,6 +3,7 @@ import { categories } from "@/lib/categories";
 import { areas } from "@/lib/areas";
 import { allTags } from "@/lib/tags";
 import { authors } from "@/lib/authors";
+import { features } from "@/lib/features";
 import { getAllArticles, getArticleUrl } from "@/lib/content";
 import { site } from "@/lib/site";
 
@@ -16,6 +17,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/area/`, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/tag/`, changeFrequency: "monthly", priority: 0.5 },
     { url: `${base}/author/`, changeFrequency: "monthly", priority: 0.4 },
+    { url: `${base}/feature/`, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/contact/`, changeFrequency: "yearly", priority: 0.3 },
     { url: `${base}/privacy/`, changeFrequency: "yearly", priority: 0.3 },
     { url: `${base}/terms/`, changeFrequency: "yearly", priority: 0.3 },
@@ -47,6 +49,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
+  const featureUrls: MetadataRoute.Sitemap = features.map((f) => ({
+    url: `${base}/feature/${f.slug}/`,
+    changeFrequency: "weekly",
+    priority: 0.6,
+  }));
+
   const tagUrls: MetadataRoute.Sitemap = allTags.map((t) => ({
     url: `${base}/tag/${t.slug}/`,
     changeFrequency: "weekly",
@@ -67,6 +75,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...areaUrls,
     ...tagUrls,
     ...authorUrls,
+    ...featureUrls,
     ...articleUrls,
   ];
 }

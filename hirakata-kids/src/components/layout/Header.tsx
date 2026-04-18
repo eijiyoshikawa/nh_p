@@ -31,6 +31,13 @@ export function Header() {
           >
             エリア
           </Link>
+          <Link
+            href="/search/"
+            className="rounded-full border border-stone-200 px-3 py-1 text-stone-600 transition hover:border-orange-300 hover:text-[#F97316]"
+            aria-label="記事を検索"
+          >
+            検索
+          </Link>
         </nav>
       </div>
     </header>

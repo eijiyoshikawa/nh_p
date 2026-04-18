@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
   categories,
@@ -55,14 +56,16 @@ export default async function CategoryPage({
       <p className="mt-2 text-sm text-stone-600">{cat.description}</p>
 
       <section className="mt-6">
-        <h2 className="text-sm font-semibold text-stone-700">サブカテゴリ</h2>
+        <h2 className="text-sm font-semibold text-stone-700">サブカテゴリから探す</h2>
         <ul className="mt-2 flex flex-wrap gap-2 text-xs">
           {cat.subcategories.map((s) => (
-            <li
-              key={s.slug}
-              className="rounded-full border border-orange-200 bg-white px-3 py-1 text-orange-700"
-            >
-              {s.label}
+            <li key={s.slug}>
+              <Link
+                href={`/${cat.slug}/${s.slug}/`}
+                className="inline-block rounded-full border border-orange-200 bg-white px-3 py-1 text-orange-700 transition hover:bg-orange-50 hover:border-orange-300"
+              >
+                {s.label}
+              </Link>
             </li>
           ))}
         </ul>

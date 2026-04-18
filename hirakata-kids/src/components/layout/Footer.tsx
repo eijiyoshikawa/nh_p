@@ -43,6 +43,16 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/feature/" className="hover:text-[#F97316]">
+                  特集シリーズ
+                </Link>
+              </li>
+              <li>
+                <Link href="/search/" className="hover:text-[#F97316]">
+                  記事を検索
+                </Link>
+              </li>
+              <li>
                 <Link href="/author/" className="hover:text-[#F97316]">
                   著者一覧
                 </Link>
