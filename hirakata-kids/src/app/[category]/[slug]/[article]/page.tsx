@@ -16,6 +16,7 @@ import { TagChips, AuthorByline } from "@/components/article/TagChips";
 import { RelatedArticles } from "@/components/article/RelatedArticles";
 import { Toc } from "@/components/article/Toc";
 import { SpotList } from "@/components/article/SpotList";
+import { Share } from "@/components/article/Share";
 import { Cta } from "@/components/cta/Cta";
 import { extractToc, estimateReadingMinutes } from "@/lib/article-meta";
 import { site } from "@/lib/site";
@@ -92,88 +93,98 @@ export default async function ArticleWithSubPage({
   const readingMin = estimateReadingMinutes(articleData.body);
 
   return (
-    <article className="mx-auto max-w-3xl px-4 py-10">
-      <Breadcrumb
-        items={[
-          { label: "ホーム", href: "/" },
-          { label: cat.label, href: `/${cat.slug}/` },
-          { label: subcat.label, href: `/${cat.slug}/${subcat.slug}/` },
-          { label: articleData.title },
-        ]}
-      />
-      <header className="mt-4">
-        <h1 className="text-2xl font-bold leading-tight text-stone-900 md:text-3xl">
-          {articleData.title}
-        </h1>
-        <div className="mt-3 flex flex-wrap items-center gap-3 text-xs text-stone-500">
-          <time dateTime={articleData.publishedAt}>
-            公開: {articleData.publishedAt}
-          </time>
-          {articleData.updatedAt && (
-            <time dateTime={articleData.updatedAt}>
-              更新: {articleData.updatedAt}
-            </time>
-          )}
-          <span aria-label="読了目安">読了 {readingMin}分</span>
-          <AuthorByline article={articleData} />
-        </div>
-        {articleData.description && (
-          <p className="mt-4 rounded-lg bg-orange-50 p-4 text-sm text-stone-700">
-            {articleData.description}
-          </p>
-        )}
-        <TagChips article={articleData} />
-        <Toc items={toc} />
-      </header>
-
-      <div className="prose-article mt-8">
-        <MDXRemote
-          source={articleData.body}
-          options={{
-            mdxOptions: {
-              remarkPlugins: [remarkGfm],
-              rehypePlugins: [rehypeSlug],
-            },
-          }}
+    <div className="mx-auto max-w-6xl px-4 py-10 xl:grid xl:grid-cols-[minmax(0,1fr)_18rem] xl:gap-10">
+      <article className="min-w-0">
+        <Breadcrumb
+          items={[
+            { label: "ホーム", href: "/" },
+            { label: cat.label, href: `/${cat.slug}/` },
+            { label: subcat.label, href: `/${cat.slug}/${subcat.slug}/` },
+            { label: articleData.title },
+          ]}
         />
-      </div>
+        <header className="mt-4">
+          <h1 className="text-2xl font-bold leading-tight text-stone-900 md:text-3xl">
+            {articleData.title}
+          </h1>
+          <div className="mt-3 flex flex-wrap items-center gap-3 text-xs text-stone-500">
+            <time dateTime={articleData.publishedAt}>
+              公開: {articleData.publishedAt}
+            </time>
+            {articleData.updatedAt && (
+              <time dateTime={articleData.updatedAt}>
+                更新: {articleData.updatedAt}
+              </time>
+            )}
+            <span aria-label="読了目安">読了 {readingMin}分</span>
+            <AuthorByline article={articleData} />
+          </div>
+          {articleData.description && (
+            <p className="mt-4 rounded-lg bg-orange-50 p-4 text-sm text-stone-700">
+              {articleData.description}
+            </p>
+          )}
+          <TagChips article={articleData} />
+          <div className="xl:hidden">
+            <Toc items={toc} />
+          </div>
+        </header>
 
-      {articleData.spots && articleData.spots.length > 0 && (
-        <SpotList items={articleData.spots} />
-      )}
-      {articleData.faq && articleData.faq.length > 0 && (
-        <Faq items={articleData.faq} />
-      )}
-      {articleData.sources && articleData.sources.length > 0 && (
-        <Sources items={articleData.sources} />
-      )}
+        <div className="prose-article mt-8">
+          <MDXRemote
+            source={articleData.body}
+            options={{
+              mdxOptions: {
+                remarkPlugins: [remarkGfm],
+                rehypePlugins: [rehypeSlug],
+              },
+            }}
+          />
+        </div>
 
-      <RelatedArticles articles={related} />
+        {articleData.spots && articleData.spots.length > 0 && (
+          <SpotList items={articleData.spots} />
+        )}
+        {articleData.faq && articleData.faq.length > 0 && (
+          <Faq items={articleData.faq} />
+        )}
+        {articleData.sources && articleData.sources.length > 0 && (
+          <Sources items={articleData.sources} />
+        )}
 
-      <Cta />
+        <Share title={articleData.title} url={url} />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(articleJsonLd(articleData, url)),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            breadcrumbJsonLd(buildArticleBreadcrumb(articleData))
-          ),
-        }}
-      />
-      {articleData.faq && articleData.faq.length > 0 && (
+        <RelatedArticles articles={related} />
+
+        <Cta />
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(faqJsonLd(articleData.faq)),
+            __html: JSON.stringify(articleJsonLd(articleData, url)),
           }}
         />
-      )}
-    </article>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              breadcrumbJsonLd(buildArticleBreadcrumb(articleData))
+            ),
+          }}
+        />
+        {articleData.faq && articleData.faq.length > 0 && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(faqJsonLd(articleData.faq)),
+            }}
+          />
+        )}
+      </article>
+
+      <aside className="hidden xl:block">
+        <Toc items={toc} variant="sticky" />
+      </aside>
+    </div>
   );
 }
