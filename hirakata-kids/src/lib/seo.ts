@@ -137,6 +137,26 @@ export function faqJsonLd(faq: { q: string; a: string }[]): JsonLd {
   };
 }
 
+export function websiteJsonLd(): JsonLd {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: site.name,
+    alternateName: site.shortName,
+    url: `${site.url}/`,
+    inLanguage: "ja",
+    description: site.description,
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${site.url}/search/?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
+  };
+}
+
 export function organizationJsonLd(): JsonLd {
   return {
     "@context": "https://schema.org",
