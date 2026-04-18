@@ -168,4 +168,50 @@ export const parentingSeeds: TopicSeed[] = [
     ageTags: ["age-lower-elem", "age-upper-elem"],
     angle: "guide",
   },
+  {
+    id: "parenting-elementary-gakudou",
+    kind: "universal",
+    category: "parenting",
+    subcategory: "elementary",
+    baseTitle: "枚方市の留守家庭児童会・学童保育の選び方",
+    baseDescription:
+      "枚方市の公設学童（留守家庭児童会）と民間学童の違い、申込スケジュール、費用をまとめました。",
+    ageTags: ["age-lower-elem", "age-upper-elem"],
+    sources: ["https://www.city.hirakata.osaka.jp/"],
+    angle: "guide",
+  },
+  {
+    id: "parenting-juniorhigh-club",
+    kind: "universal",
+    category: "parenting",
+    subcategory: "junior-high",
+    baseTitle: "枚方市の中学校部活動ガイド 家庭で支える視点",
+    baseDescription:
+      "枚方市の中学校部活動のスケジュール・費用・家族の関わり方を、入学前に知っておきたい観点でまとめました。",
+    ageTags: ["age-upper-elem", "age-jhs"],
+    angle: "guide",
+  },
+  {
+    id: "parenting-exam-jukushiritsu",
+    kind: "universal",
+    category: "parenting",
+    subcategory: "exam",
+    baseTitle: "枚方市周辺の私立中学 受験を検討するご家庭へ",
+    baseDescription:
+      "枚方市から通学圏内にある私立中学の特徴と、受験を検討する際に家族で押さえたいポイントをまとめました。",
+    ageTags: ["age-upper-elem"],
+    angle: "guide",
+  },
+  {
+    id: "parenting-eiken-kids",
+    kind: "universal",
+    category: "parenting",
+    subcategory: "lessons",
+    baseTitle: "枚方市で子どもの英検対策",
+    baseDescription:
+      "枚方市内で小学生・中学生が英検対策を進める方法を、独学・塾・オンラインの3軸でまとめました。",
+    ageTags: ["age-lower-elem", "age-upper-elem", "age-jhs"],
+    themeTags: ["after-school"],
+    angle: "guide",
+  },
 ];
