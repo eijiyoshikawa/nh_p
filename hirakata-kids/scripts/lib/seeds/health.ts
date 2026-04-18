@@ -62,4 +62,52 @@ export const healthSeeds: TopicSeed[] = [
     sources: ["https://www.city.hirakata.osaka.jp/"],
     angle: "guide",
   },
+  {
+    id: "health-emergency-nighttime",
+    kind: "universal",
+    category: "health",
+    subcategory: "emergency",
+    baseTitle: "枚方市の夜間・休日救急の使い分けガイド",
+    baseDescription:
+      "子どもが夜間・休日に急病になったとき、#8000・119・夜間救急・休日診療所をどう使い分けるかを整理しました。",
+    ageTags: ["age-infant", "age-lower-elem", "age-upper-elem"],
+    sources: ["https://www.city.hirakata.osaka.jp/"],
+    angle: "guide",
+  },
+  {
+    id: "health-kakaritsuke-choose",
+    kind: "universal",
+    category: "health",
+    subcategory: "pediatrics",
+    baseTitle: "かかりつけ医の選び方 枚方市の家庭向け",
+    baseDescription:
+      "枚方市でかかりつけ小児科を決めるときの基準、複数クリニックを比較するための観点、切り替えのコツをまとめました。",
+    ageTags: ["age-infant", "age-lower-elem"],
+    angle: "guide",
+  },
+  {
+    id: "health-allergy-family",
+    kind: "universal",
+    category: "health",
+    subcategory: "pediatrics",
+    baseTitle: "食物アレルギーと家族の食卓 枚方市で使える支援",
+    baseDescription:
+      "食物アレルギーがある子どもと暮らす家庭向けに、枚方市内で利用できる医療窓口・学校給食対応・外食のヒントをまとめました。",
+    themeTags: ["allergy-friendly"],
+    ageTags: ["age-infant", "age-lower-elem"],
+    sources: ["https://www.city.hirakata.osaka.jp/"],
+    angle: "guide",
+  },
+  {
+    id: "health-checkup-school",
+    kind: "universal",
+    category: "health",
+    subcategory: "vaccine",
+    baseTitle: "枚方市の乳幼児健診・就学時健診ガイド",
+    baseDescription:
+      "枚方市の乳幼児健診と就学時健康診断の対象年齢・案内時期・当日の持ち物を時系列でまとめました。",
+    ageTags: ["age-infant"],
+    sources: ["https://www.city.hirakata.osaka.jp/"],
+    angle: "guide",
+  },
 ];

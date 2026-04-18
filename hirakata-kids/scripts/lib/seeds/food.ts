@@ -69,4 +69,51 @@ export const foodSeeds: TopicSeed[] = [
       "{month}月に枚方市周辺で手に入る旬の食材と、家族で楽しめるシンプルな献立アイデアをまとめました。",
     angle: "guide",
   },
+  {
+    id: "food-kids-menu",
+    kind: "universal",
+    category: "food",
+    subcategory: "lunch",
+    baseTitle: "枚方市のキッズメニューがある飲食店",
+    baseDescription:
+      "枚方市内でキッズメニュー・子ども用食器・キッズチェアが充実している家族向け飲食店をまとめました。",
+    ageTags: ["age-infant", "age-lower-elem"],
+    themeTags: ["weekend"],
+    angle: "list",
+  },
+  {
+    id: "food-family-buffet",
+    kind: "universal",
+    category: "food",
+    subcategory: "lunch",
+    baseTitle: "枚方市と周辺のファミリー向けビュッフェ・食べ放題",
+    baseDescription:
+      "枚方市と近郊のファミリー向けビュッフェ・食べ放題レストランを、子連れ利用の観点でまとめました。",
+    ageTags: ["age-lower-elem", "age-upper-elem"],
+    themeTags: ["weekend"],
+    angle: "list",
+  },
+  {
+    id: "food-morning-family",
+    kind: "universal",
+    category: "food",
+    subcategory: "cafe",
+    baseTitle: "枚方市の家族で楽しむモーニング",
+    baseDescription:
+      "枚方市内で朝から家族で利用できるモーニング対応のカフェ・喫茶店をまとめました。",
+    ageTags: ["age-infant", "age-lower-elem"],
+    themeTags: ["weekend", "stroller-ok"],
+    angle: "list",
+  },
+  {
+    id: "food-delivery-family",
+    kind: "universal",
+    category: "food",
+    subcategory: "takeout",
+    baseTitle: "枚方市の家族向けデリバリー・出前まとめ",
+    baseDescription:
+      "枚方市内に配達してくれるピザ・寿司・中華・お弁当・宅食サービスを、家族の使いやすさでまとめました。",
+    themeTags: ["weekend"],
+    angle: "list",
+  },
 ];
