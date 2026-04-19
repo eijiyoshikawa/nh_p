@@ -32,7 +32,7 @@ import type { Plan, PlanEntry } from "./lib/topic-types";
 import { buildFrontmatter } from "./lib/frontmatter";
 import { buildTemplateBody } from "./lib/body-template";
 
-type Provider = "template" | "claude" | "gemini";
+type Provider = "template" | "claude" | "gemini" | "groq";
 
 type Args = {
   plan: string;
@@ -50,7 +50,12 @@ function parseProvider(argv: string[]): Provider {
     return found ? found.slice(name.length + 3) : undefined;
   };
   const explicit = get("provider");
-  if (explicit === "template" || explicit === "claude" || explicit === "gemini") {
+  if (
+    explicit === "template" ||
+    explicit === "claude" ||
+    explicit === "gemini" ||
+    explicit === "groq"
+  ) {
     return explicit;
   }
   if (argv.includes("--template")) return "template";
@@ -62,6 +67,8 @@ function defaultDelayFor(provider: Provider): number {
   switch (provider) {
     case "gemini":
       return 6500; // ~9 RPM, inside the 10 RPM free-tier cap
+    case "groq":
+      return 2500; // ~24 RPM, inside the 30 RPM llama-3.3-70b cap
     case "claude":
       return 500;
     case "template":
@@ -144,6 +151,15 @@ async function resolveProducer(provider: Provider): Promise<BodyProducer> {
     }
     const mod = await import("./lib/claude-body");
     return mod.generateBodyWithClaude;
+  }
+  if (provider === "groq") {
+    if (!process.env.GROQ_API_KEY) {
+      throw new Error(
+        "GROQ_API_KEY not set. Get a free key at https://console.groq.com/keys"
+      );
+    }
+    const mod = await import("./lib/groq-body");
+    return mod.generateBodyWithGroq;
   }
   // gemini
   if (!process.env.GEMINI_API_KEY && !process.env.GOOGLE_API_KEY) {
