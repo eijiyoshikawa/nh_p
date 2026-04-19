@@ -34,7 +34,7 @@ function buildUserPrompt(entry: PlanEntry, sources: SourceFetch[]): string {
   const sourcesBlock = sources
     .map(
       (s, i) =>
-        `[参考${i + 1}] ${s.title}\nURL: ${s.url}\n内容抜粋（最大4000字）:\n${s.text.slice(0, 4000)}\n`
+        `[参考${i + 1}] ${s.title}\nURL: ${s.url}\n内容抜粋（最大1800字）:\n${s.text.slice(0, 1800)}\n`
     )
     .join("\n---\n");
 
@@ -84,6 +84,19 @@ type GroqResponse = {
   error?: { message?: string };
 };
 
+function parseRetryAfterSeconds(bodyText: string): number | null {
+  // Groq returns "Please try again in 12.87s" or "Please try again in
+  // 1h12m26.78s" inside the error message. Extract and return seconds.
+  const hms = /try again in\s+(?:(\d+)h)?(?:(\d+)m)?([\d.]+)s/.exec(bodyText);
+  if (!hms) return null;
+  const [, h, m, s] = hms;
+  return Number(h ?? 0) * 3600 + Number(m ?? 0) * 60 + Number(s ?? 0);
+}
+
+async function sleep(ms: number): Promise<void> {
+  return new Promise((r) => setTimeout(r, ms));
+}
+
 export async function generateBodyWithGroq(entry: PlanEntry): Promise<string> {
   const apiKey = process.env.GROQ_API_KEY;
   if (!apiKey) {
@@ -94,33 +107,65 @@ export async function generateBodyWithGroq(entry: PlanEntry): Promise<string> {
   const sources = await collectSources(entry.sources);
   const userPrompt = buildUserPrompt(entry, sources);
 
-  const resp = await fetch(ENDPOINT, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${apiKey}`,
-    },
-    body: JSON.stringify({
-      model: MODEL,
-      messages: [
-        { role: "system", content: SYSTEM_PROMPT },
-        { role: "user", content: userPrompt },
-      ],
-      temperature: 0.6,
-      max_tokens: 4096,
-    }),
-  });
+  const MAX_RETRIES = 4;
+  for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+    const resp = await fetch(ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        model: MODEL,
+        messages: [
+          { role: "system", content: SYSTEM_PROMPT },
+          { role: "user", content: userPrompt },
+        ],
+        temperature: 0.6,
+        max_tokens: 4096,
+      }),
+    });
 
-  if (!resp.ok) {
+    if (resp.ok) {
+      const data = (await resp.json()) as GroqResponse;
+      const text = data.choices?.[0]?.message?.content?.trim() ?? "";
+      if (!text) {
+        throw new Error(
+          `Groq returned no text (finish_reason=${data.choices?.[0]?.finish_reason ?? "unknown"}, error=${data.error?.message ?? "none"})`
+        );
+      }
+      return text;
+    }
+
     const bodyText = await resp.text().catch(() => "");
+
+    // 429 with a "try again in X" hint: retry after backoff.
+    // 503 transient server errors: retry with a short backoff.
+    const retryable = resp.status === 429 || resp.status === 503;
+    if (retryable && attempt < MAX_RETRIES) {
+      const hintSec = parseRetryAfterSeconds(bodyText);
+      // Cap the wait at 120s so TPD-hit doesn't block the whole run.
+      // TPM retries usually want sub-60s; anything higher likely means
+      // the daily cap — better to fail fast and let operator restart.
+      const waitSec =
+        hintSec !== null
+          ? Math.min(Math.max(hintSec + 1, 2), 120)
+          : Math.min(2 ** attempt * 2, 30);
+      if (hintSec !== null && hintSec > 120) {
+        throw new Error(
+          `Groq HTTP ${resp.status}: retry-after ${hintSec}s exceeds 120s cap — likely daily quota exhausted. Re-run later.`
+        );
+      }
+      console.warn(
+        `[groq] ${resp.status} on ${entry.slug} — retry in ${waitSec}s (attempt ${attempt + 1}/${MAX_RETRIES})`
+      );
+      await sleep(waitSec * 1000);
+      continue;
+    }
+
     throw new Error(`Groq HTTP ${resp.status}: ${bodyText.slice(0, 500)}`);
   }
-  const data = (await resp.json()) as GroqResponse;
-  const text = data.choices?.[0]?.message?.content?.trim() ?? "";
-  if (!text) {
-    throw new Error(
-      `Groq returned no text (finish_reason=${data.choices?.[0]?.finish_reason ?? "unknown"}, error=${data.error?.message ?? "none"})`
-    );
-  }
-  return text;
+  throw new Error(
+    `Groq: exhausted ${MAX_RETRIES} retries for ${entry.slug}`
+  );
 }
