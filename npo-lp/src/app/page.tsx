@@ -4,6 +4,7 @@ import Problem from "@/components/Problem";
 import CityData from "@/components/CityData";
 import Solution from "@/components/Solution";
 import Benefits from "@/components/Benefits";
+import HousingFeasibility from "@/components/HousingFeasibility";
 import BusinessPlans from "@/components/BusinessPlans";
 import Funding from "@/components/Funding";
 import CallToAction from "@/components/CallToAction";
@@ -31,6 +32,9 @@ export default function Home() {
         </Reveal>
         <Reveal>
           <Benefits />
+        </Reveal>
+        <Reveal>
+          <HousingFeasibility />
         </Reveal>
         <Reveal>
           <BusinessPlans />
