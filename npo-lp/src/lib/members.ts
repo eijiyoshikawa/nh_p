@@ -41,11 +41,13 @@ export const members: Member[] = [
       "NPOなどの法人立ち上げ経験が複数回あるので、実経験を踏まえてサポートすることが得意です。",
     selfReportedGroup: "EARTH",
     character: {
-      fullName: "フットワークの軽い子守熊",
-      base: "koala",
-      characterVector: "過去回想型",
+      fullName: "情熱的な黒ひょう",
+      base: "kuroHyou",
+      description:
+        "相手に心を開かせる気さくさが魅力。意見を正直に言っても人に威圧感を与えないが実は鋭い感性の持ち主で好き嫌いがはっきりしている。感情にムラがあり、お天気屋なため現実と理想のギャップに悩む。周囲の人から引き立てられ、苦境を打開できる幸運の持ち主。プライドは高く、人の面倒を見ることが成功への秘訣。",
+      characterVector: "未来展望型",
       behaviorPattern: "目標指向型",
-      thinkingPattern: "右脳型",
+      thinkingPattern: "左脳型",
     },
   },
   {
@@ -63,8 +65,10 @@ export const members: Member[] = [
       "動くこと！人に会って話す。めちゃくちゃ人に会う。逆に止まったり、ゆっくり考えるとかが苦手。",
     selfReportedGroup: "SUN",
     character: {
-      fullName: "気分屋の猿",
+      fullName: "尽くす猿",
       base: "saru",
+      description:
+        "社交的で完璧な気遣いを見せる。周囲の人とトラブルを避けるため、感情を表に出さず合理的に割り切れる大人。冷静な頭脳と鋭い感受性を内に秘め、わずかなことから相手の気持ちを的確に読み取る。独立心旺盛でタイミングを図りながら自分の人生を切り拓く。能力に自信があり何事も人任せに出来ないところは注意が必要。",
       characterVector: "未来展望型",
       behaviorPattern: "目標指向型",
       thinkingPattern: "左脳型",
@@ -103,10 +107,8 @@ export const members: Member[] = [
     strengths: "バランスをとること",
     selfReportedGroup: "EARTH",
     character: {
-      fullName: "尽くす猿",
+      fullName: "気分屋の猿",
       base: "saru",
-      description:
-        "社交的で完璧な気遣いを見せる。周囲の人とトラブルを避けるため、感情を表に出さず合理的に割り切れる大人。冷静な頭脳と鋭い感受性を内に秘め、わずかなことから相手の気持ちを的確に読み取る。独立心旺盛でタイミングを図りながら自分の人生を切り拓く。能力に自信があり何事も人任せに出来ないところは注意が必要。",
       characterVector: "未来展望型",
       behaviorPattern: "目標指向型",
       thinkingPattern: "左脳型",
@@ -126,13 +128,11 @@ export const members: Member[] = [
       "ことづくり（ブランディング、コンセプトメイキング、プランニング）／子どもたちとワークショップ／メディアコミュニケーションを活用した持続する人間関係と地域らしさづくり",
     selfReportedGroup: "MOON",
     character: {
-      fullName: "情熱的な黒ひょう",
-      base: "kuroHyou",
-      description:
-        "相手に心を開かせる気さくさが魅力。意見を正直に言っても人に威圧感を与えないが実は鋭い感性の持ち主で好き嫌いがはっきりしている。感情にムラがあり、お天気屋なため現実と理想のギャップに悩む。周囲の人から引き立てられ、苦境を打開できる幸運の持ち主。プライドは高く、人の面倒を見ることが成功への秘訣。",
-      characterVector: "未来展望型",
+      fullName: "フットワークの軽い子守熊",
+      base: "koala",
+      characterVector: "過去回想型",
       behaviorPattern: "目標指向型",
-      thinkingPattern: "左脳型",
+      thinkingPattern: "右脳型",
     },
   },
   {
@@ -147,9 +147,11 @@ export const members: Member[] = [
     strengths: "広報活動とか",
     selfReportedGroup: "SUN",
     character: {
-      fullName: "好感のもたれる狼",
-      base: "ookami",
-      characterVector: "未来展望型",
+      fullName: "母性豊かな子守熊",
+      base: "koala",
+      description:
+        "障害があってもくじけず高いハードルにも果敢にチャレンジ。動と静が効果的に働くタイプ。粘り強さと頭の良さから先を見通し長期的展望で仕事をこなし、夢や理想に向かって長期的な努力をする。天性の勘を頼りに生きているため良い時と悪い時の差が激しい。テキパキやっても、気が付くと一人で意固地になる可能性も。",
+      characterVector: "過去回想型",
       behaviorPattern: "目標指向型",
       thinkingPattern: "右脳型",
     },
@@ -166,10 +168,10 @@ export const members: Member[] = [
     strengths: "たくさんの人と繋がれたらな〜と思います。",
     selfReportedGroup: "MOON",
     character: {
-      fullName: "チャレンジ精神の旺盛なひつじ",
-      base: "hitsuji",
+      fullName: "母性豊かな子守熊",
+      base: "koala",
       description:
-        "孤立を嫌い集団の中で生きることで安心する。周りと同じような生き方をしてお互いに助け合うことを望み、個性的な生き方は少し苦手。人と一定の距離を保ち相手を立てながらその心理を見抜く天才。いつの間にか自分のペースに持っていく駆け引きも大得意。世の中の動きにはとても敏感。結論を時の流れに任せる傾向あり。",
+        "障害があってもくじけず高いハードルにも果敢にチャレンジ。動と静が効果的に働くタイプ。粘り強さと頭の良さから先を見通し長期的展望で仕事をこなし、夢や理想に向かって長期的な努力をする。天性の勘を頼りに生きているため良い時と悪い時の差が激しい。テキパキやっても、気が付くと一人で意固地になる可能性も。",
       characterVector: "過去回想型",
       behaviorPattern: "目標指向型",
       thinkingPattern: "右脳型",
@@ -208,10 +210,10 @@ export const members: Member[] = [
     strengths: "人脈は多め",
     selfReportedGroup: "MOON",
     character: {
-      fullName: "母性豊かな子守熊",
-      base: "koala",
+      fullName: "チャレンジ精神の旺盛なひつじ",
+      base: "hitsuji",
       description:
-        "障害があってもくじけず高いハードルにも果敢にチャレンジ。動と静が効果的に働くタイプ。粘り強さと頭の良さから先を見通し長期的展望で仕事をこなし、夢や理想に向かって長期的な努力をする。天性の勘を頼りに生きているため良い時と悪い時の差が激しい。テキパキやっても、気が付くと一人で意固地になる可能性も。",
+        "孤立を嫌い集団の中で生きることで安心する。周りと同じような生き方をしてお互いに助け合うことを望み、個性的な生き方は少し苦手。人と一定の距離を保ち相手を立てながらその心理を見抜く天才。いつの間にか自分のペースに持っていく駆け引きも大得意。世の中の動きにはとても敏感。結論を時の流れに任せる傾向あり。",
       characterVector: "過去回想型",
       behaviorPattern: "目標指向型",
       thinkingPattern: "右脳型",
@@ -229,13 +231,11 @@ export const members: Member[] = [
     strengths: "人を褒める事。何でもやりたい。",
     selfReportedGroup: "MOON",
     character: {
-      fullName: "品格のあるチータ",
-      base: "cheetah",
-      description:
-        "気さくで社交上手、誰とでも打ち解ける朗らかな人。細やかな神経を遣って相手の気持ちを素早く読み取り、相手に悟られないよう配慮するが、内面は勝ち気でプライドが高く人の好き嫌いもはっきりしている。突然の閃きで独特のアイデアを出し、目標達成のためには粘り強い面もあり。慌てん坊なので冷静さを保つように。",
+      fullName: "好感のもたれる狼",
+      base: "ookami",
       characterVector: "未来展望型",
-      behaviorPattern: "状況対応型",
-      thinkingPattern: "左脳型",
+      behaviorPattern: "目標指向型",
+      thinkingPattern: "右脳型",
     },
   },
   {
