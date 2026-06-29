@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -21,7 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" className="antialiased">
-      <body className="min-h-screen">{children}</body>
+      <body className="min-h-screen">
+        <ScrollProgress />
+        {children}
+      </body>
     </html>
   );
 }
