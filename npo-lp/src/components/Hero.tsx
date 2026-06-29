@@ -43,21 +43,41 @@ export default function Hero() {
       {/* Dark overlay for readability */}
       <div className="absolute inset-0 -z-10 bg-black/50" />
 
-      <p className="mb-4 text-sm font-medium tracking-widest text-orange-300 uppercase">
+      <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-orange-300/40 bg-white/10 px-4 py-1.5 text-xs font-medium tracking-widest text-orange-200 backdrop-blur sm:text-sm">
+        <span aria-hidden className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-orange-300" />
         {hero.subtitle}
-      </p>
+      </span>
       <h1 className="max-w-3xl whitespace-pre-line text-3xl font-extrabold leading-snug tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
         {hero.tagline}
       </h1>
       <p className="mt-6 max-w-md text-base leading-relaxed text-white/80 sm:text-lg">
         {hero.description}
       </p>
+      <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+        <a
+          href="#cta"
+          className="inline-flex items-center gap-2 rounded-full bg-accent-orange px-8 py-4 text-base font-bold text-white shadow-lg transition-all hover:scale-105 hover:bg-accent-orange-dark"
+        >
+          {hero.cta}
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+        <a
+          href="#problem"
+          className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/5 px-6 py-4 text-base font-medium text-white backdrop-blur transition hover:bg-white/15"
+        >
+          まずは知る
+        </a>
+      </div>
+
+      {/* Scroll indicator */}
       <a
-        href="#cta"
-        className="mt-10 inline-flex items-center gap-2 rounded-full bg-accent-orange px-8 py-4 text-base font-bold text-white shadow-lg transition-all hover:scale-105 hover:bg-accent-orange-dark"
+        href="#problem"
+        aria-label="次のセクションへスクロール"
+        className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 text-white/70 transition hover:text-white md:block"
       >
-        {hero.cta}
-        <span aria-hidden="true">&rarr;</span>
+        <span className="block h-9 w-5 rounded-full border-2 border-white/60 p-1">
+          <span className="block h-2 w-1 mx-auto animate-bounce rounded-full bg-white/70" />
+        </span>
       </a>
     </section>
   );
