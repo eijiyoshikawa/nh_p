@@ -1,7 +1,17 @@
-import { diagnose, type AnimalDiagnosis, type AnimalGroup, ANIMALS } from "./animalFortune";
+import type {
+  AnimalCharacter,
+  AnimalGroup,
+  BaseAnimal,
+} from "./animalFortune";
+import { BASE_ANIMALS, GROUP_INFO } from "./animalFortune";
 
-// 自己申告の意思決定軸（Google Form 回答より）。動物占いの計算結果と
-// 一致しない場合は、本人の自己申告（authoritative）を優先表示する。
+// 自己申告の意思決定軸（Google Form 回答より）と、
+// noa-group.co.jp/kosei の動物占い診断結果（11名分）を保持する。
+//
+// 動物占いの結果（character）は noa-group の表示をそのまま転載。
+// 自己申告（selfReportedGroup）と動物占いのグループが食い違うことが
+// 一定数あるが、これは「本人がどう振る舞いたいか／実際の素質はどうか」
+// の差。両方を比較できるよう表示する。
 export type Member = {
   slug: string;
   name: string;
@@ -11,8 +21,9 @@ export type Member = {
   hobby: string;
   motto: string;
   motivation: string;
-  strengths: string; // 自由記述（得意なこと・やりたいこと）
-  selfReportedGroup: AnimalGroup; // 自己申告 MOON / EARTH / SUN
+  strengths: string;
+  selfReportedGroup: AnimalGroup;
+  character: AnimalCharacter;
 };
 
 export const members: Member[] = [
@@ -29,6 +40,13 @@ export const members: Member[] = [
     strengths:
       "NPOなどの法人立ち上げ経験が複数回あるので、実経験を踏まえてサポートすることが得意です。",
     selfReportedGroup: "EARTH",
+    character: {
+      fullName: "フットワークの軽い子守熊",
+      base: "koala",
+      characterVector: "過去回想型",
+      behaviorPattern: "目標指向型",
+      thinkingPattern: "右脳型",
+    },
   },
   {
     slug: "kida-kohei",
@@ -44,6 +62,13 @@ export const members: Member[] = [
     strengths:
       "動くこと！人に会って話す。めちゃくちゃ人に会う。逆に止まったり、ゆっくり考えるとかが苦手。",
     selfReportedGroup: "SUN",
+    character: {
+      fullName: "気分屋の猿",
+      base: "saru",
+      characterVector: "未来展望型",
+      behaviorPattern: "目標指向型",
+      thinkingPattern: "左脳型",
+    },
   },
   {
     slug: "taketani-takayuki",
@@ -56,6 +81,15 @@ export const members: Member[] = [
     motivation: "世の中変えれそうな気がするから",
     strengths: "みんなでBBQ",
     selfReportedGroup: "MOON",
+    character: {
+      fullName: "社交家のたぬき",
+      base: "tanuki",
+      description:
+        "老舗や伝統という言葉に弱く、見かけ倒しのかっこ良さには一切興味なし。堅実主義を徹底しすぎると柔軟さに欠け折角のチャンスを逃すことも。頼まれ事には真剣に取り組む誠実さで人脈を広げると、社会的成功の基盤に。忙しいのに成果が上がらないが、粘り強さでやり遂げれば大丈夫。精神的向上を心がければ、晩年に幸運が。",
+      characterVector: "過去回想型",
+      behaviorPattern: "状況対応型",
+      thinkingPattern: "左脳型",
+    },
   },
   {
     slug: "gohara-hiromi",
@@ -68,6 +102,15 @@ export const members: Member[] = [
     motivation: "面白いと思ったから",
     strengths: "バランスをとること",
     selfReportedGroup: "EARTH",
+    character: {
+      fullName: "尽くす猿",
+      base: "saru",
+      description:
+        "社交的で完璧な気遣いを見せる。周囲の人とトラブルを避けるため、感情を表に出さず合理的に割り切れる大人。冷静な頭脳と鋭い感受性を内に秘め、わずかなことから相手の気持ちを的確に読み取る。独立心旺盛でタイミングを図りながら自分の人生を切り拓く。能力に自信があり何事も人任せに出来ないところは注意が必要。",
+      characterVector: "未来展望型",
+      behaviorPattern: "目標指向型",
+      thinkingPattern: "左脳型",
+    },
   },
   {
     slug: "kitada-megumi",
@@ -82,6 +125,15 @@ export const members: Member[] = [
     strengths:
       "ことづくり（ブランディング、コンセプトメイキング、プランニング）／子どもたちとワークショップ／メディアコミュニケーションを活用した持続する人間関係と地域らしさづくり",
     selfReportedGroup: "MOON",
+    character: {
+      fullName: "情熱的な黒ひょう",
+      base: "kuroHyou",
+      description:
+        "相手に心を開かせる気さくさが魅力。意見を正直に言っても人に威圧感を与えないが実は鋭い感性の持ち主で好き嫌いがはっきりしている。感情にムラがあり、お天気屋なため現実と理想のギャップに悩む。周囲の人から引き立てられ、苦境を打開できる幸運の持ち主。プライドは高く、人の面倒を見ることが成功への秘訣。",
+      characterVector: "未来展望型",
+      behaviorPattern: "目標指向型",
+      thinkingPattern: "左脳型",
+    },
   },
   {
     slug: "tanaka-shintaro",
@@ -94,6 +146,13 @@ export const members: Member[] = [
     motivation: "ジェット君のキラキラした瞳を見て",
     strengths: "広報活動とか",
     selfReportedGroup: "SUN",
+    character: {
+      fullName: "好感のもたれる狼",
+      base: "ookami",
+      characterVector: "未来展望型",
+      behaviorPattern: "目標指向型",
+      thinkingPattern: "右脳型",
+    },
   },
   {
     slug: "kitano-shingo",
@@ -106,6 +165,15 @@ export const members: Member[] = [
     motivation: "子ども達の未来のため",
     strengths: "たくさんの人と繋がれたらな〜と思います。",
     selfReportedGroup: "MOON",
+    character: {
+      fullName: "チャレンジ精神の旺盛なひつじ",
+      base: "hitsuji",
+      description:
+        "孤立を嫌い集団の中で生きることで安心する。周りと同じような生き方をしてお互いに助け合うことを望み、個性的な生き方は少し苦手。人と一定の距離を保ち相手を立てながらその心理を見抜く天才。いつの間にか自分のペースに持っていく駆け引きも大得意。世の中の動きにはとても敏感。結論を時の流れに任せる傾向あり。",
+      characterVector: "過去回想型",
+      behaviorPattern: "目標指向型",
+      thinkingPattern: "右脳型",
+    },
   },
   {
     slug: "hasegawa-hiroaki",
@@ -118,6 +186,15 @@ export const members: Member[] = [
     motivation: "ジェットのスター性",
     strengths: "人の話を聞くこと",
     selfReportedGroup: "SUN",
+    character: {
+      fullName: "尽くす猿",
+      base: "saru",
+      description:
+        "社交的で完璧な気遣いを見せる。周囲の人とトラブルを避けるため、感情を表に出さず合理的に割り切れる大人。冷静な頭脳と鋭い感受性を内に秘め、わずかなことから相手の気持ちを的確に読み取る。独立心旺盛でタイミングを図りながら自分の人生を切り拓く。能力に自信があり何事も人任せに出来ないところは注意が必要。",
+      characterVector: "未来展望型",
+      behaviorPattern: "目標指向型",
+      thinkingPattern: "左脳型",
+    },
   },
   {
     slug: "takushima-hiroaki",
@@ -130,6 +207,15 @@ export const members: Member[] = [
     motivation: "ジェットさん",
     strengths: "人脈は多め",
     selfReportedGroup: "MOON",
+    character: {
+      fullName: "母性豊かな子守熊",
+      base: "koala",
+      description:
+        "障害があってもくじけず高いハードルにも果敢にチャレンジ。動と静が効果的に働くタイプ。粘り強さと頭の良さから先を見通し長期的展望で仕事をこなし、夢や理想に向かって長期的な努力をする。天性の勘を頼りに生きているため良い時と悪い時の差が激しい。テキパキやっても、気が付くと一人で意固地になる可能性も。",
+      characterVector: "過去回想型",
+      behaviorPattern: "目標指向型",
+      thinkingPattern: "右脳型",
+    },
   },
   {
     slug: "hasegawa-naomi",
@@ -142,6 +228,15 @@ export const members: Member[] = [
     motivation: "未来を担う子どもたちの後押しをしたい！",
     strengths: "人を褒める事。何でもやりたい。",
     selfReportedGroup: "MOON",
+    character: {
+      fullName: "品格のあるチータ",
+      base: "cheetah",
+      description:
+        "気さくで社交上手、誰とでも打ち解ける朗らかな人。細やかな神経を遣って相手の気持ちを素早く読み取り、相手に悟られないよう配慮するが、内面は勝ち気でプライドが高く人の好き嫌いもはっきりしている。突然の閃きで独特のアイデアを出し、目標達成のためには粘り強い面もあり。慌てん坊なので冷静さを保つように。",
+      characterVector: "未来展望型",
+      behaviorPattern: "状況対応型",
+      thinkingPattern: "左脳型",
+    },
   },
   {
     slug: "miki-honami",
@@ -155,6 +250,13 @@ export const members: Member[] = [
       "近年、トレーニングを通して子供の体の衰弱が目立っており、そこにはバランスの良い食事、家庭環境がとても大きく関わっているので参加させていただきたいと思いました。",
     strengths: "子供達への身体を動かすトレーニング",
     selfReportedGroup: "MOON",
+    character: {
+      fullName: "我が道を行くライオン",
+      base: "lion",
+      characterVector: "過去回想型",
+      behaviorPattern: "状況対応型",
+      thinkingPattern: "左脳型",
+    },
   },
 ];
 
@@ -162,36 +264,17 @@ export function getMember(slug: string): Member | undefined {
   return members.find((m) => m.slug === slug);
 }
 
-// 動物占い計算結果（計算式に基づくベスト推定）
-export function diagnosisFor(member: Member): AnimalDiagnosis | null {
-  return diagnose(member.birthDate);
+// 動物占いの計算上のグループ（base から導出）
+export function calculatedGroupOf(member: Member): AnimalGroup {
+  return BASE_ANIMALS[member.character.base].group;
 }
 
-// 自己申告グループ vs 計算グループの整合
-export function groupAgreement(member: Member): "match" | "mismatch" | "unknown" {
-  const dx = diagnosisFor(member);
-  if (!dx) return "unknown";
-  return dx.group === member.selfReportedGroup ? "match" : "mismatch";
+// 自己申告と動物占いのグループが一致しているかどうか
+export function groupAgreement(member: Member): "match" | "mismatch" {
+  return calculatedGroupOf(member) === member.selfReportedGroup
+    ? "match"
+    : "mismatch";
 }
-
-// グループの説明（自己申告で使用）
-export const GROUP_LABELS: Record<AnimalGroup, { label: string; sub: string; tone: string }> = {
-  MOON: {
-    label: "MOON",
-    sub: "いい人・全体の和を重視",
-    tone: "bg-indigo-50 text-indigo-700 border-indigo-200",
-  },
-  EARTH: {
-    label: "EARTH",
-    sub: "しっかり者・結果重視",
-    tone: "bg-emerald-50 text-emerald-700 border-emerald-200",
-  },
-  SUN: {
-    label: "SUN",
-    sub: "天才肌・直感重視",
-    tone: "bg-amber-50 text-amber-700 border-amber-200",
-  },
-};
 
 // 組織全体のグループ分布（自己申告ベース）
 export function groupDistribution() {
@@ -200,19 +283,48 @@ export function groupDistribution() {
   return out;
 }
 
-// 組織全体の動物分布（計算ベース）
-export function animalDistribution() {
-  const out: Record<string, { count: number; name: string; emoji: string }> = {};
+// 組織全体の動物分布（動物占い結果ベース、ベース動物で集計）
+export function animalDistribution(): Array<{
+  base: BaseAnimal;
+  name: string;
+  emoji: string;
+  count: number;
+  members: string[];
+}> {
+  const map = new Map<
+    BaseAnimal,
+    { name: string; emoji: string; count: number; members: string[] }
+  >();
   for (const m of members) {
-    const dx = diagnosisFor(m);
-    if (!dx) continue;
-    const key = dx.animal;
-    if (!out[key]) {
-      out[key] = { count: 0, name: dx.animalName, emoji: dx.emoji };
-    }
-    out[key].count += 1;
+    const base = m.character.base;
+    const info = BASE_ANIMALS[base];
+    const entry = map.get(base) ?? {
+      name: info.name,
+      emoji: info.emoji,
+      count: 0,
+      members: [],
+    };
+    entry.count += 1;
+    entry.members.push(m.name);
+    map.set(base, entry);
   }
-  return out;
+  return Array.from(map.entries())
+    .map(([base, v]) => ({ base, ...v }))
+    .sort((a, b) => b.count - a.count);
 }
 
-export { ANIMALS };
+// 動物占いの3軸分布（行動・思考・心理）
+export function axisDistribution() {
+  const characterVector = { 未来展望型: 0, 過去回想型: 0 };
+  const behaviorPattern = { 目標指向型: 0, 状況対応型: 0 };
+  const thinkingPattern = { 左脳型: 0, 右脳型: 0 };
+  for (const m of members) {
+    characterVector[m.character.characterVector] += 1;
+    behaviorPattern[m.character.behaviorPattern] += 1;
+    thinkingPattern[m.character.thinkingPattern] += 1;
+  }
+  return { characterVector, behaviorPattern, thinkingPattern };
+}
+
+export { BASE_ANIMALS, GROUP_INFO };
+export const GROUP_LABELS = GROUP_INFO;

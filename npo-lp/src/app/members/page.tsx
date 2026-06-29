@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { members, diagnosisFor, GROUP_LABELS } from "@/lib/members";
+import { BASE_ANIMALS, GROUP_LABELS, members } from "@/lib/members";
 import { GroupChart } from "@/components/members/GroupChart";
 import { AnimalChart } from "@/components/members/AnimalChart";
+import { AxisChart } from "@/components/members/AxisChart";
 
 export const metadata: Metadata = {
   title: "メンバー — ひらかた子ども食堂支援NPO",
@@ -32,10 +33,10 @@ export default function MembersPage() {
           MEMBERS / 個性診断
         </p>
         <h1 className="mt-2 text-3xl font-bold text-text-primary md:text-4xl">
-          メンバー一覧と個性傾向
+          メンバー一覧と組織傾向
         </h1>
         <p className="mt-3 max-w-2xl text-sm text-text-secondary">
-          各メンバーの生年月日から動物占い（個性心理學）で算出した個性、ならびに本人の自己申告による意思決定軸（MOON/EARTH/SUN）をまとめています。組織全体の傾向は本ページ上部のチャートをご覧ください。
+          noa-group の動物占い（個性心理學）で各メンバーの個性を、Google Form による自己申告で意思決定軸（MOON/EARTH/SUN）をまとめています。組織全体の傾向は本ページ上部のチャートをご覧ください。
         </p>
 
         <section className="mt-10 grid gap-5 md:grid-cols-2">
@@ -43,11 +44,15 @@ export default function MembersPage() {
           <AnimalChart />
         </section>
 
+        <section className="mt-6">
+          <AxisChart />
+        </section>
+
         <section className="mt-16">
           <h2 className="text-xl font-bold text-text-primary">メンバー一覧（{members.length}名）</h2>
           <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {members.map((m) => {
-              const dx = diagnosisFor(m);
+              const base = BASE_ANIMALS[m.character.base];
               const groupInfo = GROUP_LABELS[m.selfReportedGroup];
               return (
                 <li key={m.slug}>
@@ -57,7 +62,7 @@ export default function MembersPage() {
                   >
                     <div className="flex items-center gap-3">
                       <span aria-hidden className="text-4xl">
-                        {dx?.emoji ?? "👤"}
+                        {base.emoji}
                       </span>
                       <div>
                         <p className="text-base font-bold text-text-primary group-hover:text-accent-orange">
@@ -67,17 +72,16 @@ export default function MembersPage() {
                       </div>
                     </div>
 
-                    <div className="mt-4 flex flex-wrap items-center gap-1.5 text-xs">
+                    <p className="mt-3 text-sm font-bold text-text-primary">
+                      {m.character.fullName}
+                    </p>
+
+                    <div className="mt-3 flex flex-wrap items-center gap-1.5 text-xs">
                       <span
                         className={`inline-flex items-center rounded-full border px-2 py-0.5 font-semibold ${groupInfo.tone}`}
                       >
-                        {groupInfo.label}
+                        自己申告: {groupInfo.label}
                       </span>
-                      {dx && (
-                        <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-0.5 font-semibold text-green-700">
-                          {dx.animalName} #{dx.number}
-                        </span>
-                      )}
                     </div>
 
                     <p className="mt-3 text-xs leading-relaxed text-text-secondary">

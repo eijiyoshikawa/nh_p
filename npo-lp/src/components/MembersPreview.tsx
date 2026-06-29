@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { members, diagnosisFor, GROUP_LABELS } from "@/lib/members";
+import { BASE_ANIMALS, GROUP_LABELS, members } from "@/lib/members";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export default function MembersPreview() {
@@ -22,7 +22,7 @@ export default function MembersPreview() {
 
         <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {members.slice(0, 6).map((m, i) => {
-            const dx = diagnosisFor(m);
+            const base = BASE_ANIMALS[m.character.base];
             const groupInfo = GROUP_LABELS[m.selfReportedGroup];
             return (
               <ScrollReveal key={m.slug} delay={i * 60}>
@@ -31,14 +31,14 @@ export default function MembersPreview() {
                   className="group flex h-full items-center gap-3 rounded-2xl border-2 border-green-100 bg-white p-4 transition hover:-translate-y-0.5 hover:border-green-300 hover:shadow-md"
                 >
                   <span aria-hidden className="text-3xl">
-                    {dx?.emoji ?? "👤"}
+                    {base.emoji}
                   </span>
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-bold text-text-primary group-hover:text-accent-orange">
                       {m.name}
                     </p>
                     <p className="truncate text-xs text-text-secondary">
-                      {m.occupation}
+                      {m.character.fullName}
                     </p>
                   </div>
                   <span
