@@ -16,7 +16,7 @@ export default function Footer() {
         <Link href="/glossary" className="hover:text-white">
           用語集
         </Link>
-        <Link href="/members" className="font-semibold text-orange-300 hover:text-orange-200">
+        <Link href="/members" className="font-semibold text-green-300 hover:text-green-200">
           メンバー（限定）
         </Link>
       </nav>

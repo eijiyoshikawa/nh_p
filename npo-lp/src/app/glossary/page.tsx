@@ -31,7 +31,7 @@ export default function GlossaryPage() {
   return (
     <div className="min-h-screen bg-[#FFFBF5]">
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-orange-100 bg-white/80 backdrop-blur-md">
+      <header className="sticky top-0 z-50 border-b border-green-100 bg-white/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
           <Link href="/" className="text-sm font-bold text-[#F97316]">
             ← LPに戻る

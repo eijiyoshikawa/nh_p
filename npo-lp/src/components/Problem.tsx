@@ -43,7 +43,7 @@ export default function Problem() {
           ))}
         </div>
 
-        <div className="mt-10 rounded-2xl bg-orange-50 p-5 sm:p-6">
+        <div className="mt-10 rounded-2xl bg-green-50 p-5 sm:p-6">
           <p className="mb-3 text-center text-sm font-bold text-accent-orange-dark">
             子ども食堂は食事の場だけではありません
           </p>

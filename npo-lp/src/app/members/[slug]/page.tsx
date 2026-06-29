@@ -44,7 +44,7 @@ export default async function MemberPage({
 
   return (
     <div className="min-h-screen bg-warm-bg">
-      <header className="border-b border-orange-100 bg-white">
+      <header className="border-b border-green-100 bg-white">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-4">
           <Link
             href="/members/"
@@ -59,7 +59,7 @@ export default async function MemberPage({
       </header>
 
       <main className="mx-auto max-w-4xl px-4 py-12">
-        <section className="rounded-2xl border border-orange-100 bg-white p-6 shadow-sm md:p-8">
+        <section className="rounded-2xl border border-green-100 bg-white p-6 shadow-sm md:p-8">
           <div className="flex flex-col gap-5 md:flex-row md:items-center">
             <div className="flex items-center justify-center md:h-24 md:w-24 md:shrink-0">
               <span aria-hidden className="text-7xl md:text-8xl">
@@ -81,7 +81,7 @@ export default async function MemberPage({
                   {groupInfo.label} 軸
                 </span>
                 {dx && (
-                  <span className="inline-flex items-center rounded-full bg-orange-50 px-3 py-1 font-semibold text-orange-700">
+                  <span className="inline-flex items-center rounded-full bg-green-50 px-3 py-1 font-semibold text-green-700">
                     {dx.animalName}（個性番号 #{dx.number}）
                   </span>
                 )}
@@ -95,7 +95,7 @@ export default async function MemberPage({
         </section>
 
         {/* Self-reported group: authoritative */}
-        <section className="mt-6 rounded-2xl border border-orange-100 bg-white p-6 shadow-sm md:p-8">
+        <section className="mt-6 rounded-2xl border border-green-100 bg-white p-6 shadow-sm md:p-8">
           <p className="text-xs font-semibold tracking-widest text-accent-orange">
             自己申告の意思決定軸
           </p>
@@ -131,7 +131,7 @@ export default async function MemberPage({
 
         {/* Animal diagnosis: calculated */}
         {dx && (
-          <section className="mt-6 rounded-2xl border border-orange-100 bg-white p-6 shadow-sm md:p-8">
+          <section className="mt-6 rounded-2xl border border-green-100 bg-white p-6 shadow-sm md:p-8">
             <p className="text-xs font-semibold tracking-widest text-accent-orange">
               動物占い（生年月日から計算）
             </p>
@@ -151,7 +151,7 @@ export default async function MemberPage({
               {dx.keywords.map((k) => (
                 <span
                   key={k}
-                  className="inline-flex items-center rounded-full bg-orange-50 px-2.5 py-0.5 text-xs font-semibold text-orange-700"
+                  className="inline-flex items-center rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-semibold text-green-700"
                 >
                   #{k}
                 </span>
@@ -220,7 +220,7 @@ export default async function MemberPage({
 
         {/* Profile from form */}
         <section className="mt-6 grid gap-4 md:grid-cols-2">
-          <div className="rounded-2xl border border-orange-100 bg-white p-5 shadow-sm">
+          <div className="rounded-2xl border border-green-100 bg-white p-5 shadow-sm">
             <p className="text-xs font-semibold tracking-widest text-text-secondary">
               座右の銘
             </p>
@@ -228,13 +228,13 @@ export default async function MemberPage({
               {m.motto}
             </p>
           </div>
-          <div className="rounded-2xl border border-orange-100 bg-white p-5 shadow-sm">
+          <div className="rounded-2xl border border-green-100 bg-white p-5 shadow-sm">
             <p className="text-xs font-semibold tracking-widest text-text-secondary">
               趣味
             </p>
             <p className="mt-2 text-sm text-text-primary">{m.hobby}</p>
           </div>
-          <div className="rounded-2xl border border-orange-100 bg-white p-5 shadow-sm md:col-span-2">
+          <div className="rounded-2xl border border-green-100 bg-white p-5 shadow-sm md:col-span-2">
             <p className="text-xs font-semibold tracking-widest text-text-secondary">
               参画動機
             </p>
@@ -242,7 +242,7 @@ export default async function MemberPage({
               {m.motivation}
             </p>
           </div>
-          <div className="rounded-2xl border border-orange-100 bg-white p-5 shadow-sm md:col-span-2">
+          <div className="rounded-2xl border border-green-100 bg-white p-5 shadow-sm md:col-span-2">
             <p className="text-xs font-semibold tracking-widest text-text-secondary">
               得意なこと・やりたいこと
             </p>

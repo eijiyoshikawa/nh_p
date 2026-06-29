@@ -24,7 +24,7 @@ const categoryColors: Record<Grant["category"], string> = {
 
 const priorityStyles: Record<Grant["priority"], string> = {
   high: "border-l-4 border-l-red-400",
-  mid: "border-l-4 border-l-orange-300",
+  mid: "border-l-4 border-l-green-300",
   low: "border-l-4 border-l-stone-200",
 };
 
@@ -36,7 +36,7 @@ const priorityLabels: Record<Grant["priority"], string> = {
 
 const priorityBadge: Record<Grant["priority"], string> = {
   high: "bg-red-100 text-red-700",
-  mid: "bg-orange-100 text-orange-700",
+  mid: "bg-green-100 text-green-700",
   low: "bg-stone-100 text-stone-600",
 };
 
@@ -53,7 +53,7 @@ export default function GrantsPage() {
   return (
     <div className="min-h-screen bg-[#FFFBF5]">
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-orange-100 bg-white/80 backdrop-blur-md">
+      <header className="sticky top-0 z-50 border-b border-green-100 bg-white/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
           <Link href="/" className="text-sm font-bold text-[#F97316]">
             ← LPに戻る

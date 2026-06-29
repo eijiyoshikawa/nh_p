@@ -12,7 +12,7 @@ export default function Solution() {
         />
 
         <div className="mb-8 rounded-2xl bg-accent-orange p-5 text-center sm:p-6">
-          <p className="text-sm font-medium text-orange-100">目標</p>
+          <p className="text-sm font-medium text-green-100">目標</p>
           <p className="mt-1 text-lg font-extrabold leading-snug text-white sm:text-xl md:text-2xl">
             {solution.goal}
           </p>

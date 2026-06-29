@@ -14,8 +14,8 @@ export default async function LoginPage({
 }) {
   const { from } = await searchParams;
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-orange-50 via-warm-bg to-amber-50 px-4 py-12">
-      <div className="w-full max-w-md rounded-2xl border border-orange-100 bg-white p-8 shadow-lg">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-green-50 via-warm-bg to-amber-50 px-4 py-12">
+      <div className="w-full max-w-md rounded-2xl border border-green-100 bg-white p-8 shadow-lg">
         <p className="text-xs font-semibold tracking-widest text-accent-orange">
           MEMBERS ONLY
         </p>

@@ -4,7 +4,7 @@ export default function CallToAction() {
   return (
     <section
       id="cta"
-      className="bg-gradient-to-b from-orange-50 to-orange-100 px-4 py-16 sm:px-6 md:py-24"
+      className="bg-gradient-to-b from-green-50 to-green-100 px-4 py-16 sm:px-6 md:py-24"
     >
       <div className="mx-auto max-w-3xl text-center">
         <h2 className="text-xl font-extrabold leading-snug text-text-primary sm:text-2xl md:text-3xl">

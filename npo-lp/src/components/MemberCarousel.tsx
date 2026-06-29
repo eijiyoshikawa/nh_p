@@ -68,7 +68,7 @@ export default function MemberCarousel() {
               className="flex w-56 flex-shrink-0 flex-col items-center rounded-2xl bg-white p-6 shadow-sm transition-transform hover:scale-105"
             >
               {/* Avatar placeholder */}
-              <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-orange-100 to-orange-200 text-2xl font-bold text-accent-orange">
+              <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-green-100 to-green-200 text-2xl font-bold text-accent-orange">
                 {member.name.charAt(0)}
               </div>
 

@@ -78,7 +78,7 @@ export default function BusinessPlans() {
             {warehouse.features.map((feature) => (
               <span
                 key={feature}
-                className="rounded-full bg-orange-50 px-3 py-1.5 text-xs font-medium text-accent-orange-dark sm:px-4 sm:py-2 sm:text-sm"
+                className="rounded-full bg-green-50 px-3 py-1.5 text-xs font-medium text-accent-orange-dark sm:px-4 sm:py-2 sm:text-sm"
               >
                 {feature}
               </span>
@@ -112,11 +112,11 @@ export default function BusinessPlans() {
           </div>
 
           <div className="mt-6 rounded-2xl bg-accent-orange p-5 text-center">
-            <p className="text-sm text-orange-100">初期概算総費</p>
+            <p className="text-sm text-green-100">初期概算総費</p>
             <p className="text-2xl font-extrabold text-white sm:text-3xl">
               {warehouse.totalCost}
             </p>
-            <p className="mt-2 text-xs leading-relaxed text-orange-200">
+            <p className="mt-2 text-xs leading-relaxed text-green-200">
               補助金・助成金・ふるさと納税型CFで資金調達
             </p>
           </div>

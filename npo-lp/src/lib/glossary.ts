@@ -15,7 +15,7 @@ export const categoryLabels: Record<GlossaryItem["category"], string> = {
 
 export const categoryColors: Record<GlossaryItem["category"], string> = {
   npo: "bg-blue-50 text-blue-700",
-  funding: "bg-orange-50 text-orange-700",
+  funding: "bg-green-50 text-green-700",
   kodomo: "bg-green-50 text-green-700",
   business: "bg-purple-50 text-purple-700",
 };

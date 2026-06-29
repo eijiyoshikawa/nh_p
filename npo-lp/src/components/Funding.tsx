@@ -36,7 +36,7 @@ export default function Funding() {
         </div>
 
         {/* Furusato CF */}
-        <div className="mb-10 rounded-2xl bg-orange-50 p-5 sm:p-6">
+        <div className="mb-10 rounded-2xl bg-green-50 p-5 sm:p-6">
           <h4 className="mb-3 text-sm font-bold text-accent-orange-dark sm:text-base">
             {funding.furusatoCF.title}
           </h4>
@@ -72,7 +72,7 @@ export default function Funding() {
                 </p>
               </div>
               {i < funding.strategy.length - 1 && (
-                <div className="hidden text-2xl text-orange-200 md:block" aria-hidden="true">
+                <div className="hidden text-2xl text-green-200 md:block" aria-hidden="true">
                   &rarr;
                 </div>
               )}

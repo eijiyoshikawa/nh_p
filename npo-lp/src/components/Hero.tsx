@@ -24,7 +24,7 @@ export default function Hero() {
   return (
     <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-16 text-center">
       {/* Gradient fallback (shown while video loads or if video fails) */}
-      <div className="absolute inset-0 -z-30 bg-gradient-to-br from-orange-900 via-stone-800 to-stone-900" />
+      <div className="absolute inset-0 -z-30 bg-gradient-to-br from-green-900 via-stone-800 to-stone-900" />
 
       {/* Video background */}
       <video
@@ -43,8 +43,8 @@ export default function Hero() {
       {/* Dark overlay for readability */}
       <div className="absolute inset-0 -z-10 bg-black/50" />
 
-      <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-orange-300/40 bg-white/10 px-4 py-1.5 text-xs font-medium tracking-widest text-orange-200 backdrop-blur sm:text-sm">
-        <span aria-hidden className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-orange-300" />
+      <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-green-300/40 bg-white/10 px-4 py-1.5 text-xs font-medium tracking-widest text-green-200 backdrop-blur sm:text-sm">
+        <span aria-hidden className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-green-300" />
         {hero.subtitle}
       </span>
       <h1 className="max-w-3xl whitespace-pre-line text-3xl font-extrabold leading-snug tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">

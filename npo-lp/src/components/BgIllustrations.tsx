@@ -2,7 +2,7 @@ export default function BgIllustrations() {
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
       {/* Top-right: house */}
-      <svg className="animate-float-slow absolute -right-8 top-32 h-32 w-32 text-orange-100 opacity-40 sm:h-48 sm:w-48" viewBox="0 0 100 100" fill="currentColor">
+      <svg className="animate-float-slow absolute -right-8 top-32 h-32 w-32 text-green-100 opacity-40 sm:h-48 sm:w-48" viewBox="0 0 100 100" fill="currentColor">
         <path d="M50 10L10 45h10v40h60V45h10L50 10zM40 75V55h20v20H40z" />
       </svg>
 
@@ -13,12 +13,12 @@ export default function BgIllustrations() {
       </svg>
 
       {/* Center-right: heart */}
-      <svg className="animate-pulse-soft absolute right-[10%] top-[55%] h-16 w-16 text-orange-200 sm:h-24 sm:w-24" viewBox="0 0 100 100" fill="currentColor">
+      <svg className="animate-pulse-soft absolute right-[10%] top-[55%] h-16 w-16 text-green-200 sm:h-24 sm:w-24" viewBox="0 0 100 100" fill="currentColor">
         <path d="M50 88S10 60 10 35C10 15 30 5 50 25C70 5 90 15 90 35C90 60 50 88 50 88z" />
       </svg>
 
       {/* Bottom-left: plate & utensils (food) */}
-      <svg className="animate-float-reverse absolute bottom-[20%] left-[5%] h-24 w-24 text-orange-100 opacity-40 sm:h-36 sm:w-36" viewBox="0 0 100 100" fill="currentColor">
+      <svg className="animate-float-reverse absolute bottom-[20%] left-[5%] h-24 w-24 text-green-100 opacity-40 sm:h-36 sm:w-36" viewBox="0 0 100 100" fill="currentColor">
         <circle cx="50" cy="55" r="30" />
         <circle cx="50" cy="55" r="22" fill="#FFFBF5" />
         <rect x="15" y="48" width="3" height="25" rx="1.5" />
@@ -43,9 +43,9 @@ export default function BgIllustrations() {
       </svg>
 
       {/* Dots pattern - scattered */}
-      <div className="animate-pulse-soft absolute left-[30%] top-[25%] h-3 w-3 rounded-full bg-orange-200 opacity-20" />
+      <div className="animate-pulse-soft absolute left-[30%] top-[25%] h-3 w-3 rounded-full bg-green-200 opacity-20" />
       <div className="animate-pulse-soft absolute left-[60%] top-[45%] h-2 w-2 rounded-full bg-green-200 opacity-20" style={{ animationDelay: "1s" }} />
-      <div className="animate-pulse-soft absolute left-[75%] top-[30%] h-4 w-4 rounded-full bg-orange-100 opacity-20" style={{ animationDelay: "2s" }} />
+      <div className="animate-pulse-soft absolute left-[75%] top-[30%] h-4 w-4 rounded-full bg-green-100 opacity-20" style={{ animationDelay: "2s" }} />
       <div className="animate-pulse-soft absolute left-[20%] top-[70%] h-3 w-3 rounded-full bg-green-100 opacity-20" style={{ animationDelay: "3s" }} />
     </div>
   );

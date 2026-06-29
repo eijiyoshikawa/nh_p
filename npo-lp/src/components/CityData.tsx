@@ -23,7 +23,7 @@ export default function CityData() {
             />
           ))}
         </div>
-        <p className="mt-8 rounded-2xl bg-orange-50 p-4 text-center text-sm font-medium leading-relaxed text-accent-orange-dark sm:p-5 sm:text-base">
+        <p className="mt-8 rounded-2xl bg-green-50 p-4 text-center text-sm font-medium leading-relaxed text-accent-orange-dark sm:p-5 sm:text-base">
           {cityData.insight}
         </p>
       </div>

@@ -45,7 +45,7 @@ export function LoginForm({ from }: { from: string }) {
           required
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="mt-1 w-full rounded-lg border border-orange-200 bg-white px-4 py-3 text-base text-text-primary placeholder:text-stone-400 focus:border-accent-orange focus:outline-none focus:ring-2 focus:ring-orange-200"
+          className="mt-1 w-full rounded-lg border border-green-200 bg-white px-4 py-3 text-base text-text-primary placeholder:text-stone-400 focus:border-accent-orange focus:outline-none focus:ring-2 focus:ring-green-200"
           disabled={pending}
         />
       </label>

@@ -10,7 +10,7 @@ export default function FundingStrategyPage() {
   return (
     <div className="min-h-screen bg-[#FFFBF5]">
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-orange-100 bg-white/80 backdrop-blur-md">
+      <header className="sticky top-0 z-50 border-b border-green-100 bg-white/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
           <Link href="/" className="text-sm font-bold text-[#F97316]">
             ← LPに戻る
@@ -251,11 +251,11 @@ export default function FundingStrategyPage() {
 
         {/* Conclusion */}
         <div className="mb-16 rounded-2xl bg-[#F97316] p-6 text-center text-white sm:p-8">
-          <p className="text-sm text-orange-200">結論</p>
+          <p className="text-sm text-green-200">結論</p>
           <p className="mt-2 text-lg font-bold leading-snug sm:text-xl">
             WAM助成（最大700万円）+ 空き家活用補助（最大250万円）の2本柱で950万円。
           </p>
-          <p className="mt-2 text-sm text-orange-100">
+          <p className="mt-2 text-sm text-green-100">
             保守的に見ても2028〜2029年で1,000万円到達は現実的。
           </p>
         </div>
@@ -286,7 +286,7 @@ export default function FundingStrategyPage() {
                 item.priority === "high"
                   ? "bg-red-50 ring-1 ring-red-200"
                   : item.priority === "mid"
-                    ? "bg-orange-50"
+                    ? "bg-green-50"
                     : "bg-stone-50"
               }`}
             >
@@ -354,7 +354,7 @@ function Section({
 }) {
   const colors = {
     red: "border-red-200 bg-red-50 text-red-700",
-    orange: "border-orange-200 bg-orange-50 text-orange-700",
+    orange: "border-green-200 bg-green-50 text-green-700",
     green: "border-green-200 bg-green-50 text-green-700",
     purple: "border-purple-200 bg-purple-50 text-purple-700",
   };
@@ -448,7 +448,7 @@ function PhaseCard({
           <p className="text-xs text-stone-500">{period}</p>
         </div>
       </div>
-      <p className="mb-4 rounded-lg bg-orange-50 px-3 py-2 text-sm font-medium text-[#EA580C]">
+      <p className="mb-4 rounded-lg bg-green-50 px-3 py-2 text-sm font-medium text-[#EA580C]">
         目標: {target}
       </p>
       <div className="mb-4 space-y-1.5">

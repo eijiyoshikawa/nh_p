@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function MembersPage() {
   return (
     <div className="min-h-screen bg-warm-bg">
-      <header className="border-b border-orange-100 bg-white">
+      <header className="border-b border-green-100 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
           <Link
             href="/"
@@ -53,7 +53,7 @@ export default function MembersPage() {
                 <li key={m.slug}>
                   <Link
                     href={`/members/${m.slug}/`}
-                    className="group flex h-full flex-col rounded-2xl border border-orange-100 bg-white p-5 transition hover:-translate-y-0.5 hover:border-orange-300 hover:shadow-md"
+                    className="group flex h-full flex-col rounded-2xl border border-green-100 bg-white p-5 transition hover:-translate-y-0.5 hover:border-green-300 hover:shadow-md"
                   >
                     <div className="flex items-center gap-3">
                       <span aria-hidden className="text-4xl">
@@ -74,7 +74,7 @@ export default function MembersPage() {
                         {groupInfo.label}
                       </span>
                       {dx && (
-                        <span className="inline-flex items-center rounded-full bg-orange-50 px-2 py-0.5 font-semibold text-orange-700">
+                        <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-0.5 font-semibold text-green-700">
                           {dx.animalName} #{dx.number}
                         </span>
                       )}

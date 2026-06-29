@@ -9,7 +9,7 @@ export function AnimalChart() {
   const total = entries.reduce((a, [, v]) => a + v.count, 0);
 
   return (
-    <div className="rounded-2xl border border-orange-100 bg-white p-6 shadow-sm">
+    <div className="rounded-2xl border border-green-100 bg-white p-6 shadow-sm">
       <p className="text-xs font-semibold tracking-widest text-accent-orange">
         ANIMAL DISTRIBUTION
       </p>

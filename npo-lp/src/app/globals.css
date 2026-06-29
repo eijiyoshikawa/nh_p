@@ -1,14 +1,18 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-warm-bg: #FFFBF5;
+  /* Brand palette switched from orange to green. The "accent-orange"
+     variable name is kept for backwards compatibility — it now points
+     at the same green tones used everywhere else. */
+  --color-warm-bg: #F4FBF6;
   --color-warm-card: #FFFFFF;
-  --color-text-primary: #1C1917;
-  --color-text-secondary: #78716C;
-  --color-accent-orange: #F97316;
-  --color-accent-orange-dark: #EA580C;
-  --color-accent-green: #22C55E;
-  --color-accent-green-dark: #16A34A;
+  --color-text-primary: #0F1F17;
+  --color-text-secondary: #57645B;
+  --color-accent-orange: #16A34A;
+  --color-accent-orange-dark: #15803D;
+  --color-accent-green: #16A34A;
+  --color-accent-green-dark: #15803D;
+  --color-accent-leaf: #65A30D;
   --font-sans: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;
 }
 

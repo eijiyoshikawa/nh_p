@@ -6,11 +6,13 @@ import Solution from "@/components/Solution";
 import Benefits from "@/components/Benefits";
 import BusinessPlans from "@/components/BusinessPlans";
 import Funding from "@/components/Funding";
+import Roadmap from "@/components/Roadmap";
 import CallToAction from "@/components/CallToAction";
+import Faq from "@/components/Faq";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import BgIllustrations from "@/components/BgIllustrations";
-import MemberCarousel from "@/components/MemberCarousel";
+import MembersPreview from "@/components/MembersPreview";
 
 export default function Home() {
   return (
@@ -25,13 +27,14 @@ export default function Home() {
         <Benefits />
         <BusinessPlans />
         <Funding />
+        <Roadmap />
 
         {/* Internal pages links */}
         <section className="px-4 py-12 sm:px-6">
           <div className="mx-auto grid max-w-4xl gap-4 sm:grid-cols-2">
             <a
               href="/grants"
-              className="group rounded-2xl border-2 border-orange-200 bg-white p-6 shadow-sm transition-all hover:border-accent-orange hover:shadow-md"
+              className="group rounded-2xl border-2 border-green-200 bg-white p-6 shadow-sm transition-all hover:border-accent-orange hover:shadow-md"
             >
               <p className="text-2xl">📋</p>
               <h3 className="mt-2 text-base font-bold text-text-primary group-hover:text-accent-orange">
@@ -46,7 +49,7 @@ export default function Home() {
             </a>
             <a
               href="/funding-strategy"
-              className="group rounded-2xl border-2 border-orange-200 bg-white p-6 shadow-sm transition-all hover:border-accent-orange hover:shadow-md"
+              className="group rounded-2xl border-2 border-green-200 bg-white p-6 shadow-sm transition-all hover:border-accent-orange hover:shadow-md"
             >
               <p className="text-2xl">📊</p>
               <h3 className="mt-2 text-base font-bold text-text-primary group-hover:text-accent-orange">
@@ -77,7 +80,8 @@ export default function Home() {
           </div>
         </section>
 
-        <MemberCarousel />
+        <Faq />
+        <MembersPreview />
         <CallToAction />
       </main>
       <Footer />

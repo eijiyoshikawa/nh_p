@@ -7,7 +7,7 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-orange-100 bg-white/80 backdrop-blur-md">
+    <header className="fixed top-0 z-50 w-full border-b border-green-100 bg-white/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
         <a href="#" className="text-sm font-bold text-accent-orange">
           ひらかたNPO
@@ -29,6 +29,12 @@ export default function Header() {
             className="whitespace-nowrap transition-colors hover:text-accent-orange"
           >
             助成金リスト
+          </a>
+          <a
+            href="/members"
+            className="whitespace-nowrap transition-colors hover:text-accent-orange"
+          >
+            メンバー
           </a>
           <a
             href="/funding-strategy"
@@ -56,7 +62,7 @@ export default function Header() {
 
       {/* Mobile menu */}
       {open && (
-        <nav className="border-t border-orange-100 bg-white px-4 pb-4 pt-2 md:hidden">
+        <nav className="border-t border-green-100 bg-white px-4 pb-4 pt-2 md:hidden">
           <div className="flex flex-col gap-3">
             {nav.items.map((item) => (
               <a
@@ -74,6 +80,13 @@ export default function Header() {
               onClick={() => setOpen(false)}
             >
               助成金リスト
+            </a>
+            <a
+              href="/members"
+              className="text-sm font-medium text-accent-orange transition-colors hover:text-accent-orange-dark"
+              onClick={() => setOpen(false)}
+            >
+              メンバー
             </a>
             <a
               href="/funding-strategy"
