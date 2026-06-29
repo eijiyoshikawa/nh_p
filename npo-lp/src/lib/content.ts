@@ -276,8 +276,8 @@ export const funding = {
   ],
 };
 
-// LINE公式アカウントのURL（後で実際のURLに差し替え）
-export const lineUrl = "https://line.me/R/ti/p/@000dummy";
+// LINE公式アカウントの友だち追加URL
+export const lineUrl = "https://lin.ee/QgUpPrz";
 
 export const cta = {
   sectionTitle: "一緒にひらかたを育てませんか",
