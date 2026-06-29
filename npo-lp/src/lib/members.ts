@@ -28,53 +28,6 @@ export type Member = {
 
 export const members: Member[] = [
   {
-    slug: "yoshikawa-eiji",
-    name: "吉川 英治",
-    furigana: "ヨシカワ エイジ",
-    birthDate: "1994-07-20",
-    occupation: "会社役員",
-    hobby: "お酒・タバコ・旅行",
-    motto: "己欲達而達人",
-    motivation:
-      "貴田さんに誘ってもらい、JETさんの想いを聞き自分も何か力になりたいと思ったから",
-    strengths:
-      "NPOなどの法人立ち上げ経験が複数回あるので、実経験を踏まえてサポートすることが得意です。",
-    selfReportedGroup: "EARTH",
-    character: {
-      fullName: "情熱的な黒ひょう",
-      base: "kuroHyou",
-      description:
-        "相手に心を開かせる気さくさが魅力。意見を正直に言っても人に威圧感を与えないが実は鋭い感性の持ち主で好き嫌いがはっきりしている。感情にムラがあり、お天気屋なため現実と理想のギャップに悩む。周囲の人から引き立てられ、苦境を打開できる幸運の持ち主。プライドは高く、人の面倒を見ることが成功への秘訣。",
-      characterVector: "未来展望型",
-      behaviorPattern: "目標指向型",
-      thinkingPattern: "左脳型",
-    },
-  },
-  {
-    slug: "kida-kohei",
-    name: "貴田 浩平",
-    furigana: "キダ コウヘイ",
-    birthDate: "1995-01-12",
-    occupation: "生命保険募集人",
-    hobby:
-      "少林寺拳法・スノーボード・キャンプ・ラーメン屋巡り・カフェ巡り・お酒・料理・車いじり・神社参拝",
-    motto: "一番になったものは一番で居続けないといけない。",
-    motivation:
-      "はじめはおもしろそう！話を聞いてるうちに代表のアツい思いに心打たれて！",
-    strengths:
-      "動くこと！人に会って話す。めちゃくちゃ人に会う。逆に止まったり、ゆっくり考えるとかが苦手。",
-    selfReportedGroup: "SUN",
-    character: {
-      fullName: "尽くす猿",
-      base: "saru",
-      description:
-        "社交的で完璧な気遣いを見せる。周囲の人とトラブルを避けるため、感情を表に出さず合理的に割り切れる大人。冷静な頭脳と鋭い感受性を内に秘め、わずかなことから相手の気持ちを的確に読み取る。独立心旺盛でタイミングを図りながら自分の人生を切り拓く。能力に自信があり何事も人任せに出来ないところは注意が必要。",
-      characterVector: "未来展望型",
-      behaviorPattern: "目標指向型",
-      thinkingPattern: "左脳型",
-    },
-  },
-  {
     slug: "taketani-takayuki",
     name: "竹谷 孝之",
     furigana: "タケタニ タカユキ",
@@ -255,6 +208,53 @@ export const members: Member[] = [
       base: "lion",
       characterVector: "過去回想型",
       behaviorPattern: "状況対応型",
+      thinkingPattern: "左脳型",
+    },
+  },
+  {
+    slug: "yoshikawa-eiji",
+    name: "吉川 英治",
+    furigana: "ヨシカワ エイジ",
+    birthDate: "1994-07-20",
+    occupation: "会社役員",
+    hobby: "お酒・タバコ・旅行",
+    motto: "己欲達而達人",
+    motivation:
+      "貴田さんに誘ってもらい、JETさんの想いを聞き自分も何か力になりたいと思ったから",
+    strengths:
+      "NPOなどの法人立ち上げ経験が複数回あるので、実経験を踏まえてサポートすることが得意です。",
+    selfReportedGroup: "EARTH",
+    character: {
+      fullName: "情熱的な黒ひょう",
+      base: "kuroHyou",
+      description:
+        "相手に心を開かせる気さくさが魅力。意見を正直に言っても人に威圧感を与えないが実は鋭い感性の持ち主で好き嫌いがはっきりしている。感情にムラがあり、お天気屋なため現実と理想のギャップに悩む。周囲の人から引き立てられ、苦境を打開できる幸運の持ち主。プライドは高く、人の面倒を見ることが成功への秘訣。",
+      characterVector: "未来展望型",
+      behaviorPattern: "目標指向型",
+      thinkingPattern: "左脳型",
+    },
+  },
+  {
+    slug: "kida-kohei",
+    name: "貴田 浩平",
+    furigana: "キダ コウヘイ",
+    birthDate: "1995-01-12",
+    occupation: "生命保険募集人",
+    hobby:
+      "少林寺拳法・スノーボード・キャンプ・ラーメン屋巡り・カフェ巡り・お酒・料理・車いじり・神社参拝",
+    motto: "一番になったものは一番で居続けないといけない。",
+    motivation:
+      "はじめはおもしろそう！話を聞いてるうちに代表のアツい思いに心打たれて！",
+    strengths:
+      "動くこと！人に会って話す。めちゃくちゃ人に会う。逆に止まったり、ゆっくり考えるとかが苦手。",
+    selfReportedGroup: "SUN",
+    character: {
+      fullName: "尽くす猿",
+      base: "saru",
+      description:
+        "社交的で完璧な気遣いを見せる。周囲の人とトラブルを避けるため、感情を表に出さず合理的に割り切れる大人。冷静な頭脳と鋭い感受性を内に秘め、わずかなことから相手の気持ちを的確に読み取る。独立心旺盛でタイミングを図りながら自分の人生を切り拓く。能力に自信があり何事も人任せに出来ないところは注意が必要。",
+      characterVector: "未来展望型",
+      behaviorPattern: "目標指向型",
       thinkingPattern: "左脳型",
     },
   },
