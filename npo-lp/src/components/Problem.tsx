@@ -1,6 +1,8 @@
 import { problem } from "@/lib/content";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Card from "@/components/ui/Card";
+import { CountUp } from "@/components/ui/CountUp";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export default function Problem() {
   return (
@@ -13,28 +15,31 @@ export default function Problem() {
         </p>
 
         <div className="mb-10 flex flex-wrap justify-center gap-8 sm:gap-10">
-          {problem.stats.map((stat) => (
-            <div key={stat.label} className="text-center">
-              <span className="text-3xl font-bold text-accent-orange sm:text-4xl">
-                {stat.value}
-              </span>
+          {problem.stats.map((stat, i) => (
+            <ScrollReveal key={stat.label} delay={i * 120} className="text-center">
+              <CountUp
+                value={stat.value}
+                className="text-3xl font-bold text-accent-orange sm:text-4xl"
+              />
               <span className="ml-1 text-base text-text-secondary sm:text-lg">
                 {stat.unit}
               </span>
               <p className="mt-1 text-xs text-text-secondary sm:text-sm">{stat.label}</p>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
-          {problem.issues.map((issue) => (
-            <Card key={issue.title}>
-              <div className="mb-3 text-3xl">{issue.icon}</div>
-              <h3 className="mb-2 text-base font-bold text-text-primary sm:text-lg">
-                {issue.title}
-              </h3>
-              <p className="text-sm leading-relaxed text-text-secondary">{issue.description}</p>
-            </Card>
+          {problem.issues.map((issue, i) => (
+            <ScrollReveal key={issue.title} delay={i * 100}>
+              <Card>
+                <div className="mb-3 text-3xl">{issue.icon}</div>
+                <h3 className="mb-2 text-base font-bold text-text-primary sm:text-lg">
+                  {issue.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-text-secondary">{issue.description}</p>
+              </Card>
+            </ScrollReveal>
           ))}
         </div>
 
