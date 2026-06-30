@@ -1,110 +1,103 @@
-# NPO LP サイト — 引き継ぎ資料
+# NPO LP サイト — 引き継ぎ資料（次セッション用）
 
-## 概要
+最終更新: 2026-06 / 担当セッション: メンバー専用サイト機能の実装完了
 
-ひらかた子ども食堂支援NPOの勧誘用LPサイト + 内部戦略ドキュメント。
-Next.js 16 + Tailwind CSS v4。Vercelにデプロイ済み。
+---
 
-## 現在のリポジトリ
+## 1. 概要
 
-- リポジトリ: `eijiyoshikawa/npo_hirakata`
-- ブランチ: `claude/npo-pdf-to-markdown-HDpUL`
-- Vercel: `npo-hirakata.vercel.app`（Root Directory: `npo-lp`, Framework: Next.js）
+ひらかた子ども食堂支援NPO（設立準備中・暫定運営：三慧経営顧問株式会社）の
+公式LP＋**メンバー専用サイト**。緑基調・Next.js 16 / React 19 / Tailwind v4 / TS。
 
-## サイト構成（4ページ）
+- リポジトリ: `eijiyoshikawa/npo_hirakata`（モノレポ：`npo-lp/` と `hirakata-kids/` が同居）
+- **本番ブランチ: `main`**（このサイトの正）
+- 本番URL: https://npo-hirakata.vercel.app
+- Vercel プロジェクト: `npo-hirakata`（Root Directory: `npo-lp`）
+- デプロイ: **GitHub連携が切れているため手動**（`vercel deploy --prod`）
 
-| ページ | パス | 内容 |
-|--------|------|------|
-| LP | `/` | Hero（動画背景）→ 課題 → 枚方DATA → 解決策 → メリット → 事業 → 資金 → リンク集 → メンバー → CTA |
-| 資金戦略 | `/funding-strategy` | 行政系1,000万円達成のロードマップ・シミュレーション |
-| 助成金リスト | `/grants` | 枚方市で使える20件の制度（カテゴリ別・優先度別） |
-| 用語集 | `/glossary` | NPO・助成金・子ども食堂の専門用語22語 |
+---
 
-## LP構成（10セクション + リンク + メンバー）
+## 2. 実装済み（このセッションで完了）
 
-| # | コンポーネント | 内容 |
-|---|---------------|------|
-| 1 | Hero.tsx | 動画背景 +「支援を仕組みに変え、地域を創る」+ CTA |
-| 2 | Problem.tsx | 資金/人員/食材/持続性の4課題 + 統計3つ + 必要性タグ |
-| 3 | CityData.tsx | 枚方市6統計 + インサイト文 |
-| 4 | Solution.tsx | 課題→解決策マッピング4つ + 目標 |
-| 5 | Benefits.tsx | CSR/雇用/発見/地域/空き家/食育の6カード |
-| 6 | BusinessPlans.tsx | きくらげ収益試算 + セントラル倉庫（機能一覧付き） |
-| 7 | Funding.tsx | 補助金16種 + ふるさとCF + 3ステップ戦略 |
-| — | リンクセクション | /grants, /funding-strategy, /glossary へのカード |
-| 8 | MemberCarousel.tsx | メンバーカード 3秒自動横スクロール |
-| 9 | CallToAction.tsx | LINE公式ボタン + 役割タグ |
+### サイト全体
+- 緑基調へのリブランド（orange→green 一括）
+- 全ページのパスワードロック（`middleware.ts` + `/login`、`SITE_PASSWORD` で制御、30日Cookie）
+- OGP画像（`opengraph-image.tsx`）、themeColor、モバイル最適化
+- LP に FAQ・ロードマップ・メンバープレビューを追加
+- LINE公式URL を実URLに（`lin.ee/QgUpPrz`）
 
-## ファイル構成
+### メンバー専用エリア（`/members` ハブ）
+- 11名のメンバーデータ（noa-group 動物占い結果を手入力）
+- 各メンバー詳細：動物キャラ・3軸（心理/行動/思考）・グループ共通性格・自己申告比較・**相性診断**
+- 役職（竹谷＝**理事長**、他＝未定）／プロフィール写真（角丸四角・絵文字フォールバック）／SNSリンク枠
+- 組織傾向チャート（グループ分布・動物分布・3軸分布）
+- `/members/calendar` 活動カレンダー（追加/削除）
+- `/members/board` お知らせ掲示板（投稿/固定/削除）
+- `/members/tasks` タスクかんばん（3列・担当者・期限）
+- `/members/docs` 資料・議事録リンク集
+- `/members/dashboard` 資金調達進捗＋助成金ステータス
+- ログアウトボタン
 
+### データ層
+- `lib/members.ts` … メンバー＋動物占い＋相性ロジック
+- `lib/animalFortune.ts` … 12動物・3グループ・3軸定義
+- `lib/orgData.ts` … 資金/助成金/資料（手動更新用）
+- `lib/store.ts` + `/api/store/[collection]` … Upstash Redis REST（カレンダー/お知らせ/タスク）
+
+---
+
+## 3. ⚠️ 残っている手動作業（ユーザー側アクション）
+
+### A. 写真表示（Drive共有設定）
+Google フォーム回答フォルダの写真を「リンクを知っている全員が閲覧可」に設定する。
+未設定の間は動物絵文字が出る（壊れない）。
+
+### B. データ保存の有効化（Upstash 無料DB）
+カレンダー・お知らせ・タスクの保存に必要。
+1. https://console.upstash.com/ で Redis DB 作成
+2. `vercel env add UPSTASH_REDIS_REST_URL production`
+3. `vercel env add UPSTASH_REDIS_REST_TOKEN production`
+4. `vercel deploy --prod`
+
+### C. 毎回のデプロイ（GitHub連携が切れているため）
+```bash
+cd ~/npo_hirakata/npo-lp
+git pull origin main
+npm install
+vercel deploy --prod
 ```
-npo-lp/
-├── src/
-│   ├── app/
-│   │   ├── layout.tsx              # lang="ja", OGPメタ
-│   │   ├── page.tsx                # メインLP
-│   │   ├── globals.css             # Tailwind + アニメーション定義
-│   │   ├── funding-strategy/page.tsx
-│   │   ├── grants/page.tsx
-│   │   └── glossary/page.tsx
-│   ├── components/
-│   │   ├── Header.tsx              # ハンバーガーメニュー + 助成金リスト/資金戦略リンク
-│   │   ├── Hero.tsx                # 動画背景（Pexels CDN）+ グラデーションフォールバック
-│   │   ├── Problem.tsx
-│   │   ├── CityData.tsx
-│   │   ├── Solution.tsx
-│   │   ├── Benefits.tsx
-│   │   ├── BusinessPlans.tsx
-│   │   ├── Funding.tsx
-│   │   ├── CallToAction.tsx        # LINE公式ボタン（緑）
-│   │   ├── MemberCarousel.tsx      # 3秒自動スクロール、hover/touch一時停止
-│   │   ├── BgIllustrations.tsx     # SVGイラスト浮遊アニメーション
-│   │   ├── FloatingCTA.tsx         # モバイル固定LINEボタン
-│   │   ├── Footer.tsx
-│   │   └── ui/
-│   │       ├── StatCard.tsx
-│   │       ├── SectionHeading.tsx
-│   │       └── Card.tsx
-│   └── lib/
-│       ├── content.ts              # 全テキスト + lineUrl + members
-│       ├── grants.ts               # 助成金20件のデータ
-│       └── glossary.ts             # 用語22語のデータ
-├── next.config.ts
-├── tailwind.config.ts
-├── package.json
-└── tsconfig.json
-```
+→ 恒久対応するなら Vercel の Settings → Git で GitHub 連携を再接続し
+   Production Branch を `main` に設定（以降 `git push origin main` で自動デプロイ）。
 
-## デザイン仕様
+---
 
-- **配色**: オレンジ(#F97316) + グリーン(#22C55E)、背景(#FFFBF5)
-- **LINEボタン**: #06C755（LINE公式カラー）
-- **フォント**: システムフォント（Hiragino Kaku Gothic ProN / Noto Sans JP等）
-- **レスポンシブ**: モバイルファースト、ハンバーガーメニュー、sm/md/lgブレークポイント
-- **OGP**: LINE共有用のog:title/description/locale設定済み
-- **背景**: SVGイラスト（家・木・ハート・お皿・人々・きのこ）の浮遊アニメーション
+## 4. 後から自分で編集できる箇所（編集→push→deploy）
 
-## LINE連携
+| やりたいこと | ファイル |
+|---|---|
+| SNSリンク追加 | `src/lib/members.ts` の各 `sns: {}` |
+| 役職変更 | `src/lib/members.ts` の `MEMBER_EXTRAS` |
+| 資金額・助成金ステータス | `src/lib/orgData.ts` |
+| 資料・議事録リンク | `src/lib/orgData.ts` の `documents` |
+| LP本文・LINE URL | `src/lib/content.ts` |
+| パスワード変更 | Vercel env `SITE_PASSWORD` |
 
-```
-LP問い合わせボタン → LINE公式アカウント → Webhook → GAS → スプレッドシート
-```
+---
 
-- セットアップ手順: `docs/line-integration/README.md`
-- GASスクリプト: `docs/line-integration/gas-webhook.gs`
-- 友だち追加・メッセージを自動記録、自動返信付き
+## 5. 次セッションでの候補（未着手）
 
-## 差し替えが必要なダミーデータ
+- メンバー相互の連絡先（任意公開）・プロフィール編集をサイトから
+- 子ども食堂の開催実績マップ／写真ギャラリー
+- 寄付フォーム・ふるさと納税CFへの導線強化
+- メール通知（お知らせ投稿時に Slack/LINE 通知）
+- アクセス解析（GA4 / Vercel Analytics）
+- 動物占いの相性を「ペア表」で一覧化
+- メンバー写真を `public/members/` に同梱する方式へ移行（Drive共有が難しい場合）
 
-1. `src/lib/content.ts` → `lineUrl`: LINE公式アカウントのURLに差し替え
-2. `src/lib/content.ts` → `members`: 実際のメンバー名・肩書き・ローマ字に差し替え
-3. `src/components/Hero.tsx` → `VIDEO_URL`: ローカル動画に差し替える場合は `/hero-bg.mp4`
-4. `docs/line-integration/gas-webhook.gs`: LINE_CHANNEL_ACCESS_TOKEN, SPREADSHEET_ID
+---
 
-## 開発メモ
+## 6. 同居プロジェクト（参考）
 
-- `npm run build` でビルド確認（全4ページが静的生成される）
-- Vercelへのpushで自動デプロイ
-- コンテンツ変更は `src/lib/content.ts` を編集するだけ（コンポーネント変更不要）
-- 助成金の追加・削除は `src/lib/grants.ts` を編集
-- 用語の追加・削除は `src/lib/glossary.ts` を編集
+`hirakata-kids/`（別ブランチ群で開発）— 枚方の子育てメディア。
+記事量産パイプライン（Gemini/Groq）あり。`media_start` ブランチが本番。
+このサイト（npo-lp）とは独立。詳細は `hirakata-kids/README.md`。

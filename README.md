@@ -1,87 +1,48 @@
 # npo_hirakata
 
-ひらかた子ども食堂支援NPOの公式サイト＋内部ドキュメント
+ひらかた子ども食堂支援NPO 関連のモノレポ。2つの独立した Next.js プロジェクトが同居。
 
-## リポジトリ構成
+| ディレクトリ | プロジェクト | 本番URL | 本番ブランチ |
+|---|---|---|---|
+| `npo-lp/` | NPO公式LP＋メンバー専用サイト | https://npo-hirakata.vercel.app | **`main`** |
+| `hirakata-kids/` | 枚方の子育てメディア（HIRAKIDS） | hirakata-kids.vercel.app | **`media_start`** |
+| `docs/` | 内部ドキュメント（資金戦略・LINE連携 など） | — | — |
 
-```
-npo_hirakata/
-├── npo-lp/                    # LP サイト（Next.js 16 + Tailwind CSS v4）
-│   ├── src/
-│   │   ├── app/
-│   │   │   ├── page.tsx              # トップページ（LP）
-│   │   │   ├── layout.tsx            # 共通レイアウト
-│   │   │   ├── globals.css           # グローバルCSS + アニメーション
-│   │   │   ├── funding-strategy/     # 資金調達戦略ページ
-│   │   │   ├── grants/               # 助成金・補助金リストページ
-│   │   │   └── glossary/             # 用語集ページ
-│   │   ├── components/
-│   │   │   ├── Header.tsx            # ナビゲーション（ハンバーガーメニュー対応）
-│   │   │   ├── Hero.tsx              # ヒーロー（動画背景）
-│   │   │   ├── Problem.tsx           # 課題セクション
-│   │   │   ├── CityData.tsx          # 枚方市データ
-│   │   │   ├── Solution.tsx          # 解決策
-│   │   │   ├── Benefits.tsx          # メリット・可能性
-│   │   │   ├── BusinessPlans.tsx     # 事業紹介（きくらげ・倉庫）
-│   │   │   ├── Funding.tsx           # 資金調達戦略
-│   │   │   ├── CallToAction.tsx      # CTA（LINE公式リンク）
-│   │   │   ├── MemberCarousel.tsx    # メンバー紹介（自動横スクロール）
-│   │   │   ├── BgIllustrations.tsx   # 背景イラストアニメーション
-│   │   │   ├── FloatingCTA.tsx       # モバイル固定LINEボタン
-│   │   │   ├── Footer.tsx
-│   │   │   └── ui/                   # 共通UIコンポーネント
-│   │   └── lib/
-│   │       ├── content.ts            # LP全テキストデータ + LINE URL + メンバー
-│   │       ├── grants.ts             # 助成金・補助金データ（20件）
-│   │       └── glossary.ts           # 用語集データ（22語）
-│   ├── package.json
-│   └── next.config.ts
-│
-└── docs/                              # 内部ドキュメント
-    ├── funding-strategy-admin.md      # ②行政系資金調達 骨組み（1,000万円計画）
-    └── line-integration/
-        ├── README.md                  # LINE→スプレッドシート連携手順
-        └── gas-webhook.gs            # Google Apps Script（Webhook受信）
-```
+> 各プロジェクトの詳細は `npo-lp/README.md` / `hirakata-kids/README.md` を参照。
+> 引き継ぎ要点は `npo-lp/HANDOFF.md`。
 
-## サイト構成
+---
 
-| ページ | URL | 内容 |
-|--------|-----|------|
-| LP（トップ） | `/` | NPO紹介・勧誘用ランディングページ（8セクション + リンク + メンバー） |
-| 資金調達戦略 | `/funding-strategy` | 2029年末1,000万円達成のロードマップ |
-| 助成金リスト | `/grants` | 枚方市で申請可能な20件の制度一覧 |
-| 用語集 | `/glossary` | NPO・助成金・子ども食堂の専門用語22語 |
+## npo-lp（NPO公式サイト）
 
-## デプロイ
+緑基調の LP ＋ パスワード保護のメンバー専用エリア。
 
-- **Vercel**: `npo-hirakata.vercel.app`
-- **Root Directory**: `npo-lp`
-- **Framework Preset**: Next.js
-- **ブランチ**: `claude/npo-pdf-to-markdown-HDpUL` → push で自動デプロイ
-
-## ローカル開発
+- 公開: `/`, `/grants`, `/funding-strategy`, `/glossary`
+- メンバー専用（`/members` ハブ）: 一覧・個人診断（動物占い）・カレンダー・お知らせ・タスク・資料・ダッシュボード
+- 認証: `SITE_PASSWORD`（middleware）。データ保存: Upstash Redis（任意）
 
 ```bash
 cd npo-lp
 npm install
-npm run dev    # localhost:3000
-npm run build  # ビルド確認
+npm run dev     # localhost:3000
+vercel deploy --prod   # 本番反映（GitHub連携が切れているため手動）
 ```
 
-## 差し替えが必要なダミーデータ
+詳細・手動作業（写真のDrive共有、Upstash設定、デプロイ手順）は `npo-lp/HANDOFF.md`。
 
-| 項目 | ファイル | 現状 |
-|------|---------|------|
-| LINE公式URL | `src/lib/content.ts` → `lineUrl` | `https://line.me/R/ti/p/@000dummy` |
-| メンバー一覧 | `src/lib/content.ts` → `members` | ダミー8名 |
-| Hero動画 | `src/components/Hero.tsx` → `VIDEO_URL` | Pexels CDN URL |
-| GASトークン | `docs/line-integration/gas-webhook.gs` | `YOUR_CHANNEL_ACCESS_TOKEN_HERE` |
-| スプレッドシートID | `docs/line-integration/gas-webhook.gs` | `YOUR_SPREADSHEET_ID_HERE` |
+---
 
-## 技術スタック
+## hirakata-kids（子育てメディア）
 
-- Next.js 16.2.2（Turbopack）
-- React 19.2.4
-- Tailwind CSS v4
-- TypeScript 5.x
+枚方市の子育て世帯向け地域情報メディア。記事は MDX、生成パイプライン（Gemini/Groq）あり。
+本番ブランチは `media_start`。詳細は `hirakata-kids/README.md`。
+
+---
+
+## ブランチ運用
+
+- `main` … **npo-lp の本番**
+- `media_start` … **hirakata-kids の本番**
+- `claude/*` … 作業ブランチ群
+
+両プロジェクトは独立しており、`main` への push は npo-lp のみに影響。
