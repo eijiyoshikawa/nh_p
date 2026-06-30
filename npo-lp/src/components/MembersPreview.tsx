@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { BASE_ANIMALS, GROUP_LABELS, members } from "@/lib/members";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { MemberAvatar } from "@/components/members/MemberAvatar";
 
 export default function MembersPreview() {
   return (
@@ -30,13 +31,23 @@ export default function MembersPreview() {
                   href={`/members/${m.slug}/`}
                   className="group flex h-full items-center gap-3 rounded-2xl border-2 border-green-100 bg-white p-4 transition hover:-translate-y-0.5 hover:border-green-300 hover:shadow-md"
                 >
-                  <span aria-hidden className="text-3xl">
-                    {base.emoji}
-                  </span>
+                  <MemberAvatar
+                    photoId={m.photoId}
+                    emoji={base.emoji}
+                    name={m.name}
+                    size="sm"
+                  />
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-bold text-text-primary group-hover:text-accent-orange">
-                      {m.name}
-                    </p>
+                    <div className="flex items-center gap-1.5">
+                      <p className="truncate text-sm font-bold text-text-primary group-hover:text-accent-orange">
+                        {m.name}
+                      </p>
+                      {m.role === "理事長" && (
+                        <span className="shrink-0 rounded-full bg-accent-orange px-1.5 py-0.5 text-[9px] font-bold text-white">
+                          {m.role}
+                        </span>
+                      )}
+                    </div>
                     <p className="truncate text-xs text-text-secondary">
                       {m.character.fullName}
                     </p>

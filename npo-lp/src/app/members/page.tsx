@@ -4,6 +4,9 @@ import { BASE_ANIMALS, GROUP_LABELS, members } from "@/lib/members";
 import { GroupChart } from "@/components/members/GroupChart";
 import { AnimalChart } from "@/components/members/AnimalChart";
 import { AxisChart } from "@/components/members/AxisChart";
+import { MemberAvatar } from "@/components/members/MemberAvatar";
+import { MembersHubNav } from "@/components/members/MembersHubNav";
+import { LogoutButton } from "@/components/members/LogoutButton";
 
 export const metadata: Metadata = {
   title: "メンバー — ひらかた子ども食堂支援NPO",
@@ -22,24 +25,34 @@ export default function MembersPage() {
           >
             ← トップへ戻る
           </Link>
-          <p className="text-xs font-semibold tracking-widest text-text-secondary">
-            MEMBERS ONLY
-          </p>
+          <div className="flex items-center gap-3">
+            <p className="hidden text-xs font-semibold tracking-widest text-text-secondary sm:block">
+              MEMBERS ONLY
+            </p>
+            <LogoutButton />
+          </div>
         </div>
       </header>
 
       <main className="mx-auto max-w-6xl px-4 py-12">
         <p className="text-xs font-semibold tracking-widest text-accent-orange">
-          MEMBERS / 個性診断
+          MEMBERS HUB
         </p>
         <h1 className="mt-2 text-3xl font-bold text-text-primary md:text-4xl">
-          メンバー一覧と組織傾向
+          メンバー専用ページ
         </h1>
         <p className="mt-3 max-w-2xl text-sm text-text-secondary">
-          noa-group の動物占い（個性心理學）で各メンバーの個性を、Google Form による自己申告で意思決定軸（MOON/EARTH/SUN）をまとめています。組織全体の傾向は本ページ上部のチャートをご覧ください。
+          活動の運営に必要な情報をまとめたメンバー限定エリアです。下のメニューから各機能にアクセスできます。
         </p>
 
-        <section className="mt-10 grid gap-5 md:grid-cols-2">
+        <MembersHubNav className="mt-8" />
+
+        <h2 className="mt-16 text-2xl font-bold text-text-primary">組織の傾向</h2>
+        <p className="mt-2 max-w-2xl text-sm text-text-secondary">
+          noa-group の動物占い（個性心理學）で各メンバーの個性を、Google Form による自己申告で意思決定軸（MOON/EARTH/SUN）をまとめています。
+        </p>
+
+        <section className="mt-6 grid gap-5 md:grid-cols-2">
           <GroupChart />
           <AnimalChart />
         </section>
@@ -61,19 +74,29 @@ export default function MembersPage() {
                     className="group flex h-full flex-col rounded-2xl border border-green-100 bg-white p-5 transition hover:-translate-y-0.5 hover:border-green-300 hover:shadow-md"
                   >
                     <div className="flex items-center gap-3">
-                      <span aria-hidden className="text-4xl">
-                        {base.emoji}
-                      </span>
-                      <div>
-                        <p className="text-base font-bold text-text-primary group-hover:text-accent-orange">
-                          {m.name}
-                        </p>
+                      <MemberAvatar
+                        photoId={m.photoId}
+                        emoji={base.emoji}
+                        name={m.name}
+                        size="sm"
+                      />
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-1.5">
+                          <p className="truncate text-base font-bold text-text-primary group-hover:text-accent-orange">
+                            {m.name}
+                          </p>
+                          {m.role === "理事長" && (
+                            <span className="shrink-0 rounded-full bg-accent-orange px-1.5 py-0.5 text-[10px] font-bold text-white">
+                              {m.role}
+                            </span>
+                          )}
+                        </div>
                         <p className="text-xs text-text-secondary">{m.furigana}</p>
                       </div>
                     </div>
 
                     <p className="mt-3 text-sm font-bold text-text-primary">
-                      {m.character.fullName}
+                      {base.emoji} {m.character.fullName}
                     </p>
 
                     <div className="mt-3 flex flex-wrap items-center gap-1.5 text-xs">
@@ -82,6 +105,11 @@ export default function MembersPage() {
                       >
                         自己申告: {groupInfo.label}
                       </span>
+                      {m.role !== "理事長" && (
+                        <span className="inline-flex items-center rounded-full bg-stone-100 px-2 py-0.5 text-text-secondary">
+                          {m.role}
+                        </span>
+                      )}
                     </div>
 
                     <p className="mt-3 text-xs leading-relaxed text-text-secondary">

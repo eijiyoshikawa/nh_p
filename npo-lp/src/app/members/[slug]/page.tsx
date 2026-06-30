@@ -9,6 +9,9 @@ import {
   groupAgreement,
   members,
 } from "@/lib/members";
+import { MemberAvatar } from "@/components/members/MemberAvatar";
+import { MemberSnsLinks } from "@/components/members/MemberSnsLinks";
+import { CompatibilityCard } from "@/components/members/CompatibilityCard";
 
 type Params = { slug: string };
 
@@ -65,13 +68,27 @@ export default async function MemberPage({
         {/* Hero block */}
         <section className="rounded-2xl border border-green-100 bg-white p-6 shadow-sm md:p-8">
           <div className="flex flex-col gap-5 md:flex-row md:items-center">
-            <div className="flex items-center justify-center md:h-24 md:w-24 md:shrink-0">
-              <span aria-hidden className="text-7xl md:text-8xl">
-                {base.emoji}
-              </span>
+            <div className="flex items-center justify-center md:shrink-0">
+              <MemberAvatar
+                photoId={m.photoId}
+                emoji={base.emoji}
+                name={m.name}
+                size="xl"
+              />
             </div>
             <div className="flex-1">
-              <p className="text-xs text-text-secondary">{m.furigana}</p>
+              <div className="flex flex-wrap items-center gap-2">
+                <p className="text-xs text-text-secondary">{m.furigana}</p>
+                <span
+                  className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${
+                    m.role === "理事長"
+                      ? "bg-accent-orange text-white"
+                      : "bg-stone-100 text-text-secondary"
+                  }`}
+                >
+                  {m.role}
+                </span>
+              </div>
               <h1 className="mt-1 text-2xl font-bold text-text-primary md:text-3xl">
                 {m.name}
               </h1>
@@ -85,9 +102,10 @@ export default async function MemberPage({
                   {calcGroup} 軸（動物占い）
                 </span>
                 <span className="inline-flex items-center rounded-full bg-green-50 px-3 py-1 font-semibold text-green-700">
-                  {m.character.fullName}
+                  {base.emoji} {m.character.fullName}
                 </span>
               </div>
+              <MemberSnsLinks sns={m.sns} className="mt-4" />
             </div>
           </div>
           <p className="mt-6 text-xs text-text-secondary">
@@ -183,6 +201,9 @@ export default async function MemberPage({
             </p>
           )}
         </section>
+
+        {/* Compatibility */}
+        <CompatibilityCard member={m} />
 
         {/* Profile from form */}
         <section className="mt-6 grid gap-4 md:grid-cols-2">

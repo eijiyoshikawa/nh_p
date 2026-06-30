@@ -12,6 +12,14 @@ import { BASE_ANIMALS, GROUP_INFO } from "./animalFortune";
 // 自己申告（selfReportedGroup）と動物占いのグループが食い違うことが
 // 一定数あるが、これは「本人がどう振る舞いたいか／実際の素質はどうか」
 // の差。両方を比較できるよう表示する。
+export type MemberSns = {
+  facebook?: string;
+  instagram?: string;
+  x?: string; // X (旧Twitter)
+  line?: string;
+  website?: string;
+};
+
 export type Member = {
   slug: string;
   name: string;
@@ -24,9 +32,85 @@ export type Member = {
   strengths: string;
   selfReportedGroup: AnimalGroup;
   character: AnimalCharacter;
+  // 役職（理事長 / 未定 など）
+  role: string;
+  // Google Drive のファイルID（プロフィール写真）。共有設定が必要。
+  photoId?: string;
+  // SNSリンク（入力があれば表示）
+  sns?: MemberSns;
 };
 
-export const members: Member[] = [
+// 役職・写真ID・SNS をまとめて付与する（メンバー定義を1箇所で管理）。
+// 写真は Google フォーム回答フォルダ内の Drive ファイルID。
+// ※表示には Drive 側で「リンクを知っている全員が閲覧可」の共有設定が必要。
+const MEMBER_EXTRAS: Record<
+  string,
+  { role: string; photoId?: string; sns?: MemberSns }
+> = {
+  "taketani-takayuki": {
+    role: "理事長",
+    photoId: "1vt9nGk2-YlbgYX8SmxKjocUcT0u5Rvef",
+    sns: {},
+  },
+  "gohara-hiromi": {
+    role: "未定",
+    photoId: "1FpWLZNIiuq1fkwCUmtneZ7rzIdO8v3z-",
+    sns: {},
+  },
+  "kitada-megumi": {
+    role: "未定",
+    photoId: "18wmYgGonTu_993LKmHFJGBrEwHYJfcY8",
+    sns: {},
+  },
+  "tanaka-shintaro": {
+    role: "未定",
+    photoId: "1qtFwwaafLncRx-vtVVLM4DSQBJwu5nY7",
+    sns: {},
+  },
+  "kitano-shingo": {
+    role: "未定",
+    photoId: "1r0OYTDco6eiX4OP00w78Ti6Ziyue_ELM",
+    sns: {},
+  },
+  "hasegawa-hiroaki": {
+    role: "未定",
+    photoId: "1SardwUfTUMeo6Asu5RO1Ws_PKgsCMquE",
+    sns: {},
+  },
+  "takushima-hiroaki": {
+    role: "未定",
+    photoId: "1a9zMC79F5PH2sk8LwpwbWfaTCTfFIp8W",
+    sns: {},
+  },
+  "hasegawa-naomi": {
+    role: "未定",
+    photoId: "1WpKLThg2FSFY-3Y4xWTBjVU1i8Gd-OrE",
+    sns: {},
+  },
+  "miki-honami": {
+    role: "未定",
+    photoId: "1NUmMrJF66bP-iun_b52Cad5NTE7A9Lnr",
+    sns: {},
+  },
+  "yoshikawa-eiji": {
+    role: "未定",
+    photoId: "1AdA1Uegh6YzDGwFtgO7XW4UO--mX76c9",
+    sns: {},
+  },
+  "kida-kohei": {
+    role: "未定",
+    photoId: "1VCromLU23Ks988nTUVCvdlpmd0t2gpkm",
+    sns: {},
+  },
+};
+
+// Drive ファイルID → 表示用サムネイルURL（共有設定済み前提）
+export function photoUrl(photoId: string | undefined, size = 400): string | null {
+  if (!photoId) return null;
+  return `https://drive.google.com/thumbnail?id=${photoId}&sz=w${size}`;
+}
+
+const RAW_MEMBERS: Omit<Member, "role" | "photoId" | "sns">[] = [
   {
     slug: "taketani-takayuki",
     name: "竹谷 孝之",
@@ -260,6 +344,11 @@ export const members: Member[] = [
   },
 ];
 
+export const members: Member[] = RAW_MEMBERS.map((m) => {
+  const extra = MEMBER_EXTRAS[m.slug] ?? { role: "未定" };
+  return { ...m, ...extra };
+});
+
 export function getMember(slug: string): Member | undefined {
   return members.find((m) => m.slug === slug);
 }
@@ -324,6 +413,87 @@ export function axisDistribution() {
     thinkingPattern[m.character.thinkingPattern] += 1;
   }
   return { characterVector, behaviorPattern, thinkingPattern };
+}
+
+// ===== 相性診断 =====
+// 動物占いの3軸＋グループから、2人の関係性を評価する。
+// 「補完」＝軸が異なり、お互いの弱点を補える組み合わせ。
+// 「共鳴」＝軸が近く、価値観が合いやすい組み合わせ。
+
+export type Relation = "complement" | "resonance" | "neutral";
+
+export type Compatibility = {
+  member: Member;
+  relation: Relation;
+  score: number;
+  reasons: string[];
+};
+
+function relationBetween(a: Member, b: Member): Compatibility {
+  const reasons: string[] = [];
+  let complementPoints = 0;
+  let resonancePoints = 0;
+
+  // グループ（MOON/EARTH/SUN）
+  const ga = calculatedGroupOf(a);
+  const gb = calculatedGroupOf(b);
+  if (ga === gb) {
+    resonancePoints += 2;
+    reasons.push(`同じ ${ga} グループで価値観が近い`);
+  } else {
+    complementPoints += 1;
+    reasons.push(`${ga} と ${gb} で異なる視点を持ち寄れる`);
+  }
+
+  // 行動パターン
+  if (a.character.behaviorPattern !== b.character.behaviorPattern) {
+    complementPoints += 2;
+    reasons.push("目標指向と状況対応で行動を補完しあえる");
+  } else {
+    resonancePoints += 1;
+  }
+
+  // 思考パターン
+  if (a.character.thinkingPattern !== b.character.thinkingPattern) {
+    complementPoints += 2;
+    reasons.push("左脳・右脳の違いでアイデアと実務が噛み合う");
+  } else {
+    resonancePoints += 1;
+  }
+
+  // 心理ベクトル
+  if (a.character.characterVector === b.character.characterVector) {
+    resonancePoints += 1;
+    reasons.push("時間感覚（未来/過去）が揃い話が早い");
+  }
+
+  const score = complementPoints + resonancePoints;
+  const relation: Relation =
+    complementPoints >= resonancePoints + 2
+      ? "complement"
+      : resonancePoints >= complementPoints + 1
+      ? "resonance"
+      : "neutral";
+
+  return { member: b, relation, score, reasons: reasons.slice(0, 3) };
+}
+
+// あるメンバーから見た、補完しあえる相手・共鳴する相手をそれぞれ返す
+export function compatibilityFor(member: Member): {
+  complements: Compatibility[];
+  resonances: Compatibility[];
+} {
+  const others = members.filter((m) => m.slug !== member.slug);
+  const scored = others.map((o) => relationBetween(member, o));
+  const complements = scored
+    .filter((c) => c.relation === "complement")
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3);
+  const resonances = scored
+    .filter((c) => c.relation === "resonance")
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3);
+  return { complements, resonances };
 }
 
 export { BASE_ANIMALS, GROUP_INFO };
