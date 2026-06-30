@@ -29,6 +29,8 @@ export function MemberAvatar({
       ? "h-20 w-20 text-5xl"
       : "h-28 w-28 text-7xl";
 
+  const radius = size === "xl" ? "rounded-3xl" : "rounded-2xl";
+
   if (url && !errored) {
     return (
       // eslint-disable-next-line @next/next/no-img-element
@@ -36,7 +38,7 @@ export function MemberAvatar({
         src={url}
         alt={`${name} のプロフィール写真`}
         onError={() => setErrored(true)}
-        className={`${box} shrink-0 rounded-full border border-green-100 object-cover`}
+        className={`${box} ${radius} shrink-0 border border-green-100 object-cover`}
         loading="lazy"
       />
     );
@@ -45,7 +47,7 @@ export function MemberAvatar({
   return (
     <span
       aria-hidden
-      className={`${box} flex shrink-0 items-center justify-center rounded-full bg-green-50`}
+      className={`${box} ${radius} flex shrink-0 items-center justify-center bg-green-50`}
     >
       {emoji}
     </span>
