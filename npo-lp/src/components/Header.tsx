@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { nav } from "@/lib/content";
 
 export default function Header() {
@@ -30,12 +31,12 @@ export default function Header() {
           >
             助成金リスト
           </a>
-          <a
+          <Link
             href="/members"
             className="whitespace-nowrap transition-colors hover:text-accent-orange"
           >
             メンバー
-          </a>
+          </Link>
           <a
             href="/funding-strategy"
             className="whitespace-nowrap rounded-full bg-accent-orange px-3 py-1 text-white transition-colors hover:bg-accent-orange-dark"
@@ -81,13 +82,13 @@ export default function Header() {
             >
               助成金リスト
             </a>
-            <a
+            <Link
               href="/members"
               className="text-sm font-medium text-accent-orange transition-colors hover:text-accent-orange-dark"
               onClick={() => setOpen(false)}
             >
               メンバー
-            </a>
+            </Link>
             <a
               href="/funding-strategy"
               className="text-sm font-medium text-accent-orange transition-colors hover:text-accent-orange-dark"

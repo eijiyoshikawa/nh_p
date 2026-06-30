@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import "./globals.css";
 
@@ -13,6 +13,12 @@ export const metadata: Metadata = {
     locale: "ja_JP",
     type: "website",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#16A34A",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
