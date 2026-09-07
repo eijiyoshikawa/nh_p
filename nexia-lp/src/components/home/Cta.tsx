@@ -1,5 +1,6 @@
 import Button from "@/components/ui/Button";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import Icon from "@/components/Icon";
 import { cta } from "@/lib/site";
 
 export default function Cta() {
@@ -21,7 +22,8 @@ export default function Cta() {
                 {cta.primary.label}
               </Button>
               <Button href={cta.line.href} size="lg" variant="outline" external>
-                💬 {cta.line.label}
+                <Icon name="message" size={18} />
+                {cta.line.label}
               </Button>
             </div>
           </div>

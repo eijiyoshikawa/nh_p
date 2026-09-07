@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { contactTypes, org } from "@/lib/site";
+import Icon from "@/components/Icon";
 
 // Posts to NEXT_PUBLIC_FORM_ENDPOINT (Formspree / Getform など) が設定されていれば
 // fetch で送信。未設定の場合は mailto にフォールバックしてメーラーを開く。
@@ -59,7 +60,9 @@ export default function ContactForm({ defaultType = "general" }: { defaultType?:
   if (status === "sent") {
     return (
       <div className="rounded-3xl border-2 border-mint/50 bg-mint-soft p-8 text-center">
-        <p className="text-2xl">🎉</p>
+        <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-white text-brand">
+          <Icon name="check" size={28} strokeWidth={2.2} />
+        </span>
         <p className="mt-2 font-extrabold text-ink">送信ありがとうございます</p>
         <p className="mt-2 text-sm text-ink-2">
           {ENDPOINT

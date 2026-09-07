@@ -1,13 +1,7 @@
 import Link from "next/link";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { IconBadge } from "@/components/Icon";
 import { audiences } from "@/lib/site";
-
-const toneBg = {
-  sun: "bg-sun-soft",
-  coral: "bg-coral-soft",
-  brand: "bg-brand-soft",
-  mint: "bg-mint-soft",
-};
 
 export default function AudienceNav() {
   return (
@@ -26,11 +20,7 @@ export default function AudienceNav() {
                 href={`/join#${a.id}`}
                 className="group flex h-full flex-col rounded-3xl border-2 border-ink/5 bg-white p-5 transition hover:-translate-y-1 hover:border-brand/30 hover:shadow-lg"
               >
-                <span
-                  className={`flex h-12 w-12 items-center justify-center rounded-2xl text-2xl ${toneBg[a.tone]}`}
-                >
-                  {a.emoji}
-                </span>
+                <IconBadge name={a.icon} tone={a.tone} />
                 <span className="mt-4 text-base font-extrabold text-ink">{a.label}</span>
                 <span className="mt-1 text-xs font-bold text-brand">{a.lead}</span>
                 <span className="mt-2 flex-1 text-xs leading-relaxed text-ink-2">{a.body}</span>

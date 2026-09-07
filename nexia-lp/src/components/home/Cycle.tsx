@@ -1,4 +1,5 @@
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import Icon from "@/components/Icon";
 import { cycle } from "@/lib/site";
 
 export default function Cycle() {
@@ -25,7 +26,9 @@ export default function Cycle() {
               <li className="relative flex h-full flex-col rounded-3xl bg-white/10 p-6 backdrop-blur-sm ring-1 ring-white/15">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold tracking-widest text-sun">STEP {s.n}</span>
-                  <span className="text-3xl">{s.emoji}</span>
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/15 text-sun">
+                    <Icon name={s.icon} size={22} />
+                  </span>
                 </div>
                 <p className="mt-3 text-2xl font-extrabold">{s.label}</p>
                 <p className="mt-2 text-sm leading-relaxed text-white/80">{s.body}</p>

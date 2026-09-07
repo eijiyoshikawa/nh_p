@@ -1,21 +1,22 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-paper: #FBFAF6;
-  --color-paper-2: #F3F1EA;
+  --color-paper: #FCFBF7;
+  --color-paper-2: #F3F1E8;
   --color-ink: #1B1F2A;
   --color-ink-2: #5B6170;
   --color-ink-3: #8A90A0;
-  --color-brand: #2457C5;
-  --color-brand-dark: #1B4399;
-  --color-brand-soft: #E7EEFC;
-  --color-sun: #FFB703;
-  --color-sun-dark: #E0A000;
-  --color-sun-soft: #FFF3CC;
-  --color-coral: #FB6F5E;
-  --color-coral-soft: #FFE3DE;
-  --color-mint: #3ECFA0;
-  --color-mint-soft: #DDF7EE;
+  /* ロゴ準拠: グリーン #4E6B33 / ゴールド #B69B47 */
+  --color-brand: #4E6B33;
+  --color-brand-dark: #3B5226;
+  --color-brand-soft: #EDF2E4;
+  --color-sun: #D9B85A;
+  --color-sun-dark: #B69B47;
+  --color-sun-soft: #F6EFD8;
+  --color-coral: #D4704F;
+  --color-coral-soft: #F9E5DC;
+  --color-mint: #7FA95A;
+  --color-mint-soft: #E8F1DC;
   --font-sans: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", "Yu Gothic", "Meiryo", system-ui, sans-serif;
 }
 

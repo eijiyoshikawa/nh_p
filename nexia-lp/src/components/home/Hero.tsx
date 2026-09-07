@@ -1,4 +1,6 @@
 import Button from "@/components/ui/Button";
+import { LogoMark } from "@/components/Logo";
+import Icon from "@/components/Icon";
 import { hero, org } from "@/lib/site";
 
 function Shapes() {
@@ -14,10 +16,10 @@ function Shapes() {
         fill="none"
       >
         <circle cx="50" cy="50" r="48" stroke="currentColor" strokeWidth="0.6" strokeDasharray="1.5 3" />
-        <circle cx="50" cy="2" r="2.5" fill="#FFB703" />
-        <circle cx="98" cy="50" r="2" fill="#2457C5" />
-        <circle cx="50" cy="98" r="2.5" fill="#3ECFA0" />
-        <circle cx="2" cy="50" r="2" fill="#FB6F5E" />
+        <circle cx="50" cy="2" r="2.5" fill="#B69B47" />
+        <circle cx="98" cy="50" r="2" fill="#4E6B33" />
+        <circle cx="50" cy="98" r="2.5" fill="#7FA95A" />
+        <circle cx="2" cy="50" r="2" fill="#D4704F" />
       </svg>
       <div className="bg-dots absolute inset-0 opacity-60" />
     </div>
@@ -28,7 +30,7 @@ export default function Hero() {
   return (
     <section className="relative flex min-h-[92vh] items-center overflow-hidden px-4 pb-16 pt-28 sm:px-6 md:pt-32">
       <Shapes />
-      <div className="mx-auto w-full max-w-6xl">
+      <div className="mx-auto grid w-full max-w-6xl items-center gap-10 lg:grid-cols-[1.4fr_1fr]">
         <div className="max-w-3xl">
           <span className="animate-fade-in-up inline-flex items-center gap-2 rounded-full border border-brand/20 bg-white/80 px-4 py-1.5 text-xs font-bold text-brand shadow-sm backdrop-blur">
             <span className="h-2 w-2 rounded-full bg-sun" />
@@ -46,7 +48,7 @@ export default function Hero() {
           <div className="animate-fade-in-up delay-300 mt-10 flex flex-col gap-3 sm:flex-row">
             <Button href={hero.primaryCta.href} size="lg">
               {hero.primaryCta.label}
-              <span aria-hidden>→</span>
+              <Icon name="arrow" size={18} />
             </Button>
             <Button href={hero.secondaryCta.href} size="lg" variant="outline">
               {hero.secondaryCta.label}
@@ -56,6 +58,11 @@ export default function Hero() {
           <p className="animate-fade-in-up delay-400 mt-8 text-xs text-ink-3">
             {org.name} ／ {org.operator}
           </p>
+        </div>
+        <div className="animate-fade-in-up delay-300 hidden justify-center lg:flex">
+          <div className="animate-float rounded-full bg-white/70 p-6 shadow-[0_30px_80px_-30px_rgba(78,107,51,0.35)] backdrop-blur">
+            <LogoMark size={300} />
+          </div>
         </div>
       </div>
 

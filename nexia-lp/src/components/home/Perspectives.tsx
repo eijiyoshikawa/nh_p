@@ -1,12 +1,13 @@
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import SectionHeading from "@/components/ui/SectionHeading";
+import { IconBadge } from "@/components/Icon";
 import { perspectives } from "@/lib/site";
 
 const tones = {
-  sun: { bg: "bg-sun-soft", text: "text-sun-dark", ring: "border-sun" },
-  coral: { bg: "bg-coral-soft", text: "text-coral", ring: "border-coral" },
-  brand: { bg: "bg-brand-soft", text: "text-brand", ring: "border-brand" },
-  mint: { bg: "bg-mint-soft", text: "text-mint", ring: "border-mint" },
+  sun: { text: "text-sun-dark", ring: "border-sun" },
+  coral: { text: "text-coral", ring: "border-coral" },
+  brand: { text: "text-brand", ring: "border-brand" },
+  mint: { text: "text-mint", ring: "border-mint" },
 };
 
 export default function Perspectives() {
@@ -31,9 +32,7 @@ export default function Perspectives() {
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <span className={`flex h-12 w-12 items-center justify-center rounded-2xl text-2xl ${t.bg}`}>
-                      {p.emoji}
-                    </span>
+                    <IconBadge name={p.icon} tone={p.tone} />
                     <div className="leading-tight">
                       <p className="text-xs font-bold text-ink-3">{p.who}</p>
                       <p className={`text-2xl font-extrabold ${t.text}`}>{p.want}</p>

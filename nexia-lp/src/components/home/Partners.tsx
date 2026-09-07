@@ -1,5 +1,6 @@
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import SectionHeading from "@/components/ui/SectionHeading";
+import { IconBadge } from "@/components/Icon";
 import { partners } from "@/lib/site";
 
 export default function Partners() {
@@ -13,9 +14,7 @@ export default function Partners() {
           {partners.categories.map((c, i) => (
             <ScrollReveal key={c.label} delay={i * 60}>
               <div className="flex items-center gap-4 rounded-2xl border-2 border-ink/5 bg-white p-5">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-paper-2 text-2xl">
-                  {c.emoji}
-                </span>
+                <IconBadge name={c.icon} tone="brand" />
                 <div>
                   <p className="font-extrabold text-ink">{c.label}</p>
                   <p className="text-xs text-ink-2">{c.body}</p>

@@ -47,6 +47,7 @@ const jsonLd = {
   email: org.email,
   areaServed: "大阪府枚方市",
   foundingDate: "2026",
+  founder: { "@type": "Person", name: org.representative, jobTitle: org.representativeTitle },
   description,
 };
 

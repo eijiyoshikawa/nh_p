@@ -16,7 +16,7 @@ export default function AboutPage() {
     ["団体名", org.name],
     ["英字表記", org.en],
     ["設立", org.founded],
-    ["代表者", org.representative],
+    ["代表者", `${org.representativeTitle}　${org.representative}（${org.representativeEn}）`],
     ["所在地", org.address],
     ["活動地域", org.area],
     ["連絡先", org.email],
@@ -46,9 +46,10 @@ export default function AboutPage() {
           </div>
           <ScrollReveal delay={300}>
             <div className="mt-8 flex items-center justify-center gap-4 rounded-3xl bg-paper-2 p-6">
-              <LogoMark size={56} />
+              <LogoMark size={80} />
               <p className="text-sm leading-relaxed text-ink-2">
-                ロゴは3つの円＝<span className="font-bold text-ink">子ども・地域・未来</span>が重なる場所を表しています。
+                ロゴは、<span className="font-bold text-ink">地域の手</span>が<span className="font-bold text-ink">子どもという種</span>を包み、
+                <span className="font-bold text-ink">未来の芽</span>が伸びていく姿。ゴールドの輪は、つながりの循環を表しています。
               </p>
             </div>
           </ScrollReveal>

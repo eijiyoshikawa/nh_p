@@ -1,5 +1,6 @@
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import SectionHeading from "@/components/ui/SectionHeading";
+import { IconBadge } from "@/components/Icon";
 import { model } from "@/lib/site";
 
 export default function Model() {
@@ -34,7 +35,7 @@ export default function Model() {
           {model.pillars.map((p, i) => (
             <ScrollReveal key={p.label} delay={150 + i * 100}>
               <div className="flex h-full items-start gap-4 rounded-3xl border-2 border-ink/5 bg-white p-6">
-                <span className="text-4xl">{p.emoji}</span>
+                <IconBadge name={p.icon} tone={i === 0 ? "sun" : i === 1 ? "coral" : "brand"} />
                 <div>
                   <p className="text-lg font-extrabold text-ink">{p.label}</p>
                   <p className="mt-1 text-sm leading-relaxed text-ink-2">{p.body}</p>

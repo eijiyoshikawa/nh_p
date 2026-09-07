@@ -1,5 +1,6 @@
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import SectionHeading from "@/components/ui/SectionHeading";
+import Icon from "@/components/Icon";
 import { activities } from "@/lib/site";
 
 const tones = {
@@ -29,7 +30,7 @@ export default function Activities() {
                   <ul className={`space-y-2 rounded-2xl p-5 ${t.bg}`}>
                     {a.points.map((p) => (
                       <li key={p} className="flex gap-2 text-sm font-medium text-ink">
-                        <span className={t.check}>✓</span>
+                        <span className={`mt-0.5 ${t.check}`}><Icon name="check" size={16} strokeWidth={2.4} /></span>
                         {p}
                       </li>
                     ))}

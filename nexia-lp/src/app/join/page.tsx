@@ -4,6 +4,7 @@ import PageHeader from "@/components/ui/PageHeader";
 import Button from "@/components/ui/Button";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import Cta from "@/components/home/Cta";
+import Icon, { IconBadge } from "@/components/Icon";
 import { joinDetails } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -36,7 +37,10 @@ export default function JoinPage() {
               href={`#${j.id}`}
               className="whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-bold text-ink-2 hover:bg-brand-soft hover:text-brand"
             >
-              {j.emoji} {j.title.replace("の方へ", "")}
+              <span className="inline-flex items-center gap-1.5">
+                <Icon name={j.icon} size={14} />
+                {j.title.replace("の方へ", "")}
+              </span>
             </Link>
           ))}
         </div>
@@ -50,7 +54,7 @@ export default function JoinPage() {
               className={`grid gap-8 rounded-[2rem] border-2 p-7 md:grid-cols-[1.2fr_1fr] md:p-10 ${tones[j.tone]}`}
             >
               <div>
-                <span className="text-4xl">{j.emoji}</span>
+                <IconBadge name={j.icon} tone={j.tone} size="lg" className="bg-white" />
                 <h2 className="mt-3 text-2xl font-extrabold text-ink sm:text-3xl">{j.title}</h2>
                 <p className="mt-2 text-base font-bold text-ink">{j.lead}</p>
                 <p className="mt-4 text-sm leading-relaxed text-ink-2">{j.body}</p>

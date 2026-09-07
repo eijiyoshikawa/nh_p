@@ -1,3 +1,5 @@
+import type { IconName } from "@/components/Icon";
+
 // =============================================================================
 // ミライラボネクシア 公式サイト — 全テキスト・データ
 // 文言の修正はこのファイルだけで完結します。
@@ -9,11 +11,14 @@ export const org = {
   name: "NPO法人ミライラボネクシア",
   shortName: "ミライラボネクシア",
   en: "MIRAI LAB NEXIA",
+  descriptor: "子ども食堂支援",
   status: "2026年秋 設立予定",
   area: "大阪府枚方市",
-  representative: "（代表者名を入力）",
-  address: "大阪府枚方市（所在地を入力）",
-  email: "info@example.com", // ← 実際の連絡先に変更
+  representativeTitle: "理事長",
+  representative: "竹谷 孝之",
+  representativeEn: "Taketani Takayuki",
+  address: "大阪府枚方市（詳細所在地は設立後に掲載）",
+  email: "mirailabnexia@gmail.com",
   lineUrl: "https://lin.ee/QgUpPrz",
   founded: "2026年秋（予定）",
   operator: "設立準備：三慧経営顧問株式会社",
@@ -52,7 +57,7 @@ export const hero = {
 export const audiences = [
   {
     id: "kids",
-    emoji: "🧒",
+    icon: "child" as IconName,
     label: "子ども・保護者",
     lead: "安心して行ける、行きたくなる場所",
     body: "食べるだけじゃない。遊んで、つくって、挑戦できる放課後を。",
@@ -61,7 +66,7 @@ export const audiences = [
   },
   {
     id: "shokudo",
-    emoji: "🍚",
+    icon: "bowl" as IconName,
     label: "子ども食堂の運営者",
     lead: "いまの活動を、もっと続けやすく",
     body: "食材・資金・人手・情報。ひとりで抱えず、枚方全体でシェアする仕組みへ。",
@@ -70,7 +75,7 @@ export const audiences = [
   },
   {
     id: "restaurant",
-    emoji: "🍳",
+    icon: "pan" as IconName,
     label: "飲食店・企業",
     lead: "子ども食堂を「始める」「参加する」",
     body: "立ち上げ伴走から職業体験の受け入れまで。本業を活かした関わり方があります。",
@@ -79,7 +84,7 @@ export const audiences = [
   },
   {
     id: "gov",
-    emoji: "🏛️",
+    icon: "building" as IconName,
     label: "行政・各種団体",
     lead: "地域の子ども支援を、一緒に設計する",
     body: "既存施策や団体と競合しません。橋渡し役として連携します。",
@@ -88,7 +93,7 @@ export const audiences = [
   },
   {
     id: "supporter",
-    emoji: "🤝",
+    icon: "handshake" as IconName,
     label: "個人サポーター",
     lead: "寄付は、子どもの未来への投資",
     body: "お金・時間・スキル。関われる形はいろいろあります。",
@@ -113,19 +118,19 @@ export const problem = {
   lead: "子ども食堂が抱える「続けにくさ」には共通の構造があります。",
   issues: [
     {
-      icon: "🙋",
+      icon: "users" as IconName,
       title: "担い手が足りない",
       description:
         "運営は少数のボランティアに集中しがち。代替わりや世代交代の仕組みがなく、燃え尽きてしまうことも。",
     },
     {
-      icon: "📦",
+      icon: "box" as IconName,
       title: "食材と資金が不安定",
       description:
         "寄付や助成金は単年度・不定期。毎回の食材調達と会場費に追われ、企画に手が回らない。",
     },
     {
-      icon: "🚪",
+      icon: "door" as IconName,
       title: "「行きにくさ」がある",
       description:
         "「困っている家庭のための場所」というイメージが、本当に来てほしい子どもや親の足を遠ざけてしまう。",
@@ -144,35 +149,35 @@ export const perspectives = {
     {
       who: "子どもが",
       want: "行きたい",
-      emoji: "🧒",
+      icon: "child" as IconName,
       body: "友だちと過ごせる。工作や実験、料理ができる。自分の「やりたい」が形になる。",
       tone: "sun" as const,
     },
     {
       who: "親が",
       want: "行かせたい",
-      emoji: "👩‍👧",
+      icon: "family" as IconName,
       body: "放課後の居場所として安心。栄養のあるごはん。仕事との両立に寄り添う運営時間。",
       tone: "coral" as const,
     },
     {
       who: "企業が",
       want: "参加したい",
-      emoji: "🏢",
+      icon: "office" as IconName,
       body: "社員の出番がある。職業体験の受け入れや商品開発で、本業と社会貢献がつながる。",
       tone: "brand" as const,
     },
     {
       who: "飲食店が",
       want: "始めたい",
-      emoji: "🍳",
+      icon: "pan" as IconName,
       body: "空き時間・空きスペースを活かせる。立ち上げのノウハウと仲間がいるから踏み出せる。",
       tone: "mint" as const,
     },
     {
       who: "いろいろな人が",
       want: "関わりたい",
-      emoji: "🤝",
+      icon: "handshake" as IconName,
       body: "学生、シニア、専門職。それぞれの得意を持ち寄れる、開かれた運営。",
       tone: "brand" as const,
     },
@@ -184,9 +189,9 @@ export const model = {
   title: "イメージは「学童保育 × 子ども食堂」",
   lead: "親の負担と課題、子どもの興味と発達段階。その両方をクリアするために、食堂に「過ごす」「つくる」を足します。",
   pillars: [
-    { emoji: "🍚", label: "食べる", body: "栄養のあるごはんを、みんなで。飲食店や企業の力も借りて、質を高める。" },
-    { emoji: "🏠", label: "過ごす", body: "放課後の安心な居場所。宿題も、遊びも、ぼーっとするのもOK。" },
-    { emoji: "🔬", label: "つくる", body: "子ども会議で決めたプロジェクトに挑戦。ものづくり、職業体験、まちへの発信。" },
+    { icon: "bowl" as IconName, label: "食べる", body: "栄養のあるごはんを、みんなで。飲食店や企業の力も借りて、質を高める。" },
+    { icon: "house" as IconName, label: "過ごす", body: "放課後の安心な居場所。宿題も、遊びも、ぼーっとするのもOK。" },
+    { icon: "flask" as IconName, label: "つくる", body: "子ども会議で決めたプロジェクトに挑戦。ものづくり、職業体験、まちへの発信。" },
   ],
   note: "既存の学童保育や子ども食堂の代わりではなく、「その間を埋める第三の選択肢」を目指します。",
 };
@@ -197,10 +202,10 @@ export const cycle = {
   title: "子どもの「やりたい」が、\n動きだす。",
   lead: "大人が決めたプログラムをこなすのではなく、子どもが起点。この循環を、すべての食堂に。",
   steps: [
-    { n: "01", label: "やりたい", body: "「お店をやってみたい」「ロボットを作りたい」。小さな声を拾う。", emoji: "💡" },
-    { n: "02", label: "子ども会議", body: "子どもたちで話し合い、やることと役割を決める。大人は伴走役。", emoji: "🗣️" },
-    { n: "03", label: "プロジェクト", body: "企業や飲食店、地域の大人の力を借りて、実際に動かす。", emoji: "🛠️" },
-    { n: "04", label: "達成", body: "やりきった経験と、まちからの「ありがとう」が次の「やりたい」に。", emoji: "🎉" },
+    { n: "01", label: "やりたい", body: "「お店をやってみたい」「ロボットを作りたい」。小さな声を拾う。", icon: "bulb" as IconName },
+    { n: "02", label: "子ども会議", body: "子どもたちで話し合い、やることと役割を決める。大人は伴走役。", icon: "chat" as IconName },
+    { n: "03", label: "プロジェクト", body: "企業や飲食店、地域の大人の力を借りて、実際に動かす。", icon: "wrench" as IconName },
+    { n: "04", label: "達成", body: "やりきった経験と、まちからの「ありがとう」が次の「やりたい」に。", icon: "flag" as IconName },
   ],
   examples: [
     { title: "こども商店", body: "自分たちで仕入れ・値付け・販売。売上の使い道も会議で決める。" },
@@ -282,12 +287,12 @@ export const partners = {
   title: "競合ではなく、橋渡し役として。",
   lead: "枚方にはすでに素晴らしい子ども食堂・団体・行政施策があります。私たちはそれらを「つなぐ」役割に徹します。",
   categories: [
-    { emoji: "🏛️", label: "行政", body: "枚方市・関係部局との連携協議" },
-    { emoji: "🏢", label: "社会福祉協議会・各種団体", body: "既存ネットワークとの協働" },
-    { emoji: "🍚", label: "既存の子ども食堂", body: "運営支援・情報共有・共同調達" },
-    { emoji: "🏭", label: "企業", body: "協賛・職業体験・社員参加" },
-    { emoji: "🍳", label: "飲食店", body: "新規食堂の立ち上げ・メニュー開発" },
-    { emoji: "🎓", label: "学校・大学", body: "学生ボランティア・研究連携" },
+    { icon: "building" as IconName, label: "行政", body: "枚方市・関係部局との連携協議" },
+    { icon: "office" as IconName, label: "社会福祉協議会・各種団体", body: "既存ネットワークとの協働" },
+    { icon: "bowl" as IconName, label: "既存の子ども食堂", body: "運営支援・情報共有・共同調達" },
+    { icon: "factory" as IconName, label: "企業", body: "協賛・職業体験・社員参加" },
+    { icon: "pan" as IconName, label: "飲食店", body: "新規食堂の立ち上げ・メニュー開発" },
+    { icon: "school" as IconName, label: "学校・大学", body: "学生ボランティア・研究連携" },
   ],
   note: "連携先を募集しています。ロゴ掲載をご希望の団体様はお問い合わせください。",
 };
@@ -345,13 +350,13 @@ export const nameOrigin = [
 ];
 
 export const message = {
-  title: "代表メッセージ",
+  title: "理事長メッセージ",
   paragraphs: [
     "「子ども食堂をやりたい」と相談を受けたとき、私たちは一つの疑問を持ちました。ただ食事を提供するだけの場所は、おそらく続かない。では、続く子ども食堂とは何だろう。",
     "たどり着いた答えは「価値をつくること」でした。子どもが行きたくて、親が行かせたくて、企業も飲食店も関わりたい。そんな場所なら、支える人が絶えることはありません。",
     "枚方には、すでに頑張っている子ども食堂や団体がたくさんあります。その皆さんを大切にしながら、一緒に「枚方の子ども食堂」を誇れるブランドに育てていきたい。そのための実験室として、ミライラボネクシアを立ち上げます。",
   ],
-  signature: "NPO法人ミライラボネクシア 設立準備室",
+  signature: "NPO法人ミライラボネクシア 理事長　竹谷 孝之",
 };
 
 export const history = [
@@ -364,7 +369,7 @@ export const history = [
 export const joinDetails = [
   {
     id: "kids",
-    emoji: "🧒",
+    icon: "child" as IconName,
     title: "子ども・保護者の方へ",
     lead: "「行ってみたい」と思える場所を、一緒につくります。",
     body: "モデル食堂は2027年春の開始を目指しています。見学や体験会の案内、子ども会議の参加募集は LINE 公式アカウントでお知らせします。",
@@ -374,7 +379,7 @@ export const joinDetails = [
   },
   {
     id: "shokudo",
-    emoji: "🍚",
+    icon: "bowl" as IconName,
     title: "子ども食堂を運営している方へ",
     lead: "いまの活動を変える必要はありません。「足りないところ」を一緒に埋めます。",
     body: "食材の共同調達、助成金情報の共有、ボランティアのマッチング、発信の代行。パートナー食堂として登録いただくと、枚方全体の仕組みが使えるようになります。",
@@ -384,7 +389,7 @@ export const joinDetails = [
   },
   {
     id: "restaurant",
-    emoji: "🍳",
+    icon: "pan" as IconName,
     title: "飲食店・企業の方へ",
     lead: "本業を活かして、子ども食堂を「始める」「参加する」。",
     body: "飲食店なら、定休日や空き時間を使った月1回の食堂から。企業なら、協賛・社員参加・職業体験の受け入れ・子どもプロジェクトとの商品開発。立ち上げも運営も伴走します。",
@@ -394,7 +399,7 @@ export const joinDetails = [
   },
   {
     id: "gov",
-    emoji: "🏛️",
+    icon: "building" as IconName,
     title: "行政・各種団体の方へ",
     lead: "既存施策と競合せず、橋渡し役として連携します。",
     body: "子ども食堂の実態把握、支援情報の一元化、企業と食堂のマッチング、子どもの居場所づくりの新モデル検証。担っていただきたい役割・担える役割を整理し、無理のない連携の形をご提案します。",
@@ -404,7 +409,7 @@ export const joinDetails = [
   },
   {
     id: "supporter",
-    emoji: "🤝",
+    icon: "handshake" as IconName,
     title: "個人サポーターの方へ",
     lead: "お金・時間・スキル。関わり方はひとつじゃありません。",
     body: "寄付は法人設立後に受付を開始します。ボランティア（調理・見守り・プロジェクト伴走）や、専門スキル（デザイン・会計・法務など）でのプロボノも歓迎です。",
