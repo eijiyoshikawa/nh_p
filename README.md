@@ -4,7 +4,7 @@
 
 | ディレクトリ | プロジェクト | 本番URL | 本番ブランチ |
 |---|---|---|---|
-| `nexia-lp/` | **NPO法人ミライラボネクシア 公式LP（一般公開用）** | Vercel新規作成（README参照） | **`main`** |
+| `nexia-lp/` | **NPO法人ミライラボネクシア 公式LP（一般公開用）** | https://mirai-lab-nexia.vercel.app | **`main`** |
 | `npo-lp/` | NPOメンバー専用サイト（パスワード付） | https://npo-hirakata.vercel.app | **`main`** |
 | `hirakata-kids/` | 枚方の子育てメディア（HIRAKIDS） | hirakata-kids.vercel.app | **`media_start`** |
 | `docs/` | 内部ドキュメント（資金戦略・LINE連携 など） | — | — |

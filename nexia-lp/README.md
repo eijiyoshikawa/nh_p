@@ -3,6 +3,7 @@
 枚方市内の子ども食堂を支援するNPO法人（2026年秋設立予定）の公式LP。
 **パスワードなし・誰でも見られる**団体の顔。メンバー限定の `../npo-lp/` とは別プロジェクト。
 
+- 本番URL: https://mirai-lab-nexia.vercel.app（Vercel プロジェクト `mirai-lab-nexia`）
 - コンセプト: 「子ども食堂を、枚方のブランドに。」
 - 技術: Next.js 16（App Router）, React 19, Tailwind CSS v4, TypeScript
 - 配色: ラボブルー `#2457C5` × サンライズイエロー `#FFB703`（npo-lp の緑とは差別化）
@@ -66,15 +67,21 @@ npm run build
 npm run lint
 ```
 
-## デプロイ（Vercel・初回）
+## デプロイ（Vercel）
+
+Vercel プロジェクト `mirai-lab-nexia` は作成済み（初回デプロイ済み）。
+ローカルからは一度だけ `vercel link` で紐づけ、以降は `vercel deploy --prod`。
 
 ```bash
 cd ~/npo_hirakata/nexia-lp
-vercel            # 対話: 新規プロジェクト作成（名前例: mirai-lab-nexia）
+vercel link       # 対話: eijiyoshikawa's projects → 既存の mirai-lab-nexia を選択
 vercel deploy --prod
 ```
 
 2回目以降は `git pull origin main && vercel deploy --prod`。
+
+> GitHub 連携（push で自動デプロイ）を有効にするには https://github.com/apps/vercel で
+> Vercel GitHub App を `npo_hirakata` にインストールし、Vercel の Settings → Git で接続。
 
 ---
 

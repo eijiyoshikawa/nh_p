@@ -2,7 +2,7 @@
 
 ## これは何
 NPO法人ミライラボネクシア（2026年秋設立予定・枚方市）の**一般公開用**公式LP。
-デモサイトとして全ページ実装済み・ビルド/リント通過済み。
+デモサイトとして全ページ実装済み・ビルド/リント通過済み・**本番公開中: https://mirai-lab-nexia.vercel.app**
 
 - 構成設計書: `docs/nexia-lp-plan.md`（ページ構成・セクション・トーン・ターゲット）
 - 全文言: `src/lib/site.ts` ／ お知らせ: `src/lib/news.ts`
@@ -16,7 +16,8 @@ NPO法人ミライラボネクシア（2026年秋設立予定・枚方市）の*
 - [ ] お問い合わせフォームの送信先（Formspree 等）→ `NEXT_PUBLIC_FORM_ENDPOINT`
 - [ ] 連携先ロゴ（`partners` セクションにプレースホルダーあり）
 - [ ] 写真素材（現状は図形・絵文字のみ）
-- [ ] Vercel 新規プロジェクト作成＆デプロイ（README 参照）
+- [x] Vercel プロジェクト `mirai-lab-nexia` 作成・初回デプロイ済み → https://mirai-lab-nexia.vercel.app
+- [ ] ローカルで `vercel link`（README 参照）／GitHub App インストールで自動デプロイ化
 - [ ] 独自ドメイン
 
 ## 次の候補
