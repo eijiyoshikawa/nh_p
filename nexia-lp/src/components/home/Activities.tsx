@@ -20,14 +20,14 @@ export default function Activities() {
           {activities.items.map((a, i) => {
             const t = tones[a.tone];
             return (
-              <ScrollReveal key={a.n} delay={i * 100}>
-                <article className="grid gap-6 rounded-3xl border-2 border-ink/5 bg-white p-6 md:grid-cols-[auto_1fr_1fr] md:items-start md:gap-10 md:p-10">
+              <ScrollReveal key={a.n} delay={i * 100} variant="left">
+                <article className="lift grid gap-6 rounded-3xl border-2 border-ink/5 bg-white p-6 md:grid-cols-[auto_1fr] md:items-start md:gap-8 md:p-10 lg:grid-cols-[auto_1fr_1fr] lg:gap-10">
                   <span className={`text-5xl font-extrabold leading-none ${t.n}`}>{a.n}</span>
                   <div>
                     <h3 className="text-xl font-extrabold text-ink sm:text-2xl">{a.title}</h3>
                     <p className="mt-3 text-sm leading-relaxed text-ink-2">{a.body}</p>
                   </div>
-                  <ul className={`space-y-2 rounded-2xl p-5 ${t.bg}`}>
+                  <ul className={`space-y-2 rounded-2xl p-5 md:col-start-2 lg:col-start-auto ${t.bg}`}>
                     {a.points.map((p) => (
                       <li key={p} className="flex gap-2 text-sm font-medium text-ink">
                         <span className={`mt-0.5 ${t.check}`}><Icon name="check" size={16} strokeWidth={2.4} /></span>

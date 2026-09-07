@@ -6,11 +6,12 @@ import { cta } from "@/lib/site";
 export default function Cta() {
   return (
     <section id="cta" className="px-4 pb-20 pt-6 sm:px-6 md:pb-28">
-      <ScrollReveal>
+      <ScrollReveal variant="zoom">
         <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[2.5rem] bg-ink px-6 py-14 text-center text-white sm:px-12 md:py-20">
           <div aria-hidden className="pointer-events-none absolute inset-0">
-            <div className="absolute -left-16 -top-16 h-64 w-64 rounded-full bg-brand/60 blur-3xl" />
-            <div className="absolute -bottom-16 -right-16 h-64 w-64 rounded-full bg-sun/40 blur-3xl" />
+            <div className="animate-glow-a absolute -left-16 -top-16 h-64 w-64 rounded-full bg-brand/70 blur-3xl" />
+            <div className="animate-glow-b absolute -bottom-16 -right-16 h-64 w-64 rounded-full bg-sun/40 blur-3xl" />
+            <div className="bg-dots absolute inset-0 opacity-[0.06]" />
           </div>
           <div className="relative">
             <h2 className="whitespace-pre-line text-3xl font-extrabold leading-tight sm:text-4xl">

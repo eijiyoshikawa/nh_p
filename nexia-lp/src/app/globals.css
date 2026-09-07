@@ -99,3 +99,165 @@ section {
   }
   .reveal { opacity: 1; transform: none; transition: none; }
 }
+
+/* =====================================================================
+   Motion system v2 — 背景・コンテンツの動き
+   ===================================================================== */
+
+/* ページ表示時のフェード */
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+main { animation: page-in 0.5s ease-out both; }
+
+/* ScrollReveal バリアント */
+.reveal-left { transform: translateX(-28px); }
+.reveal-right { transform: translateX(28px); }
+.reveal-zoom { transform: scale(0.92); }
+.reveal-blur { filter: blur(6px); transform: translateY(12px); }
+.reveal.is-visible.reveal-left,
+.reveal.is-visible.reveal-right,
+.reveal.is-visible.reveal-zoom { transform: none; }
+.reveal.is-visible.reveal-blur { filter: blur(0); transform: none; }
+.reveal.reveal-blur { transition: opacity 0.8s ease-out, transform 0.8s ease-out, filter 0.8s ease-out; }
+
+/* 背景ドットのゆっくりした流れ */
+@keyframes drift {
+  from { background-position: 0 0; }
+  to { background-position: 44px 44px; }
+}
+.bg-dots-drift { animation: drift 18s linear infinite; }
+
+/* 光のにじみ（ダーク背景用） */
+@keyframes glow-a {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.55; }
+  50% { transform: translate(40px, -30px) scale(1.15); opacity: 0.8; }
+}
+@keyframes glow-b {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.45; }
+  50% { transform: translate(-50px, 30px) scale(1.1); opacity: 0.7; }
+}
+.animate-glow-a { animation: glow-a 12s ease-in-out infinite; }
+.animate-glow-b { animation: glow-b 15s ease-in-out infinite; }
+
+/* グラデーションの揺らぎ */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 14s ease-in-out infinite;
+}
+
+/* マーキー */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 38s linear infinite; }
+.animate-marquee:hover { animation-play-state: paused; }
+
+/* タイムラインの線を描く */
+.draw-line {
+  transform-origin: top;
+  transform: scaleY(0);
+  transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.1s;
+}
+.reveal.is-visible .draw-line { transform: scaleY(1); }
+
+/* 矢印の脈動 */
+@keyframes nudge-x {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(6px); }
+}
+@keyframes nudge-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+.animate-nudge-x { animation: nudge-x 1.6s ease-in-out infinite; }
+.animate-nudge-y { animation: nudge-y 1.6s ease-in-out infinite; }
+
+/* リングの脈動（ロードマップ NEXT） */
+@keyframes ping-ring {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+.animate-ping-ring::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: inherit;
+  animation: ping-ring 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* 浮遊する小さな葉 */
+@keyframes leaf-a {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(10px, -18px) rotate(8deg); }
+  66% { transform: translate(-8px, -8px) rotate(-6deg); }
+}
+@keyframes leaf-b {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-14px, 16px) rotate(-10deg); }
+}
+.animate-leaf-a { animation: leaf-a 11s ease-in-out infinite; }
+.animate-leaf-b { animation: leaf-b 13s ease-in-out infinite; }
+
+/* シマー（ロゴ掲載スペース） */
+@keyframes shimmer {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+.shimmer { position: relative; overflow: hidden; }
+.shimmer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 30%, rgba(255,255,255,0.7) 50%, transparent 70%);
+  animation: shimmer 4s ease-in-out infinite;
+}
+
+/* FAQ 開閉 */
+details > div { animation: fade-in-up 0.35s ease-out both; }
+details summary { transition: color 0.2s; }
+details[open] summary { color: var(--color-brand); }
+
+/* カード共通 hover */
+.lift { transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s, border-color 0.35s; }
+.lift:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -20px rgba(27, 31, 42, 0.25); }
+
+/* アイコンバッジの反応 */
+.group:hover .icon-badge { transform: scale(1.08) rotate(-4deg); }
+.icon-badge { transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+
+/* ナビ下線 */
+.nav-link { position: relative; }
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0.9rem; right: 0.9rem; bottom: 0.35rem;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--color-brand);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-link:hover::after { transform: scaleX(1); }
+
+/* 横スクロール防止 */
+html, body { overflow-x: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  main { animation: none; }
+  .bg-dots-drift, .animate-glow-a, .animate-glow-b, .animate-gradient, .animate-marquee,
+  .animate-nudge-x, .animate-nudge-y, .animate-leaf-a, .animate-leaf-b { animation: none; }
+  .animate-ping-ring::after, .shimmer::before { animation: none; display: none; }
+  .draw-line { transform: none; transition: none; }
+  .reveal-left, .reveal-right, .reveal-zoom, .reveal-blur { transform: none; filter: none; }
+  .lift:hover { transform: none; }
+  details > div { animation: none; }
+}

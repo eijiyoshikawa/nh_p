@@ -21,14 +21,27 @@ function Shapes() {
         <circle cx="50" cy="98" r="2.5" fill="#7FA95A" />
         <circle cx="2" cy="50" r="2" fill="#D4704F" />
       </svg>
-      <div className="bg-dots absolute inset-0 opacity-60" />
+      {/* inner ring (counter-rotate) */}
+      <svg
+        className="animate-spin-slow absolute -right-4 top-1/2 hidden h-[380px] w-[380px] -translate-y-1/2 text-sun-dark/25 lg:block"
+        style={{ animationDirection: "reverse", animationDuration: "60s" }}
+        viewBox="0 0 100 100"
+        fill="none"
+      >
+        <circle cx="50" cy="50" r="48" stroke="currentColor" strokeWidth="0.5" strokeDasharray="0.8 4" />
+      </svg>
+      {/* floating leaves */}
+      <Icon name="sprout" size={34} className="animate-leaf-a absolute left-[8%] top-[18%] text-brand/25" />
+      <Icon name="sprout" size={22} className="animate-leaf-b absolute left-[55%] top-[12%] text-sun-dark/40 sm:left-[46%]" />
+      <Icon name="sprout" size={28} className="animate-leaf-a absolute bottom-[14%] left-[30%] hidden text-mint/50 sm:block" style={{ animationDelay: "-5s" }} />
+      <div className="bg-dots bg-dots-drift absolute inset-0 opacity-60" />
     </div>
   );
 }
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-[92vh] items-center overflow-hidden px-4 pb-16 pt-28 sm:px-6 md:pt-32">
+    <section className="relative flex min-h-[92svh] items-center overflow-hidden px-4 pb-16 pt-28 sm:px-6 md:pt-32">
       <Shapes />
       <div className="mx-auto grid w-full max-w-6xl items-center gap-10 lg:grid-cols-[1.4fr_1fr]">
         <div className="max-w-3xl">
@@ -37,7 +50,7 @@ export default function Hero() {
             {hero.badge}
           </span>
 
-          <h1 className="animate-fade-in-up delay-100 mt-6 whitespace-pre-line text-4xl font-extrabold leading-[1.15] tracking-tight text-ink sm:text-5xl md:text-6xl lg:text-7xl">
+          <h1 className="animate-fade-in-up delay-100 mt-6 whitespace-pre-line text-4xl font-extrabold leading-[1.15] tracking-tight text-ink sm:text-5xl md:text-6xl lg:text-[3.4rem] xl:text-7xl">
             {hero.tagline}
           </h1>
 

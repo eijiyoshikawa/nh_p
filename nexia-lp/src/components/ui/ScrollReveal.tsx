@@ -2,16 +2,30 @@
 
 import { useEffect, useRef, type ReactNode } from "react";
 
-// Adds `.is-visible` when the element enters the viewport. CSS in globals.css
-// handles the actual transition, so this component never triggers re-renders.
+type Variant = "up" | "left" | "right" | "zoom" | "blur";
+
+const variantClass: Record<Variant, string> = {
+  up: "",
+  left: "reveal-left",
+  right: "reveal-right",
+  zoom: "reveal-zoom",
+  blur: "reveal-blur",
+};
+
+// ビューポートに入ったら `.is-visible` を付与。実際のアニメーションは globals.css。
+// 子要素の `.draw-line` などもこのクラスに反応する。
 export default function ScrollReveal({
   children,
   className = "",
   delay = 0,
+  variant = "up",
+  as: Tag = "div",
 }: {
   children: ReactNode;
   className?: string;
   delay?: number;
+  variant?: Variant;
+  as?: "div" | "li" | "section" | "article";
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -27,19 +41,19 @@ export default function ScrollReveal({
           }
         }
       },
-      { threshold: 0.12 }
+      { threshold: 0.1, rootMargin: "0px 0px -6% 0px" }
     );
     io.observe(el);
     return () => io.disconnect();
   }, []);
 
   return (
-    <div
-      ref={ref}
-      className={`reveal ${className}`}
+    <Tag
+      ref={ref as React.Ref<HTMLDivElement> & React.Ref<HTMLLIElement>}
+      className={`reveal ${variantClass[variant]} ${className}`}
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}
     >
       {children}
-    </div>
+    </Tag>
   );
 }

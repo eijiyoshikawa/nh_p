@@ -31,7 +31,7 @@ export default async function ContactPage({
               href={org.lineUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="block rounded-3xl bg-[#06C755] p-6 text-white transition hover:opacity-90"
+              className="lift block rounded-3xl bg-[#06C755] p-6 text-white"
             >
               <p className="text-xs font-bold tracking-widest text-white/80">LINE</p>
               <p className="mt-1 text-lg font-extrabold">LINE公式アカウントで話す</p>

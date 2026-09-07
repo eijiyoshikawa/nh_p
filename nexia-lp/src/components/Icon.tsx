@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 // サイト専用のラインアイコン（24x24, stroke ベース）。
 // ロゴのトーンに合わせた細めの線画。色は currentColor で親から制御。
@@ -186,11 +186,13 @@ export default function Icon({
   size = 24,
   className = "",
   strokeWidth = 1.7,
+  style,
 }: {
   name: IconName;
   size?: number;
   className?: string;
   strokeWidth?: number;
+  style?: CSSProperties;
 }) {
   return (
     <svg
@@ -204,6 +206,7 @@ export default function Icon({
       strokeLinejoin="round"
       aria-hidden
       className={`shrink-0 ${className}`}
+      style={style}
     >
       {PATHS[name]}
     </svg>
@@ -234,7 +237,7 @@ export function IconBadge({
   const box = size === "lg" ? "h-16 w-16 rounded-3xl" : size === "sm" ? "h-9 w-9 rounded-xl" : "h-12 w-12 rounded-2xl";
   const icon = size === "lg" ? 32 : size === "sm" ? 18 : 24;
   return (
-    <span className={`flex items-center justify-center ${box} ${badgeTone[tone]} ${className}`}>
+    <span className={`icon-badge flex items-center justify-center ${box} ${badgeTone[tone]} ${className}`}>
       <Icon name={name} size={icon} />
     </span>
   );

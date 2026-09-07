@@ -78,13 +78,15 @@ export function LogoMark({
 
 export default function Logo({ light = false }: { light?: boolean }) {
   return (
-    <Link href="/" className="flex items-center gap-2.5" aria-label={org.name}>
-      <LogoMark size={40} withText={false} />
+    <Link href="/" className="group flex items-center gap-2.5" aria-label={org.name}>
+      <span className="transition-transform duration-500 group-hover:rotate-12">
+        <LogoMark size={40} withText={false} />
+      </span>
       <span className="flex flex-col leading-none">
         <span className={`text-[10px] font-bold ${light ? "text-white/60" : "text-ink-3"}`}>
           {org.descriptor}
         </span>
-        <span className={`mt-1 text-[15px] font-extrabold tracking-tight ${light ? "text-white" : "text-ink"}`}>
+        <span className={`mt-1 whitespace-nowrap text-[13px] font-extrabold tracking-tight sm:text-[15px] ${light ? "text-white" : "text-ink"}`}>
           {org.name}
         </span>
       </span>

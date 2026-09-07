@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 type Variant = "primary" | "sun" | "outline" | "ghost";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full font-bold transition-all focus:outline-none focus-visible:ring-4 focus-visible:ring-brand/30";
+  "inline-flex items-center justify-center gap-2 rounded-full font-bold transition-all active:scale-[0.98] focus:outline-none focus-visible:ring-4 focus-visible:ring-brand/30";
 const sizes = {
   md: "px-6 py-3 text-sm",
   lg: "px-8 py-4 text-base",

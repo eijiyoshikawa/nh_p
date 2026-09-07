@@ -29,7 +29,7 @@ export default function JoinPage() {
         lead="立場は問いません。それぞれの「したい」に合わせた関わり方があります。"
       />
 
-      <nav className="sticky top-[57px] z-30 border-b border-ink/5 bg-paper/90 backdrop-blur" aria-label="対象別">
+      <nav className="sticky top-14 z-30 border-b border-ink/5 bg-paper/90 backdrop-blur" aria-label="対象別">
         <div className="mx-auto flex max-w-6xl gap-1 overflow-x-auto px-4 py-2 sm:px-6">
           {joinDetails.map((j) => (
             <Link
@@ -48,7 +48,7 @@ export default function JoinPage() {
 
       <div className="mx-auto max-w-6xl space-y-8 px-4 py-14 sm:px-6 md:py-20">
         {joinDetails.map((j, i) => (
-          <ScrollReveal key={j.id} delay={i * 60}>
+          <ScrollReveal key={j.id} delay={i * 60} variant={i % 2 === 0 ? "left" : "right"}>
             <section
               id={j.id}
               className={`grid gap-8 rounded-[2rem] border-2 p-7 md:grid-cols-[1.2fr_1fr] md:p-10 ${tones[j.tone]}`}
@@ -60,7 +60,7 @@ export default function JoinPage() {
                 <p className="mt-4 text-sm leading-relaxed text-ink-2">{j.body}</p>
                 <div className="mt-6">
                   <Button href={j.cta.href} external={"external" in j.cta && j.cta.external}>
-                    {j.cta.label} →
+                    {j.cta.label} <Icon name="arrow" size={16} />
                   </Button>
                 </div>
               </div>

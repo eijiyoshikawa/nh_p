@@ -13,8 +13,8 @@ export default function Problem() {
         </ScrollReveal>
         <div className="grid gap-5 md:grid-cols-3">
           {problem.issues.map((issue, i) => (
-            <ScrollReveal key={issue.title} delay={i * 100}>
-              <Card className="h-full">
+            <ScrollReveal key={issue.title} delay={i * 100} variant="zoom" className="h-full">
+              <Card className="group lift h-full">
                 <IconBadge name={issue.icon} tone="coral" />
                 <h3 className="mt-4 text-lg font-extrabold text-ink">{issue.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-2">{issue.description}</p>

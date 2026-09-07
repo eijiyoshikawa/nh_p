@@ -12,6 +12,7 @@ import Future from "@/components/home/Future";
 import NewsPreview from "@/components/home/NewsPreview";
 import FaqSection from "@/components/home/FaqSection";
 import Cta from "@/components/home/Cta";
+import Marquee from "@/components/ui/Marquee";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       <Hero />
       <AudienceNav />
       <Vision />
+      <Marquee dark />
       <Problem />
       <Perspectives />
       <Model />
@@ -27,6 +29,7 @@ export default function Home() {
       <Roadmap />
       <Partners />
       <Future />
+      <Marquee />
       <NewsPreview />
       <FaqSection />
       <Cta />

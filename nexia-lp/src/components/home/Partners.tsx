@@ -12,8 +12,8 @@ export default function Partners() {
         </ScrollReveal>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {partners.categories.map((c, i) => (
-            <ScrollReveal key={c.label} delay={i * 60}>
-              <div className="flex items-center gap-4 rounded-2xl border-2 border-ink/5 bg-white p-5">
+            <ScrollReveal key={c.label} delay={i * 60} variant="zoom" className="h-full">
+              <div className="group lift flex h-full items-center gap-4 rounded-2xl border-2 border-ink/5 bg-white p-5">
                 <IconBadge name={c.icon} tone="brand" />
                 <div>
                   <p className="font-extrabold text-ink">{c.label}</p>
@@ -24,7 +24,7 @@ export default function Partners() {
           ))}
         </div>
         <ScrollReveal delay={300}>
-          <div className="mt-8 rounded-2xl border-2 border-dashed border-brand/30 bg-brand-soft/40 p-6 text-center">
+          <div className="shimmer mt-8 rounded-2xl border-2 border-dashed border-brand/30 bg-brand-soft/40 p-6 text-center">
             <p className="text-sm font-bold text-brand">連携先ロゴ掲載スペース</p>
             <p className="mt-1 text-xs text-ink-2">{partners.note}</p>
           </div>

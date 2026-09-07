@@ -12,8 +12,9 @@ const tones = {
 
 export default function Perspectives() {
   return (
-    <section id="perspectives" className="bg-paper-2 px-4 py-20 sm:px-6 md:py-28">
-      <div className="mx-auto max-w-6xl">
+    <section id="perspectives" className="relative overflow-hidden bg-paper-2 px-4 py-20 sm:px-6 md:py-28">
+      <div aria-hidden className="bg-dots bg-dots-drift pointer-events-none absolute inset-0 opacity-70" />
+      <div className="relative mx-auto max-w-6xl">
         <ScrollReveal>
           <SectionHeading
             eyebrow={perspectives.eyebrow}
@@ -25,11 +26,9 @@ export default function Perspectives() {
           {perspectives.items.map((p, i) => {
             const t = tones[p.tone];
             return (
-              <ScrollReveal key={p.want + p.who} delay={i * 80}>
+              <ScrollReveal key={p.want + p.who} delay={i * 80} variant={i % 2 === 0 ? "left" : "right"} className={`h-full ${i === perspectives.items.length - 1 ? "sm:col-span-2 lg:col-span-1 lg:col-start-2" : ""}`}>
                 <div
-                  className={`flex h-full flex-col rounded-3xl border-2 bg-white p-6 ${t.ring} ${
-                    i === perspectives.items.length - 1 ? "lg:col-start-2" : ""
-                  }`}
+                  className={`group lift flex h-full flex-col rounded-3xl border-2 bg-white p-6 ${t.ring}`}
                 >
                   <div className="flex items-center gap-3">
                     <IconBadge name={p.icon} tone={p.tone} />

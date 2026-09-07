@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import Icon from "@/components/Icon";
 import { sortedNews, formatDate } from "@/lib/news";
 
 export default function NewsPreview() {
@@ -24,13 +25,14 @@ export default function NewsPreview() {
               <li>
                 <Link
                   href={`/news/${n.slug}`}
-                  className="flex flex-col gap-1 px-6 py-5 transition hover:bg-paper-2 sm:flex-row sm:items-center sm:gap-5"
+                  className="group flex flex-col gap-1 px-6 py-5 transition hover:bg-paper-2 sm:flex-row sm:items-center sm:gap-5"
                 >
                   <span className="text-xs font-bold text-ink-3">{formatDate(n.date)}</span>
                   <span className="w-fit rounded-full bg-brand-soft px-2.5 py-0.5 text-[11px] font-bold text-brand">
                     {n.category}
                   </span>
                   <span className="font-bold text-ink">{n.title}</span>
+                  <Icon name="arrow" size={18} className="ml-auto hidden -translate-x-2 text-brand opacity-0 transition group-hover:translate-x-0 group-hover:opacity-100 sm:block" />
                 </Link>
               </li>
             </ScrollReveal>

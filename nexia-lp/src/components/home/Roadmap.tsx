@@ -15,15 +15,17 @@ export default function Roadmap() {
         <ScrollReveal>
           <SectionHeading eyebrow={roadmap.eyebrow} title={roadmap.title} lead={roadmap.lead} />
         </ScrollReveal>
-        <ol className="relative border-l-2 border-brand/20 pl-8">
+        <ScrollReveal>
+        <ol className="relative pl-8">
+          <span aria-hidden className="draw-line absolute bottom-0 left-0 top-1 w-[2px] bg-brand/30" />
           {roadmap.phases.map((p, i) => {
             const b = badge[p.status];
             return (
-              <ScrollReveal key={p.period} delay={i * 100}>
-                <li className="relative pb-10 last:pb-0">
+              <ScrollReveal key={p.period} delay={150 + i * 120} variant="left" as="li" className="relative pb-10 last:pb-0">
+                <div>
                   <span
                     className={`absolute -left-[41px] top-1 flex h-5 w-5 items-center justify-center rounded-full border-4 border-paper-2 ${
-                      p.status === "next" ? "bg-sun" : p.status === "vision" ? "bg-mint" : "bg-brand"
+                      p.status === "next" ? "animate-ping-ring bg-sun" : p.status === "vision" ? "bg-mint" : "bg-brand"
                     }`}
                   />
                   <div className="flex flex-wrap items-center gap-2">
@@ -34,11 +36,12 @@ export default function Roadmap() {
                   </div>
                   <h3 className="mt-1 text-lg font-extrabold text-ink">{p.title}</h3>
                   <p className="mt-1 text-sm leading-relaxed text-ink-2">{p.body}</p>
-                </li>
+                </div>
               </ScrollReveal>
             );
           })}
         </ol>
+        </ScrollReveal>
       </div>
     </section>
   );

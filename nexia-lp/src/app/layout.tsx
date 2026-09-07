@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ScrollProgress from "@/components/ui/ScrollProgress";
 import { org, siteUrl } from "@/lib/site";
 
 const title = `${org.name}｜子ども食堂を、枚方のブランドに。`;
@@ -61,6 +62,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <ScrollProgress />
         <Header />
         <main>{children}</main>
         <Footer />

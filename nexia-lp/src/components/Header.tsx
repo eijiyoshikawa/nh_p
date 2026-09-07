@@ -24,15 +24,15 @@ export default function Header() {
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
+      <div className={`mx-auto flex max-w-6xl items-center justify-between px-4 transition-[padding] duration-300 sm:px-6 ${scrolled ? "py-2" : "py-3"}`}>
         <Logo />
 
-        <nav className="hidden items-center gap-1 md:flex" aria-label="メインナビゲーション">
+        <nav className="hidden items-center gap-1 lg:flex" aria-label="メインナビゲーション">
           {nav.items.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-full px-3.5 py-2 text-sm font-medium text-ink-2 transition-colors hover:bg-brand-soft hover:text-brand"
+              className="nav-link rounded-full px-3.5 py-2 text-sm font-medium text-ink-2 transition-colors hover:text-brand"
             >
               {item.label}
             </Link>
@@ -46,7 +46,7 @@ export default function Header() {
         </nav>
 
         <button
-          className="flex h-10 w-10 items-center justify-center rounded-full text-ink md:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-full text-ink lg:hidden"
           onClick={() => setOpen(!open)}
           aria-label={open ? "メニューを閉じる" : "メニューを開く"}
           aria-expanded={open}
@@ -62,7 +62,7 @@ export default function Header() {
       </div>
 
       {open && (
-        <nav className="border-t border-ink/5 bg-paper px-4 pb-6 pt-2 md:hidden" aria-label="モバイルナビゲーション">
+        <nav className="animate-fade-in-up border-t border-ink/5 bg-paper px-4 pb-6 pt-2 lg:hidden" aria-label="モバイルナビゲーション">
           <div className="flex flex-col">
             {nav.items.map((item) => (
               <Link

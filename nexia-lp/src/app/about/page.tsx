@@ -107,14 +107,15 @@ export default function AboutPage() {
           <ScrollReveal>
             <SectionHeading eyebrow="HISTORY" title="沿革" />
           </ScrollReveal>
-          <ol className="border-l-2 border-brand/20 pl-8">
+          <ol className="relative pl-8">
+            <span aria-hidden className="absolute bottom-0 left-0 top-1 w-[2px] bg-brand/25" />
             {history.map((h, i) => (
-              <ScrollReveal key={h.date} delay={i * 100}>
-                <li className="relative pb-8 last:pb-0">
+              <ScrollReveal key={h.date} delay={i * 100} as="li" className="relative pb-8 last:pb-0">
+                <div>
                   <span className="absolute -left-[41px] top-1 h-5 w-5 rounded-full border-4 border-paper-2 bg-brand" />
                   <p className="text-sm font-extrabold text-brand">{h.date}</p>
                   <p className="mt-1 text-sm leading-relaxed text-ink">{h.body}</p>
-                </li>
+                </div>
               </ScrollReveal>
             ))}
           </ol>
