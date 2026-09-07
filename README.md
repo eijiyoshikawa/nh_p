@@ -4,16 +4,31 @@
 
 | ディレクトリ | プロジェクト | 本番URL | 本番ブランチ |
 |---|---|---|---|
-| `npo-lp/` | NPO公式LP＋メンバー専用サイト | https://npo-hirakata.vercel.app | **`main`** |
+| `nexia-lp/` | **NPO法人ミライラボネクシア 公式LP（一般公開用）** | Vercel新規作成（README参照） | **`main`** |
+| `npo-lp/` | NPOメンバー専用サイト（パスワード付） | https://npo-hirakata.vercel.app | **`main`** |
 | `hirakata-kids/` | 枚方の子育てメディア（HIRAKIDS） | hirakata-kids.vercel.app | **`media_start`** |
 | `docs/` | 内部ドキュメント（資金戦略・LINE連携 など） | — | — |
 
-> 各プロジェクトの詳細は `npo-lp/README.md` / `hirakata-kids/README.md` を参照。
-> 引き継ぎ要点は `npo-lp/HANDOFF.md`。
+> 各プロジェクトの詳細は各ディレクトリの `README.md`、引き継ぎ要点は `HANDOFF.md` を参照。
+> nexia-lp の構成設計書は `docs/nexia-lp-plan.md`。
 
 ---
 
-## npo-lp（NPO公式サイト）
+## nexia-lp（一般公開用 公式LP）
+
+「子ども食堂を、枚方のブランドに。」ラボブルー×イエロー。パスワードなし。
+全文言は `nexia-lp/src/lib/site.ts` に集約。
+
+```bash
+cd nexia-lp
+npm install
+npm run dev
+vercel && vercel deploy --prod   # 初回は新規プロジェクト作成
+```
+
+---
+
+## npo-lp（メンバー専用サイト）
 
 緑基調の LP ＋ パスワード保護のメンバー専用エリア。
 
@@ -41,8 +56,8 @@ vercel deploy --prod   # 本番反映（GitHub連携が切れているため手�
 
 ## ブランチ運用
 
-- `main` … **npo-lp の本番**
+- `main` … **npo-lp / nexia-lp の本番**
 - `media_start` … **hirakata-kids の本番**
 - `claude/*` … 作業ブランチ群
 
-両プロジェクトは独立しており、`main` への push は npo-lp のみに影響。
+各プロジェクトは独立。`main` への push は npo-lp / nexia-lp に影響（それぞれ手動デプロイ）。
