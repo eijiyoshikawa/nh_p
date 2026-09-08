@@ -5,9 +5,9 @@ import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import { org, siteUrl } from "@/lib/site";
 
-const title = `${org.name}｜子ども食堂を、枚方のブランドに。`;
+const title = `${org.name}｜一緒に、ひらかたを育てませんか。`;
 const description =
-  "枚方市内の子ども食堂を支援するNPO法人（2026年秋設立予定）。子どもが行きたい、親が行かせたい、企業や飲食店も関わりたい「新しい子ども食堂」のかたちを、既存の食堂・団体・行政と一緒につくります。";
+  "枚方の子ども食堂を応援するNPO法人（2026年秋設立予定）。子どもの居場所とあたたかいごはん、そして「ひらかたのこと、ひとこと聞かせてください」。市民の声を行政や地域につなぐハブを目指します。";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

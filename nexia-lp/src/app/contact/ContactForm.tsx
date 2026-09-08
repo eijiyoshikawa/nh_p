@@ -56,6 +56,7 @@ export default function ContactForm({ defaultType = "general" }: { defaultType?:
 
   const input =
     "mt-1 w-full rounded-xl border-2 border-ink/10 bg-white px-4 py-3 text-sm text-ink placeholder:text-ink-3 focus:border-brand focus:outline-none";
+  const isVoice = type === "voice";
 
   if (status === "sent") {
     return (
@@ -94,26 +95,30 @@ export default function ContactForm({ defaultType = "general" }: { defaultType?:
       </label>
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="block">
-          <span className="text-xs font-bold text-ink-2">お名前 *</span>
-          <input name="name" required className={input} autoComplete="name" />
+          <span className="text-xs font-bold text-ink-2">{isVoice ? "お名前（ニックネームOK）" : "お名前 *"}</span>
+          <input name="name" required={!isVoice} className={input} autoComplete="name" placeholder={isVoice ? "例：ひらかたママ" : undefined} />
         </label>
         <label className="block">
-          <span className="text-xs font-bold text-ink-2">所属（団体・会社・店名など）</span>
-          <input name="org" className={input} autoComplete="organization" />
+          <span className="text-xs font-bold text-ink-2">{isVoice ? "お住まいの地域（任意）" : "所属（団体・会社・店名など）"}</span>
+          <input name="org" className={input} autoComplete={isVoice ? "off" : "organization"} placeholder={isVoice ? "例：枚方市 香里園" : undefined} />
         </label>
       </div>
       <label className="block">
-        <span className="text-xs font-bold text-ink-2">メールアドレス *</span>
-        <input name="email" type="email" required className={input} autoComplete="email" />
+        <span className="text-xs font-bold text-ink-2">{isVoice ? "メールアドレス（返信がほしい場合だけ）" : "メールアドレス *"}</span>
+        <input name="email" type="email" required={!isVoice} className={input} autoComplete="email" />
       </label>
       <label className="block">
-        <span className="text-xs font-bold text-ink-2">お問い合わせ内容 *</span>
+        <span className="text-xs font-bold text-ink-2">{isVoice ? "枚方のこと、ひとこと *" : "お問い合わせ内容 *"}</span>
         <textarea
           name="message"
           required
-          rows={6}
+          rows={isVoice ? 4 : 6}
           className={input}
-          placeholder="「話だけ聞きたい」でも大丈夫です。"
+          placeholder={
+            isVoice
+              ? "例：放課後に子どもを預けられる場所が少ない／近所に子ども食堂があったらいいな"
+              : "「話だけ聞きたい」でも大丈夫です。"
+          }
         />
       </label>
       <label className="flex items-start gap-2 text-xs text-ink-2">

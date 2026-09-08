@@ -13,12 +13,14 @@ import NewsPreview from "@/components/home/NewsPreview";
 import FaqSection from "@/components/home/FaqSection";
 import Cta from "@/components/home/Cta";
 import Marquee from "@/components/ui/Marquee";
+import Voice from "@/components/home/Voice";
 
 export default function Home() {
   return (
     <>
       <Hero />
       <AudienceNav />
+      <Voice />
       <Vision />
       <Marquee dark />
       <Problem />

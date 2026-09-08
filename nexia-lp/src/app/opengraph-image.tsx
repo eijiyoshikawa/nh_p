@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { org, hero } from "@/lib/site";
 
 export const runtime = "edge";
-export const alt = `${org.name} — 子ども食堂を、枚方のブランドに。`;
+export const alt = `${org.name} — 一緒に、ひらかたを育てませんか。`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -42,7 +42,7 @@ export default function OgImage() {
             </div>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-            <div style={{ fontSize: 80, fontWeight: 800, color: "#1B1F2A", lineHeight: 1.15, whiteSpace: "pre-line" }}>
+            <div style={{ fontSize: 66, fontWeight: 800, color: "#1B1F2A", lineHeight: 1.15, whiteSpace: "pre-line" }}>
               {hero.tagline}
             </div>
             <div style={{ display: "flex", gap: 12 }}>

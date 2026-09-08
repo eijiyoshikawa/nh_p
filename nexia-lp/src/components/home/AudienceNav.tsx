@@ -8,13 +8,10 @@ export default function AudienceNav() {
     <section id="audiences" className="px-4 py-14 sm:px-6 md:py-20">
       <div className="mx-auto max-w-6xl">
         <ScrollReveal>
-          <p className="text-center text-xs font-bold tracking-[0.25em] text-brand">FOR YOU</p>
-          <h2 className="mt-2 text-center text-2xl font-extrabold text-ink sm:text-3xl">
-            あなたは、どの立場ですか？
-          </h2>
+          <p className="text-center text-sm font-bold text-ink-2">{audiences.lead}</p>
         </ScrollReveal>
-        <div className="mt-8 grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-          {audiences.map((a, i) => (
+        <div className="mt-6 grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+          {audiences.items.map((a, i) => (
             <ScrollReveal key={a.id} delay={i * 70} variant="zoom" className="h-full">
               <Link
                 href={`/join#${a.id}`}

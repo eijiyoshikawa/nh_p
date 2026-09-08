@@ -58,6 +58,16 @@ export default function JoinPage() {
                 <h2 className="mt-3 text-2xl font-extrabold text-ink sm:text-3xl">{j.title}</h2>
                 <p className="mt-2 text-base font-bold text-ink">{j.lead}</p>
                 <p className="mt-4 text-sm leading-relaxed text-ink-2">{j.body}</p>
+                {j.topics.length > 0 && (
+                  <ul className="mt-5 flex flex-wrap gap-2">
+                    {j.topics.map((t) => (
+                      <li key={t} className="flex items-center gap-1.5 rounded-full bg-white/80 px-3 py-1.5 text-xs font-bold text-ink">
+                        <Icon name="check" size={13} strokeWidth={2.4} className="text-brand" />
+                        {t}
+                      </li>
+                    ))}
+                  </ul>
+                )}
                 <div className="mt-6">
                   <Button href={j.cta.href} external={"external" in j.cta && j.cta.external}>
                     {j.cta.label} <Icon name="arrow" size={16} />

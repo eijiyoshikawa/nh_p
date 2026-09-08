@@ -19,7 +19,7 @@ export default async function ContactPage({
       <PageHeader
         eyebrow="CONTACT"
         title="お問い合わせ"
-        lead="立場は問いません。「ちょっと話を聞きたい」からで大丈夫です。設立準備室よりご連絡します。"
+        lead="立場は問いません。「ちょっと話を聞きたい」「枚方のことでひとこと言いたい」からで大丈夫です。"
       />
       <section className="px-4 py-14 sm:px-6 md:py-20">
         <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[1.4fr_1fr]">

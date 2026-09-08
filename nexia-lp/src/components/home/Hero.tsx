@@ -64,6 +64,7 @@ export default function Hero() {
               <Icon name="arrow" size={18} />
             </Button>
             <Button href={hero.secondaryCta.href} size="lg" variant="outline">
+              <Icon name="chat" size={18} />
               {hero.secondaryCta.label}
             </Button>
           </div>
