@@ -1,6 +1,7 @@
 import Button from "@/components/ui/Button";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import Icon from "@/components/Icon";
+import SocialLinks from "@/components/SocialLinks";
 import { cta } from "@/lib/site";
 
 export default function Cta() {
@@ -27,6 +28,8 @@ export default function Cta() {
                 {cta.line.label}
               </Button>
             </div>
+            <p className="mt-8 text-xs font-bold tracking-[0.2em] text-white/50">FOLLOW US</p>
+            <SocialLinks variant="dark" className="mt-3 justify-center" />
           </div>
         </div>
       </ScrollReveal>

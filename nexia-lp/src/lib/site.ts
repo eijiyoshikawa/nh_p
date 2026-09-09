@@ -21,6 +21,12 @@ export const org = {
   address: "大阪府枚方市（詳細所在地は設立後に掲載）",
   email: "mirailabnexia@gmail.com",
   lineUrl: "https://lin.ee/QgUpPrz",
+  sns: [
+    { id: "line", label: "LINE", href: "https://lin.ee/QgUpPrz" },
+    { id: "threads", label: "Threads", href: "https://www.threads.com/@mirai_lab_nexia" },
+    { id: "tiktok", label: "TikTok", href: "https://www.tiktok.com/@mirailabnexia" },
+    { id: "youtube", label: "YouTube", href: "https://www.youtube.com/channel/UC3EAo51bPL4wU6ES6g5psKg" },
+  ],
   founded: "2026年秋（予定）",
   operator: "設立準備：三慧経営顧問株式会社",
   purpose:

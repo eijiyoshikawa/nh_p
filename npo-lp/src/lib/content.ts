@@ -279,6 +279,15 @@ export const funding = {
 // LINE公式アカウントの友だち追加URL
 export const lineUrl = "https://lin.ee/QgUpPrz";
 
+// 公式SNS（公開LP mirailabo-nexia.skma.asia と共通）
+export const sns = [
+  { id: "line", label: "LINE", href: "https://lin.ee/QgUpPrz" },
+  { id: "threads", label: "Threads", href: "https://www.threads.com/@mirai_lab_nexia" },
+  { id: "tiktok", label: "TikTok", href: "https://www.tiktok.com/@mirailabnexia" },
+  { id: "youtube", label: "YouTube", href: "https://www.youtube.com/channel/UC3EAo51bPL4wU6ES6g5psKg" },
+] as const;
+export const publicSiteUrl = "https://mirailabo-nexia.skma.asia";
+
 export const cta = {
   sectionTitle: "一緒にひらかたを育てませんか",
   description:

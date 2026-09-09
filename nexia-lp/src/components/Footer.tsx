@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Logo from "@/components/Logo";
+import SocialLinks from "@/components/SocialLinks";
 import { nav, org } from "@/lib/site";
 
 export default function Footer() {
@@ -36,6 +37,7 @@ export default function Footer() {
 
         <div>
           <p className="mb-3 text-xs font-bold tracking-[0.2em] text-white/50">CONNECT</p>
+          <SocialLinks variant="dark" size="sm" className="mb-4" />
           <ul className="space-y-2">
             <li>
               <a href={org.lineUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white">

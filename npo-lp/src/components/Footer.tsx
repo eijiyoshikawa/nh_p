@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { SocialLinks } from "@/components/SocialLinks";
+import { publicSiteUrl } from "@/lib/content";
 
 export default function Footer() {
   return (
@@ -20,6 +22,12 @@ export default function Footer() {
           メンバー（限定）
         </Link>
       </nav>
+      <SocialLinks variant="dark" className="mb-4 justify-center" />
+      <p className="mb-4">
+        <a href={publicSiteUrl} target="_blank" rel="noopener noreferrer" className="text-green-300 hover:text-green-200">
+          公式サイト：mirailabo-nexia.skma.asia
+        </a>
+      </p>
       <p>&copy; {new Date().getFullYear()} ひらかた子ども食堂支援NPO</p>
       <p className="mt-1">運営：三慧経営顧問株式会社（NPO化までの暫定）</p>
       <p className="mt-1">大阪府枚方市</p>

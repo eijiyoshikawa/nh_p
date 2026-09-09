@@ -7,6 +7,8 @@ import { AxisChart } from "@/components/members/AxisChart";
 import { MemberAvatar } from "@/components/members/MemberAvatar";
 import { MembersHubNav } from "@/components/members/MembersHubNav";
 import { LogoutButton } from "@/components/members/LogoutButton";
+import { SocialLinks } from "@/components/SocialLinks";
+import { publicSiteUrl } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "メンバー — ひらかた子ども食堂支援NPO",
@@ -46,6 +48,23 @@ export default function MembersPage() {
         </p>
 
         <MembersHubNav className="mt-8" />
+
+        <section className="mt-8 rounded-2xl border border-green-100 bg-white p-6 shadow-sm">
+          <p className="text-xs font-semibold tracking-widest text-accent-orange">OFFICIAL SNS</p>
+          <h2 className="mt-1 text-lg font-bold text-text-primary">公式SNS・公開サイト</h2>
+          <p className="mt-1 text-sm text-text-secondary">
+            フォロー・シェアで発信にご協力ください。投稿ネタや素材はお知らせ・掲示板へ。
+          </p>
+          <SocialLinks withLabel className="mt-4" />
+          <a
+            href={publicSiteUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-block text-sm font-semibold text-accent-green-dark hover:underline"
+          >
+            公開サイト mirailabo-nexia.skma.asia を開く →
+          </a>
+        </section>
 
         <h2 className="mt-16 text-2xl font-bold text-text-primary">組織の傾向</h2>
         <p className="mt-2 max-w-2xl text-sm text-text-secondary">

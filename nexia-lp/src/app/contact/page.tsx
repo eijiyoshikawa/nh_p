@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 import ContactForm from "./ContactForm";
+import SocialLinks from "@/components/SocialLinks";
 import { org } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -47,6 +48,11 @@ export default async function ContactPage({
               <p className="mt-3 text-xs leading-relaxed text-ink-2">
                 取材・メディアの方もこちらからご連絡ください。通常3営業日以内に返信します。
               </p>
+            </div>
+            <div className="rounded-3xl border-2 border-ink/5 bg-white p-6">
+              <p className="text-xs font-bold tracking-widest text-ink-3">SNS</p>
+              <p className="mt-1 text-sm font-bold text-ink">活動の様子はSNSで発信しています</p>
+              <SocialLinks className="mt-3" />
             </div>
           </aside>
         </div>

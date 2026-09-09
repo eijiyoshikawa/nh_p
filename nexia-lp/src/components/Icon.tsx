@@ -26,7 +26,11 @@ export type IconName =
   | "check"
   | "message"
   | "mail"
-  | "arrow";
+  | "arrow"
+  | "line"
+  | "threads"
+  | "tiktok"
+  | "youtube";
 
 const PATHS: Record<IconName, ReactNode> = {
   child: (
@@ -179,6 +183,32 @@ const PATHS: Record<IconName, ReactNode> = {
     </>
   ),
   arrow: <path d="M5 12h14M13 6l6 6-6 6" />,
+  line: (
+    <>
+      <path d="M12 3.5c-5.5 0-10 3.4-10 7.6 0 2.4 1.4 4.5 3.6 5.9L5 21l4.4-2.3c.8.2 1.7.3 2.6.3 5.5 0 10-3.4 10-7.6S17.5 3.5 12 3.5Z" />
+      <path d="M8 9.5v4M11 9.5v4M14 9.5v4l2.5-4v4" />
+    </>
+  ),
+  threads: (
+    <>
+      <path d="M12 21c-4.4 0-7.5-3.2-7.5-9S7.6 3 12 3c3.6 0 6.2 2 7 5.2" />
+      <path d="M8.5 13.2c0-2 1.7-3.2 3.7-3.2 2.7 0 4.2 1.6 4.2 4.1 0 2.3-1.6 3.9-3.9 3.9-1.9 0-3.3-1-3.3-2.5s1.4-2.4 3.4-2.4c1.4 0 2.6.3 3.7.9" />
+      <path d="M14.3 9.4c-.4-1.2-1.3-2-2.6-2-1.2 0-2 .6-2.4 1.4" />
+    </>
+  ),
+  tiktok: (
+    <>
+      <path d="M13.5 3v11.2a3.2 3.2 0 1 1-3.2-3.2" />
+      <path d="M13.5 3c.4 2.6 2 4.3 4.5 4.6" />
+      <path d="M13.5 7.2c1.2 1 2.6 1.6 4.5 1.6" />
+    </>
+  ),
+  youtube: (
+    <>
+      <rect x="2.5" y="6" width="19" height="12" rx="3.5" />
+      <path d="M10 9.3v5.4l4.6-2.7L10 9.3Z" />
+    </>
+  ),
 };
 
 export default function Icon({
