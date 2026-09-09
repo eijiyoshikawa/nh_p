@@ -6,7 +6,7 @@ import type { IconName } from "@/components/Icon";
 // トーン：枚方に住む親世代に向けて、やわらかく・気軽に。
 // =============================================================================
 
-export const siteUrl = "https://mirai-lab-nexia.vercel.app"; // 独自ドメイン取得後に変更
+export const siteUrl = "https://mirailabo-nexia.skma.asia";
 
 export const org = {
   name: "NPO法人ミライラボネクシア",
