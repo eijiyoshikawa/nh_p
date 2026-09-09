@@ -16,14 +16,14 @@
 
 ## nexia-lp（一般公開用 公式LP）
 
-「子ども食堂を、枚方のブランドに。」ラボブルー×イエロー。パスワードなし。
+「一緒に、ひらかたを育てませんか。」ロゴ準拠のグリーン×ゴールド。パスワードなし。
 全文言は `nexia-lp/src/lib/site.ts` に集約。
 
 ```bash
 cd nexia-lp
 npm install
 npm run dev
-vercel && vercel deploy --prod   # 初回は新規プロジェクト作成
+vercel deploy --prod   # 初回のみ事前に vercel link（プロジェクト mirai-lab-nexia）
 ```
 
 ---

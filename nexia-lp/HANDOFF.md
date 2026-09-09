@@ -16,9 +16,9 @@ NPO法人ミライラボネクシア（2026年秋設立予定・枚方市）の*
 - [ ] お問い合わせフォームの送信先（Formspree 等）→ `NEXT_PUBLIC_FORM_ENDPOINT`
 - [ ] 連携先ロゴ（`partners` セクションにプレースホルダーあり）
 - [ ] 写真素材（現状は図形・絵文字のみ）
-- [x] Vercel プロジェクト `mirai-lab-nexia` 作成・デプロイ済み → https://mirailabo-nexia.skma.asia（独自ドメイン設定中）
+- [x] Vercel プロジェクト `mirai-lab-nexia` 作成・デプロイ済み → https://mirailabo-nexia.skma.asia
 - [ ] ローカルで `vercel link`（README 参照）／GitHub App インストールで自動デプロイ化
-- [ ] 独自ドメイン mirailabo-nexia.skma.asia の DNS（CNAME）設定 → Vercel で Valid 確認
+- [x] 独自ドメイン https://mirailabo-nexia.skma.asia 設定完了（Xserver CNAME → 3abd155664061ee4.vercel-dns-016.com、Vercel で Valid 確認済み）
 
 ## 次の候補
 - 写真・イラスト差し込み（Hero、活動紹介）
