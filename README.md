@@ -60,4 +60,8 @@ vercel deploy --prod   # 本番反映（GitHub連携が切れているため手�
 - `media_start` … **hirakata-kids の本番**
 - `claude/*` … 作業ブランチ群
 
-各プロジェクトは独立。`main` への push は npo-lp / nexia-lp に影響（それぞれ手動デプロイ）。
+各プロジェクトは独立。各プロジェクトの `vercel.json`（`ignoreCommand`）により、**変更のあったディレクトリのプロジェクトだけ**が Vercel でビルドされる。
+
+## Vercel × GitHub 連携
+
+設定・壊れたときの直し方は `docs/vercel-github-integration.md` を参照。CI（`.github/workflows/*-ci.yml`）と Dependabot が常時動作。

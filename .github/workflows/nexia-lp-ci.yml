@@ -1,0 +1,39 @@
+name: nexia-lp CI
+
+on:
+  pull_request:
+    paths:
+      - "nexia-lp/**"
+      - ".github/workflows/nexia-lp-ci.yml"
+  push:
+    branches: [main]
+    paths:
+      - "nexia-lp/**"
+      - ".github/workflows/nexia-lp-ci.yml"
+
+concurrency:
+  group: nexia-lp-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: lint + build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: nexia-lp
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: nexia-lp/.nvmrc
+          cache: npm
+          cache-dependency-path: nexia-lp/package-lock.json
+
+      - run: npm ci
+
+      - run: npm run lint
+
+      - run: npm run build

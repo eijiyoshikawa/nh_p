@@ -1,0 +1,54 @@
+# 依存パッケージの更新を自動で PR 化。脆弱性アラート（GitHub の赤いフラグ）を溜めないための設定。
+# - 週1回、月曜に確認
+# - minor / patch はまとめて1本の PR
+# - Next.js / React のメジャー更新は自動では上げない（手動で検証してから）
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /nexia-lp
+    schedule: { interval: weekly, day: monday, time: "09:00", timezone: Asia/Tokyo }
+    open-pull-requests-limit: 3
+    groups:
+      minor-and-patch:
+        update-types: [minor, patch]
+    ignore:
+      - dependency-name: next
+        update-types: [version-update:semver-major]
+      - dependency-name: react
+        update-types: [version-update:semver-major]
+      - dependency-name: react-dom
+        update-types: [version-update:semver-major]
+
+  - package-ecosystem: npm
+    directory: /npo-lp
+    schedule: { interval: weekly, day: monday, time: "09:00", timezone: Asia/Tokyo }
+    open-pull-requests-limit: 3
+    groups:
+      minor-and-patch:
+        update-types: [minor, patch]
+    ignore:
+      - dependency-name: next
+        update-types: [version-update:semver-major]
+      - dependency-name: react
+        update-types: [version-update:semver-major]
+      - dependency-name: react-dom
+        update-types: [version-update:semver-major]
+
+  - package-ecosystem: npm
+    directory: /hirakata-kids
+    schedule: { interval: weekly, day: monday, time: "09:00", timezone: Asia/Tokyo }
+    open-pull-requests-limit: 3
+    groups:
+      minor-and-patch:
+        update-types: [minor, patch]
+    ignore:
+      - dependency-name: next
+        update-types: [version-update:semver-major]
+      - dependency-name: react
+        update-types: [version-update:semver-major]
+      - dependency-name: react-dom
+        update-types: [version-update:semver-major]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule: { interval: monthly }
