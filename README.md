@@ -5,7 +5,7 @@
 | ディレクトリ | プロジェクト | 本番URL | 本番ブランチ |
 |---|---|---|---|
 | `nexia-lp/` | **NPO法人ミライラボネクシア 公式LP（一般公開用）** | https://mirailabo-nexia.skma.asia | **`main`** |
-| `koe-post/` | **こえポスト**：子ども専用・完全匿名の投稿箱（大人だけが読む） | 未デプロイ（`koe-post/README.md` 参照） | **`main`** |
+| `koe-post/` | **こえポスト**：子ども専用・完全匿名の投稿箱（大人だけが読む） | koe-post.vercel.app（GitHub 連携・push で自動デプロイ） | **`main`** |
 | `npo-lp/` | NPOメンバー専用サイト（パスワード付） | https://npo-hirakata.vercel.app | **`main`** |
 | `hirakata-kids/` | 枚方の子育てメディア（HIRAKIDS） | hirakata-kids.vercel.app | **`media_start`** |
 | `docs/` | 内部ドキュメント（資金戦略・LINE連携 など） | — | — |

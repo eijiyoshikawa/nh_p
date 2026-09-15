@@ -1,7 +1,7 @@
 # こえポスト — 引き継ぎ
 
 ## 状態
-デモ完成（全画面・API・検知・認証・CSV）。lint/build 通過。**未デプロイ**。
+デモ完成（全画面・API・検知・認証・CSV）。lint/build 通過。Vercel プロジェクト `koe-post` を GitHub 連携で作成済み（push で自動デプロイ）。**環境変数は未設定**。
 
 ## 運用開始前に決めること（`docs/koe-post-plan.md` §5）
 - [ ] 誰が読むか（NPO担当者のみ／先生も）。先生に見せるなら学校コード別の権限が必要 → 第2段階
@@ -11,7 +11,8 @@
 - [ ] `/about` の文面確定（プライバシーポリシー相当）
 
 ## デプロイ前に設定
-- [ ] Vercel 新規プロジェクト＋ `ADULT_PASSWORD`
+- [x] Vercel プロジェクト作成（GitHub 連携・Root `koe-post`・Production `main`）
+- [ ] `ADULT_PASSWORD` を Vercel に設定
 - [ ] Upstash Redis（nexia/npo とは別の DB を推奨。キーは `koepost:` プレフィックス）
 - [ ] `RATE_SALT` にランダム文字列
 

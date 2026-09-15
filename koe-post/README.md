@@ -42,18 +42,20 @@ npm install
 ADULT_PASSWORD=demo npm run dev   # http://localhost:3000
 ```
 
-## デプロイ（Vercel・初回）
+## デプロイ（Vercel）
+
+Vercel プロジェクト `koe-post` は **GitHub 連携済み**（Root Directory `koe-post`、Production Branch `main`）。
+`main` に push すると自動でデプロイされます。手動デプロイは不要です。
+
+環境変数だけ最初に設定してください（ダッシュボード または CLI）:
 
 ```bash
-cd ~/npo_hirakata/koe-post
-vercel link          # 新規プロジェクト作成（名前例: koe-post）
+cd ~/npo_hirakata/koe-post && vercel link   # 既存プロジェクト koe-post を選択（初回のみ）
 vercel env add ADULT_PASSWORD production
 vercel env add UPSTASH_REDIS_REST_URL production
 vercel env add UPSTASH_REDIS_REST_TOKEN production
-vercel deploy --prod
 ```
-
-2回目以降は `git pull origin main && vercel deploy --prod`。Git 連携する場合は Root Directory を `koe-post` に。
+設定後、Vercel ダッシュボードで「Redeploy」するか、koe-post に変更を push すれば反映されます。
 
 ## 主要ファイル
 
