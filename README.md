@@ -1,16 +1,17 @@
 # npo_hirakata
 
-ひらかた子ども食堂支援NPO 関連のモノレポ。2つの独立した Next.js プロジェクトが同居。
+ひらかた子ども食堂支援NPO 関連のモノレポ。4つの独立した Next.js プロジェクトが同居。
 
 | ディレクトリ | プロジェクト | 本番URL | 本番ブランチ |
 |---|---|---|---|
 | `nexia-lp/` | **NPO法人ミライラボネクシア 公式LP（一般公開用）** | https://mirailabo-nexia.skma.asia | **`main`** |
+| `koe-post/` | **こえポスト**：子ども専用・完全匿名の投稿箱（大人だけが読む） | 未デプロイ（`koe-post/README.md` 参照） | **`main`** |
 | `npo-lp/` | NPOメンバー専用サイト（パスワード付） | https://npo-hirakata.vercel.app | **`main`** |
 | `hirakata-kids/` | 枚方の子育てメディア（HIRAKIDS） | hirakata-kids.vercel.app | **`media_start`** |
 | `docs/` | 内部ドキュメント（資金戦略・LINE連携 など） | — | — |
 
 > 各プロジェクトの詳細は各ディレクトリの `README.md`、引き継ぎ要点は `HANDOFF.md` を参照。
-> nexia-lp の構成設計書は `docs/nexia-lp-plan.md`。
+> nexia-lp の構成設計書は `docs/nexia-lp-plan.md`、こえポストの設計書は `docs/koe-post-plan.md`。
 
 ---
 
@@ -56,7 +57,7 @@ vercel deploy --prod   # 本番反映（GitHub連携が切れているため手�
 
 ## ブランチ運用
 
-- `main` … **npo-lp / nexia-lp の本番**
+- `main` … **npo-lp / nexia-lp / koe-post の本番**
 - `media_start` … **hirakata-kids の本番**
 - `claude/*` … 作業ブランチ群
 

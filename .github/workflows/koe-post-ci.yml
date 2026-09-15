@@ -1,0 +1,35 @@
+name: koe-post CI
+
+on:
+  pull_request:
+    paths:
+      - "koe-post/**"
+      - ".github/workflows/koe-post-ci.yml"
+  push:
+    branches: [main]
+    paths:
+      - "koe-post/**"
+      - ".github/workflows/koe-post-ci.yml"
+
+concurrency:
+  group: koe-post-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: lint + build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: koe-post
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: koe-post/.nvmrc
+          cache: npm
+          cache-dependency-path: koe-post/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
