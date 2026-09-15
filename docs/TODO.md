@@ -8,7 +8,8 @@
 |---|---|---|---|
 | ✅ A-1 | 手元のリモートURLを新リポジトリ名に更新：`cd ~/npo_hirakata && git remote set-url origin https://github.com/eijiyoshikawa/nh_p.git` | ターミナル | 1分 |
 | ✅ A-2 | GitHub のデフォルトブランチを `main` に変更（Settings → General → Default branch） | GitHub | 1分 |
-| ⬜ A-3 | Vercel 既存3プロジェクト（npo-hirakata / hirakata-kids / mirai-lab-nexia）の Settings → Git が `eijiyoshikawa/nh_p` に接続されているか確認。違えば Disconnect → Connect（Root Directory は npo-lp / hirakata-kids / nexia-lp） | Vercel | 10分 |
+| ⬜ A-3 | **mirai-lab-nexia だけ Git 未接続**（npo-hirakata / hirakata-kids / koe-post は `nh_p` に接続済みで正常）。手順：① Vercel → mirai-lab-nexia → Settings → General → Root Directory を `nexia-lp` にして Save ② Settings → Git → Connect Git Repository → GitHub → `eijiyoshikawa/nh_p` ③ Production Branch が `main` か確認。順番に注意：①を先にやらないと接続直後のビルドが失敗して赤フラグが立つ | Vercel | 5分 |
+| ⬜ A-3b | 古い PR #2（4月・hirakata-kids の CVE 対応）を Close。中身は media_start に別途反映済みで不要（`next 16.2.4` / `next-mdx-remote ^6` 適用済み） | GitHub | 1分 |
 | ⬜ A-4 | 過去に会話で共有した API キーをローテーション（Gemini・Groq・GitHub PAT）。漏えい扱いで再発行し、古いものは無効化 | 各サービス | 15分 |
 | ⬜ A-5 | GitHub → Settings → Code security で Dependabot alerts / security updates を ON | GitHub | 1分 |
 
