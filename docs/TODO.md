@@ -6,7 +6,7 @@
 
 | # | やること | 場所 | 所要 |
 |---|---|---|---|
-| ⬜ A-1 | 手元のリモートURLを新リポジトリ名に更新：`cd ~/npo_hirakata && git remote set-url origin https://github.com/eijiyoshikawa/nh_p.git` | ターミナル | 1分 |
+| ✅ A-1 | 手元のリモートURLを新リポジトリ名に更新：`cd ~/npo_hirakata && git remote set-url origin https://github.com/eijiyoshikawa/nh_p.git` | ターミナル | 1分 |
 | ⬜ A-2 | GitHub のデフォルトブランチを `main` に変更（Settings → General → Default branch） | GitHub | 1分 |
 | ⬜ A-3 | Vercel 既存3プロジェクト（npo-hirakata / hirakata-kids / mirai-lab-nexia）の Settings → Git が `eijiyoshikawa/nh_p` に接続されているか確認。違えば Disconnect → Connect（Root Directory は npo-lp / hirakata-kids / nexia-lp） | Vercel | 10分 |
 | ⬜ A-4 | 過去に会話で共有した API キーをローテーション（Gemini・Groq・GitHub PAT）。漏えい扱いで再発行し、古いものは無効化 | 各サービス | 15分 |
