@@ -17,7 +17,7 @@
 
 | プロジェクト | Root Directory | Production Branch | 備考 |
 |---|---|---|---|
-| `mirai-lab-nexia` | `nexia-lp` | `main` | **Git 未接続なら `vercel git connect` で接続**（下記） |
+| `nexia-lp`（旧名 mirai-lab-nexia） | `nexia-lp` | `main` | **Git 未接続**。下記の手順で接続する |
 | `npo-hirakata` | `npo-lp` | `main` | |
 | `hirakata-kids` | `hirakata-kids` | `media_start` | |
 
@@ -25,7 +25,7 @@
 - 「Include source files outside of the Root Directory in the Build Step」は **ON**（`ignoreCommand` の git diff が動くために必要。既定で ON）。
 - Ignored Build Step は「Automatic」のまま（`vercel.json` の `ignoreCommand` が優先されます）。
 
-### mirai-lab-nexia を Git に接続する（初回のみ）
+### nexia-lp を Git に接続する（初回のみ）
 
 ```bash
 cd ~/npo_hirakata/nexia-lp

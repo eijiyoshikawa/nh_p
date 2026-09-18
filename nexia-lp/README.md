@@ -3,7 +3,7 @@
 枚方市内の子ども食堂を支援するNPO法人（2026年秋設立予定）の公式LP。
 **パスワードなし・誰でも見られる**団体の顔。メンバー限定の `../npo-lp/` とは別プロジェクト。
 
-- 本番URL: https://mirailabo-nexia.skma.asia（Vercel プロジェクト `mirai-lab-nexia`、旧URL mirai-lab-nexia.vercel.app も有効）
+- 本番URL: https://mirailabo-nexia.skma.asia（Vercel プロジェクト **`nexia-lp`**。旧URL mirai-lab-nexia.vercel.app も引き続き有効）
 - コンセプト: 「子ども食堂を、枚方のブランドに。」
 - 技術: Next.js 16（App Router）, React 19, Tailwind CSS v4, TypeScript
 - 配色: ラボブルー `#2457C5` × サンライズイエロー `#FFB703`（npo-lp の緑とは差別化）
@@ -69,12 +69,12 @@ npm run lint
 
 ## デプロイ（Vercel）
 
-Vercel プロジェクト `mirai-lab-nexia` は作成済み（初回デプロイ済み）。
+Vercel プロジェクト `nexia-lp`（旧名 mirai-lab-nexia、ID は同じ）は作成済み。
 ローカルからは一度だけ `vercel link` で紐づけ、以降は `vercel deploy --prod`。
 
 ```bash
 cd ~/npo_hirakata/nexia-lp
-vercel link       # 対話: eijiyoshikawa's projects → 既存の mirai-lab-nexia を選択
+vercel link       # 対話: eijiyoshikawa's projects → 既存の nexia-lp を選択
 vercel deploy --prod
 ```
 

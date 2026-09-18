@@ -2,7 +2,7 @@
 
 ## これは何
 NPO法人ミライラボネクシア（2026年秋設立予定・枚方市）の**一般公開用**公式LP。
-デモサイトとして全ページ実装済み・ビルド/リント通過済み・**本番公開中: https://mirai-lab-nexia.vercel.app**
+デモサイトとして全ページ実装済み・ビルド/リント通過済み・**本番公開中: https://mirailabo-nexia.skma.asia**
 
 - 構成設計書: `docs/nexia-lp-plan.md`（ページ構成・セクション・トーン・ターゲット）
 - 全文言: `src/lib/site.ts` ／ お知らせ: `src/lib/news.ts`
@@ -16,7 +16,7 @@ NPO法人ミライラボネクシア（2026年秋設立予定・枚方市）の*
 - [ ] お問い合わせフォームの送信先（Formspree 等）→ `NEXT_PUBLIC_FORM_ENDPOINT`
 - [ ] 連携先ロゴ（`partners` セクションにプレースホルダーあり）
 - [ ] 写真素材（現状は図形・絵文字のみ）
-- [x] Vercel プロジェクト `mirai-lab-nexia` 作成・デプロイ済み → https://mirailabo-nexia.skma.asia
+- [x] Vercel プロジェクト `nexia-lp`（旧名 mirai-lab-nexia）作成・デプロイ済み → https://mirailabo-nexia.skma.asia
 - [x] ローカル `vercel link` 済み。GitHub App も復旧 → `vercel git connect` で Git 接続すれば push だけで本番反映（`docs/vercel-github-integration.md`）
 - [x] 独自ドメイン https://mirailabo-nexia.skma.asia 設定完了（Xserver CNAME → 3abd155664061ee4.vercel-dns-016.com、Vercel で Valid 確認済み）
 

@@ -24,7 +24,7 @@
 cd nexia-lp
 npm install
 npm run dev
-vercel deploy --prod   # 初回のみ事前に vercel link（プロジェクト mirai-lab-nexia）
+vercel deploy --prod   # 初回のみ事前に vercel link（プロジェクト nexia-lp）
 ```
 
 ---
