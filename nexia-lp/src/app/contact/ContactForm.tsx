@@ -67,7 +67,7 @@ export default function ContactForm({ defaultType = "general" }: { defaultType?:
         <p className="mt-2 font-extrabold text-ink">送信ありがとうございます</p>
         <p className="mt-2 text-sm text-ink-2">
           {ENDPOINT
-            ? "内容を確認のうえ、設立準備室よりご連絡します。"
+            ? "内容を確認のうえ、担当者よりご連絡します。"
             : "メールソフトが開きます。開かない場合は下記アドレスへ直接お送りください。"}
         </p>
         {!ENDPOINT && <p className="mt-2 text-sm font-bold text-brand">{org.email}</p>}

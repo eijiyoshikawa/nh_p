@@ -47,7 +47,7 @@ export default function OgImage() {
             </div>
             <div style={{ display: "flex", gap: 12 }}>
               <span style={{ fontSize: 22, fontWeight: 700, color: GREEN, background: "#fff", padding: "10px 22px", borderRadius: 999 }}>
-                {org.status}
+                NPO法人
               </span>
               <span style={{ fontSize: 22, fontWeight: 700, color: "#fff", background: GREEN, padding: "10px 22px", borderRadius: 999 }}>
                 {org.area}

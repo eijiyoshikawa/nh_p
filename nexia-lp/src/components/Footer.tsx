@@ -13,7 +13,7 @@ export default function Footer() {
             {org.purpose}
           </p>
           <p className="mt-4 text-xs text-white/50">
-            {org.status} ／ {org.area}
+            {org.area}
           </p>
         </div>
 

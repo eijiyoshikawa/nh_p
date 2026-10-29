@@ -7,7 +7,7 @@ import { org, siteUrl } from "@/lib/site";
 
 const title = `${org.name}｜一緒に、ひらかたを育てませんか。`;
 const description =
-  "枚方の子ども食堂を応援するNPO法人（2026年秋設立予定）。子どもの居場所とあたたかいごはん、そして「ひらかたのこと、ひとこと聞かせてください」。市民の声を行政や地域につなぐハブを目指します。";
+  "枚方の子ども食堂を応援するNPO法人。子どもの居場所とあたたかいごはん、そして「ひらかたのこと、ひとこと聞かせてください」。市民の声を行政や地域につなぐハブを目指します。";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

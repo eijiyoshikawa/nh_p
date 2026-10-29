@@ -20,7 +20,7 @@ export default function AboutPage() {
     ["所在地", org.address],
     ["活動地域", org.area],
     ["連絡先", org.email],
-    ["設立準備", org.operator.replace("設立準備：", "")],
+    ["協力", org.operator.replace("協力：", "")],
   ];
 
   return (

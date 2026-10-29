@@ -29,7 +29,7 @@ export default function Footer() {
         </a>
       </p>
       <p>&copy; {new Date().getFullYear()} ひらかた子ども食堂支援NPO</p>
-      <p className="mt-1">運営：三慧経営顧問株式会社（NPO化までの暫定）</p>
+      <p className="mt-1">運営：NPO法人ミライラボネクシア</p>
       <p className="mt-1">大阪府枚方市</p>
     </footer>
   );

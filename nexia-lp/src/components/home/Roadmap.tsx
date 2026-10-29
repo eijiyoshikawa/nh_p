@@ -3,6 +3,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import { roadmap } from "@/lib/site";
 
 const badge = {
+  done: { label: "DONE", cls: "bg-brand text-white" },
   next: { label: "NEXT", cls: "bg-sun text-ink" },
   planned: { label: "PLAN", cls: "bg-brand-soft text-brand" },
   vision: { label: "VISION", cls: "bg-mint-soft text-mint" },

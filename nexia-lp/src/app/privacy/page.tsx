@@ -43,7 +43,7 @@ export default function PrivacyPage() {
               <p className="mt-2 text-sm leading-relaxed text-ink-2">{s.p}</p>
             </div>
           ))}
-          <p className="text-xs text-ink-3">制定日：2026年9月7日（設立準備室）</p>
+          <p className="text-xs text-ink-3">制定日：2026年9月7日</p>
         </div>
       </section>
     </>
